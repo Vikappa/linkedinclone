@@ -29,10 +29,6 @@
   font-size: 0.8em;
   font-weight: normal;
 }
-.language:hover {
-  cursor: pointer;
-  border-color: black;
-}
 .date {
   font-weight: normal;
   color: #626160;
@@ -48,4 +44,22 @@
 color: rgba(0, 0, 0, .6) !important; 
 font-size: 1.5rem;
 margin: 0 1rem 0 1rem;
+.language {
+  width: 10rem;
+  height: 2rem;
+  border-radius: 5px;
+}
+.icon {
+  width: 30px;
+  height: 30px;
+  color: #3d3d3c;
+}
+.myfooterp:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.myfooter:hover {
+  text-decoration: underline;
+  cursor: pointer;
+  color: #b289dc;
 }
