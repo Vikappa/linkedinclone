@@ -12,7 +12,9 @@ function ProfilePage() {
       <Container>
         <Row>
           {/* lato sinistro */}
-          <Col xs={12} lg={9}>
+          <Col xs={12} lg={9}
+          className="py-3"
+          >
 
             {/* <Analisi /> */}
             <Footer/>

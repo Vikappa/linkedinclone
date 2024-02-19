@@ -80,7 +80,7 @@ function LinkedInNavBar() {
       </div>
 
       <div className='d-flex flex-column text-center goliardiaPortamiVia'>
-      <a className='navBarDedicatedButtonP'>Prova Epicode e paga tra 2 anni!</a>
+      <a className='text-nowrap'>Prova Epicode e paga tra 2 anni!</a>
       </div>
 
 </Container>
