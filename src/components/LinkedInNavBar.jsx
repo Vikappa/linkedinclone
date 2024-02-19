@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 import Navbar from 'react-bootstrap/Navbar';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
@@ -5,8 +7,70 @@ import { BsSearch } from "react-icons/bs";
 import profilePic from '../assets/mockupProfilepic.jpg'
 import { Link } from 'react-router-dom'
 import linkedInIcon from '../assets/iconSmall.png'
+import React, { useState } from 'react';
+import Dropdown from 'react-bootstrap/Dropdown';
+
+const ToggleDropDownTu = React.forwardRef(({ childrentu, onClick }, ref) => (
+  <a className='d-flex flex-column align-items-center justify-content-center'
+    href=""
+    ref={ref}
+    onClick={(e) => {
+      e.preventDefault();
+      onClick(e);
+    }}
+  >
+  <img src={profilePic} alt="profile pic mockup" className="rounded-circle pt-1" style={{height:"28px"}}  />
+  <p className='d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP'>Tu&#x25bc;</p>
+  </a>
+))
+
+ToggleDropDownTu.displayName = 'ToggleDropDownTu';
+
+const DropDownTu = React.forwardRef(
+  ({ childrentu, style, className, 'aria-labelledby': labeledBy }, ref) => {
+    const [value, setValue] = useState('');
+
+    return (
+      <div
+        ref={ref}
+        style={style}
+        className={className}
+        aria-labelledby={labeledBy}
+      >
+<div className="d-flex flex-column align-items-start">
+
+<div className='d-flex align-items-center'>
+<img src={profilePic} alt="profile pic mockup" className="rounded-circle p-1" style={{width:"30%"}}/>
+  <div className='d-flex flex-column justify-content-start'>
+  <h6 className='titoliDropDownTu text-start m-0'>Nome Utente</h6>
+  <p className='testiDropDownTu'>Formazione dell'utente</p>
+</div>
+</div>
+  <div className='d-flex flex-column justify-content-start p-1'>
+  <h6 className='titoliDropDownTu text-start m-0'>Account</h6>
+  <p className='testiDropDownTu'>Impostazioni e privacy</p>
+  <p className='testiDropDownTu'>Guida</p>
+  <p className='testiDropDownTu'>Lingua</p>
+</div>
+  <div className='d-flex flex-column justify-content-start p-1'>
+  <h6 className='titoliDropDownTu text-start m-0'>Gestisci</h6>
+  <p className='testiDropDownTu'>Post e attività</p>
+</div>
+  <div className='d-flex flex-column justify-content-start p-1'>
+  <p className='testiDropDownTu'>Esci</p>
+</div>
+</div>
+      </div>
+    );
+  },
+);
+
+DropDownTu.displayName = 'DropDownTu';
+
 
 function LinkedInNavBar() {
+
+
 
   return (
     <>
@@ -66,10 +130,15 @@ function LinkedInNavBar() {
         <i className="bi bi-bell-fill navBarDedicatedButton " > </i>
         <p className='d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP'>Notifiche</p>
         </div>
-        <div className='d-flex flex-column text-center topBarButton'>
-        <img src={profilePic} alt="profile pic mockup" className="rounded-circle pt-1" style={{height:"28px"}}  />
-        <p className='d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP'>Tu ▼</p>
-        </div>
+        <Dropdown>
+    <Dropdown.Toggle as={ToggleDropDownTu} id="dropdown-custom-components">
+    </Dropdown.Toggle>
+
+    <Dropdown.Menu as={DropDownTu}>
+
+    </Dropdown.Menu>
+  </Dropdown>
+
       </Container>
 
       <Container className='container-fluid d-none d-sm-flex justify-content-start'>

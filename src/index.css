@@ -82,6 +82,15 @@
   font-size: 0.6rem;
 }
 
+.titoliDropDownTu{
+  font-size: 0.8rem !important;
+text-align: start;
+}
+
+.testiDropDownTu{
+  font-size: 0.6rem !important;
+  margin: 0;
+}
 
 #info,
 #lineeguida,
