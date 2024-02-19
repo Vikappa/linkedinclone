@@ -38,14 +38,33 @@
   font-size: 0.6rem !important;
 }
 
+.navBarDedicatedButtonP:hover{
+  text-decoration: underline !important;
+  cursor: pointer;
+}
+
+.navBarDedicatedButtonP2{
+  font-size: 0.5rem !important;
+}
+
+.navBarDedicatedButtonP2:hover{
+  text-decoration: underline !important;
+  cursor: pointer;
+}
+
+.topBarButton:hover{
+  text-decoration: underline !important;
+  cursor: pointer;
+}
+
 .sectionOneNavbar{
   border-right: 1px solid var(--bs-gray-400);
-  flex-grow: 1; 
-  width: 100%;
+  width: 300%;
 }
 
 .navBarDedicatedButton {
   padding: 0.5rem 0 0.5rem 0 !important;
+  font-size: 1.3rem;
 }
 
 @media screen and (min-width: 576px) {
@@ -58,7 +77,8 @@
 }
 
 .goliardiaPortamiVia{
-  width: 30%;
+  width: 50%; 
+  margin: 0 1rem 0 1rem;
 }
 
 

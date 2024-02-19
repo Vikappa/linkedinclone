@@ -10,8 +10,10 @@ function LinkedInNavBar() {
 
   return (
     <>
-    <Navbar fixed='top' className="bg-body-tertiary justify-content-between container-fluid w-100 p-sm-0">
+    <Navbar fixed='top' className="bg-body-tertiary justify-content-between container-fluid w-100 p-1">
+      <Link>
         <img src={profilePic} alt="profile pic mockup" className="rounded-circle d-sm-none" id='profilePic' />
+      </Link>
       <Container className='p-0 d-sm-none'>
         <Form className='w-100 d-flex align-items-center'>
         <BsSearch className='position-relative' id='searchIcon' />
@@ -22,53 +24,64 @@ function LinkedInNavBar() {
             className="mr-sm-2 container-fluid border-0 "
             />
         </Form>
-      </Container>
+      </Container >
       <Link>
       <i className="fa-solid fa-comment-dots d-sm-none" id="messageIcon"></i>
       </Link>
-        <img src={linkedInIcon} alt='linkedin icon' height={'30px'} className='d-none d-sm-flex d-flex align-items-center mx-sm-3' id='linkedInIcon' />
-      <Container className=' d-none d-sm-flex flex-grow-1 sectionOneNavbar'>
+     <Link>
+        <img src={linkedInIcon} alt='linkedin icon' height={'36px'} className='d-none d-sm-flex d-flex align-items-center mx-sm-3' id='linkedInIcon' />
+     </Link>
+      <Container className=' d-none d-sm-flex sectionOneNavbar'>
 
         <div className='d-flex flex-column text-center'>
-        <i className="bi bi-search navBarDedicatedButton " > </i>
-        <p className='d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP'>Cerca</p>
+        <i className="bi bi-search navBarDedicatedButton d-lg-none" > </i>
+        <p className='d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP d-lg-none'>Cerca</p>
+        <Form className='w-100 d-flex align-items-center d-none d-lg-flex'>
+        <BsSearch className='position-relative' id='searchIcon' />
+          <Form.Control
+            id='formControlNavBar'
+            type="text"
+            placeholder="     Cerca"
+            className="mr-sm-2 container-fluid border-0 "
+            />
+        </Form>
         </div>
-        <div className='d-flex flex-column text-center'>
+        <div className='d-flex flex-column text-center topBarButton'>
         <i className="bi bi-house-door-fill navBarDedicatedButton " > </i>
         <p className='d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP'>Home</p>
         </div>
-        <div className='d-flex flex-column text-center'>
+        <div className='d-flex flex-column text-center topBarButton'>
         <i className="bi bi-person-fill navBarDedicatedButton " > </i>
         <p className='d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP'>Rete</p>
         </div>
-        <div className='d-flex flex-column text-center'>
+        <div className='d-flex flex-column text-center topBarButton'>
         <i className="bi bi-briefcase-fill navBarDedicatedButton " > </i>
         <p className='d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP'>Lavoro</p>
         </div>
-        <div className='d-flex flex-column text-center'>
+        <div className='d-flex flex-column text-center topBarButton'>
         <i className="bi bi-chat-dots-fill navBarDedicatedButton " > </i>
         <p className='d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP'>Messaggistica</p>
         </div>
-        <div className='d-flex flex-column text-center'>
+        <div className='d-flex flex-column text-center topBarButton'>
         <i className="bi bi-bell-fill navBarDedicatedButton " > </i>
         <p className='d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP'>Notifiche</p>
         </div>
-        <div className='d-flex flex-column text-center'>
-        <img src={profilePic} alt="profile pic mockup" className="rounded-circle" style={{height:"20px"}}  />
-        <p className='d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP'>Tu</p>
+        <div className='d-flex flex-column text-center topBarButton'>
+        <img src={profilePic} alt="profile pic mockup" className="rounded-circle pt-1" style={{height:"28px"}}  />
+        <p className='d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP'>Tu ▼</p>
         </div>
       </Container>
 
-      <Container className='container-fluid d-none d-sm-flex'>
+      <Container className='container-fluid d-none d-sm-flex justify-content-start'>
 
-<div className='d-flex flex-column text-center'>
-<i className="bi bi-x-diamond-fill"></i>
-<p className='d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP'>Cerca</p>
-</div>
+      <div className='d-flex flex-column text-center align-items-center justify-content-center'>
+      <i className="bi bi-x-diamond-fill"></i>
+      <p className='d-none d-md-inline p-0 m-0 navBarDedicatedButtonP2'>Per le aziende ▼</p>
+      </div>
 
-<div className='d-flex flex-column text-center goliardiaPortamiVia'>
-  <a className='navBarDedicatedButtonP'>Prova Epicode e paga tra 2 anni!</a>
-  </div>
+      <div className='d-flex flex-column text-center goliardiaPortamiVia'>
+      <a className='navBarDedicatedButtonP'>Prova Epicode e paga tra 2 anni!</a>
+      </div>
 
 </Container>
     </Navbar>
