@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom'
 import linkedInIcon from '../assets/iconSmall.png'
 import React, { useState } from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
+import ModaleDestro from './PezziDiNavBar/ModaleDestro'
 
 const ToggleDropDownTu = React.forwardRef(({ childrentu, onClick }, ref) => (
   <a className='d-flex flex-column align-items-center justify-content-center'
@@ -70,7 +71,12 @@ DropDownTu.displayName = 'DropDownTu';
 
 function LinkedInNavBar() {
 
+  const [mostraModaleDestro, setMostraModaleDestro] = useState(false);
 
+  const toggleModaleDestro = () => {
+    setMostraModaleDestro(!mostraModaleDestro);
+  };
+  
 
   return (
     <>
@@ -143,7 +149,9 @@ function LinkedInNavBar() {
 
       <Container className='container-fluid d-none d-sm-flex justify-content-start'>
 
-      <div className='d-flex flex-column text-center align-items-center justify-content-center'>
+      <div
+      onClick={toggleModaleDestro}
+      className='d-flex flex-column text-center align-items-center justify-content-center'>
       <i className="bi bi-x-diamond-fill"></i>
       <p className='d-none d-md-inline p-0 m-0 navBarDedicatedButtonP2'>Per le aziende ▼</p>
       </div>
@@ -172,6 +180,7 @@ function LinkedInNavBar() {
 <i className="bi bi-briefcase-fill"></i>
 </Link>
 </Navbar>
+<ModaleDestro mostraModaleDestro={mostraModaleDestro} />
     </>
   )
 }

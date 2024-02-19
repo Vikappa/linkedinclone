@@ -1,0 +1,16 @@
+.modaleDestro .modal-dialog{
+    margin-right: 0;
+    max-width: 20vw;
+}
+
+.modaleDestro .modal-content {
+    height: 90vh;
+}
+
+.modal.fade.modal-right .modal-dialog {
+    transform: translateX(100%);
+}
+
+.modal.show.modal-right .modal-dialog {
+    transform: translateX(0%);
+}
