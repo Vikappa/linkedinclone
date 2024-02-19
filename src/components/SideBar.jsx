@@ -5,8 +5,40 @@ import ListGroup from "react-bootstrap/ListGroup";
 import Card from "react-bootstrap/Card";
 import Image from "react-bootstrap/Image";
 import Button from "react-bootstrap/Button";
+import { useEffect, useState } from "react";
 
 const SideBar = () => {
+  const AllTheProfilesURL =
+    "https://striveschool-api.herokuapp.com/api/profile";
+  const myKey =
+    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzMTUzYjI0ZjYwNTAwMTkzN2Q0NmEiLCJpYXQiOjE3MDgzMzIzNDcsImV4cCI6MTcwOTU0MTk0N30.PhTpxaqmoqshGHbwVUIWDlVbF1mGD_vRAaHWmdvBCIs";
+
+  const [profileOfOthers, setProfileOfOthers] = useState([]);
+  const [showAllProfiles, setShowAllProfiles] = useState(false);
+
+  const gettingProfiles = async () => {
+    try {
+      let response = await fetch(AllTheProfilesURL, {
+        headers: {
+          Authorization: myKey,
+        },
+      });
+      if (response.ok) {
+        let data = await response.json();
+        console.log(data);
+        setProfileOfOthers(data);
+      } else {
+        throw new Error("Errore: " + response.statusText);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    gettingProfiles();
+  }, []);
+
   return (
     <Container className="d-none d-md-block mt-2">
       <Row className="justify-content-center">
@@ -36,53 +68,63 @@ const SideBar = () => {
         </Col>
       </Row>
       <Row>
-        <Col className="mt-3">
+        <Col xs={12} className="mt-3">
           <Card>
             <Card.Header className="fw-semibold">
               Altri profili consultati
             </Card.Header>
             <ListGroup variant="flush">
-              <ListGroup.Item className="p-1 text-secondary">
-                <div
-                  className="d-flex flex-row justify-content-between align-items-baseline
-                "
-                >
-                  <span className="me-2">
-                    <Image src="https://placebear.com/g/80/80" roundedCircle />
-                  </span>
+              {profileOfOthers
+                .slice(0, showAllProfiles ? profileOfOthers.length : 5)
+                .map((profile) => (
+                  <ListGroup.Item key={profile._id}>
+                    <div className="d-flex flex-row justify-content-between align-items-baseline">
+                      <span>
+                        <Image
+                          src={profile.image}
+                          roundedCircle
+                          fluid
+                          style={{ width: "65px", height: "65px" }}
+                        />
+                      </span>
 
-                  <div className="d-flex flex-column">
-                    <div className="d-flex flex-row">
-                      <p className="text-dark fw-semibold">
-                        Emanuele Brancaforte
-                      </p>
-                    </div>
+                      <div className="d-flex flex-column">
+                        <div className="d-flex flex-row">
+                          <p className="text-dark fw-semibold">
+                            {profile.name} {profile.surname}
+                          </p>
+                        </div>
 
-                    <p className="text muted m-0">Software Engineer</p>
-                    <span> COMPANY</span>
-                    <div className=" mt-2">
-                      <Button
-                        size="sm"
-                        variant="outline-secondary"
-                        className="rounded-5 border-2  fw-semibold"
-                      >
-                        {" "}
-                        <i className="bi bi-person-plus-fill me-1"></i>
-                        Collegati
-                      </Button>
+                        <p className="text-muted m-0">{profile.title}</p>
+                        <span> COMPANY</span>
+                        <div className=" mt-2">
+                          <Button
+                            size="sm"
+                            variant="outline-secondary"
+                            className="rounded-5 border-2  fw-semibold"
+                          >
+                            <i className="bi bi-person-plus-fill me-1"></i>
+                            Collegati
+                          </Button>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              </ListGroup.Item>
-              <ListGroup.Item className="text-center">
-                <Button variant="light" className="bg-transaprent">
-                  Mostra tutto
-                </Button>
-              </ListGroup.Item>
+                  </ListGroup.Item>
+                ))}
             </ListGroup>
+            <ListGroup.Item className="text-center">
+              <Button
+                variant="light"
+                className="bg-transparent"
+                onClick={() => setShowAllProfiles(!showAllProfiles)}
+              >
+                {showAllProfiles ? "Mostra meno" : "Mostra tutto"}
+              </Button>
+            </ListGroup.Item>
           </Card>
         </Col>
-        <Col className="mt-3">
+
+        <Col xs={12} className="mt-3">
           <Card>
             <Card.Header className="fw-semibold">
               <p className="pb-0 mb-0">Persone che potresti conoscere</p>
