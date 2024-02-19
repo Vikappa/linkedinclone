@@ -1,7 +1,7 @@
 import { Col } from "react-bootstrap"
 import { Container, Row } from "react-bootstrap"
 import LinkedInNavBar from "./LinkedInNavBar"
-
+import Analisi from "./Analisi"
 function ProfilePage(){
 
     return (
