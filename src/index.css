@@ -66,3 +66,31 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+#info,
+#lineeguida,
+#privacy,
+#sales,
+#security,
+#access,
+#career,
+#options,
+#mobile,
+#talent,
+#marketing,
+#pub,
+#imprese {
+  font-size: 0.8em;
+}
+.questions {
+  font-size: 0.8em;
+  font-weight: normal;
+}
+.language:hover {
+  cursor: pointer;
+  border-color: black;
+}
+.date {
+  font-weight: normal;
+  color: #626160;
+  font-size: 0.7em;
+}
