@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import { BsSearch } from "react-icons/bs";
 import profilePic from '../assets/mockupProfilepic.jpg'
-import { Link } from'react-router-dom';
+
 function LinkedInNavBar() {
 
   return (
