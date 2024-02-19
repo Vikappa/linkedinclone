@@ -1,6 +1,6 @@
 import { Col } from "react-bootstrap"
 import { Container, Row } from "react-bootstrap"
-
+import Analisi from "./Analisi"
 function ProfilePage(){
 
     return (
@@ -8,7 +8,7 @@ function ProfilePage(){
         <Container>
             <Row>
                 {/* lato sinistro */}
-            <Col></Col>
+            <Col xs={9}> <Analisi/></Col>
             {/* sidebar */}
             <Col></Col>
             </Row>
