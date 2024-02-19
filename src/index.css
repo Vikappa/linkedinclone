@@ -38,6 +38,30 @@
   font-size: 0.6rem !important;
 }
 
+.sectionOneNavbar{
+  border-right: 1px solid var(--bs-gray-400);
+  flex-grow: 1; 
+  width: 100%;
+}
+
+.navBarDedicatedButton {
+  padding: 0.5rem 0 0.5rem 0 !important;
+}
+
+@media screen and (min-width: 576px) {
+  .navBarDedicatedButton {
+    padding: 0 0 0 0 !important;
+  }
+  .navBarDedicatedButtonP {
+    padding: 0 0 0.2rem 0 !important;
+  }
+}
+
+.goliardiaPortamiVia{
+  width: 30%;
+}
+
+
 #info,
 #lineeguida,
 #privacy,
