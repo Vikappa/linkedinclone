@@ -7,7 +7,7 @@ import { Col, Container, Row } from "react-bootstrap";
 function App() {
   return (
     <>
-      <Container>
+      <Container fluid>
         <Row>
           <Col>
             <ProfilePage />

@@ -5,12 +5,12 @@ import SideBar from "./SideBar";
 function ProfilePage() {
   return (
     <>
-      <Container>
+      <Container fluid>
         <Row>
           {/* lato sinistro */}
-          <Col xs={6}></Col>
+          <Col xs={12} md={9}></Col>
           {/* sidebar */}
-          <Col xs={4}>
+          <Col md={3}>
             <SideBar />
           </Col>
         </Row>

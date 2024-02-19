@@ -77,18 +77,18 @@ const SideBar = () => {
               {profileOfOthers
                 .slice(0, showAllProfiles ? profileOfOthers.length : 5)
                 .map((profile) => (
-                  <ListGroup.Item key={profile._id}>
+                  <ListGroup.Item key={profile._id} className="p-1">
                     <div className="d-flex flex-row justify-content-between align-items-baseline">
                       <span>
                         <Image
                           src={profile.image}
                           roundedCircle
                           fluid
-                          style={{ width: "65px", height: "65px" }}
+                          style={{ width: "45px", height: "45px" }}
                         />
                       </span>
 
-                      <div className="d-flex flex-column">
+                      <div className="d-flex flex-column justify-content-end">
                         <div className="d-flex flex-row">
                           <p className="text-dark fw-semibold">
                             {profile.name} {profile.surname}
@@ -97,17 +97,17 @@ const SideBar = () => {
 
                         <p className="text-muted m-0">{profile.title}</p>
                         <span> COMPANY</span>
-                        <div className=" mt-2">
-                          <Button
-                            size="sm"
-                            variant="outline-secondary"
-                            className="rounded-5 border-2  fw-semibold"
-                          >
-                            <i className="bi bi-person-plus-fill me-1"></i>
-                            Collegati
-                          </Button>
-                        </div>
                       </div>
+                    </div>
+                    <div className=" mt-2 text-center">
+                      <Button
+                        size="sm"
+                        variant="outline-secondary"
+                        className="rounded-5 border-2  fw-semibold"
+                      >
+                        <i className="bi bi-person-plus-fill me-1"></i>
+                        Collegati
+                      </Button>
                     </div>
                   </ListGroup.Item>
                 ))}
@@ -154,17 +154,18 @@ const SideBar = () => {
 
                     <p className="text muted m-0">Software Engineer</p>
                     <span> COMPANY</span>
-                    <div className=" mt-2">
-                      <Button
-                        size="sm"
-                        variant="outline-secondary"
-                        className="rounded-5 border-2  fw-semibold"
-                      >
-                        <i className="bi bi-person-plus-fill me-1"></i>
-                        Collegati
-                      </Button>
-                    </div>
+                    <div className=" mt-2"></div>
                   </div>
+                </div>
+                <div className="text-center">
+                  <Button
+                    size="sm"
+                    variant="outline-secondary"
+                    className="rounded-5 border-2  fw-semibold "
+                  >
+                    <i className="bi bi-person-plus-fill me-1"></i>
+                    Collegati
+                  </Button>
                 </div>
               </ListGroup.Item>
               <ListGroup.Item className="text-center">
