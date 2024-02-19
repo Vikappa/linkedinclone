@@ -69,50 +69,55 @@ const Footer = () => {
           <p></p>
         </Col>
         <Col xs={12} md={6} lg={3}>
-          <div>
-            <span>
-              <HiQuestionMarkCircle className="icon me-2" />
-            </span>
-            <span className="myfooter">Domande?</span>
-            <p className="questions ">Visita il nostro Centro assistenza.</p>
-          </div>
-          <div>
-            <span>
-              <IoSettingsSharp className="icon me-2" />
-            </span>
-            <span className="myfooter">
-              Gestisci il tuo account e la tua privacy
-            </span>
-            <p className="questions">Vai alle impostazioni</p>
-          </div>
-          <div>
-            <span>
-              <IoShieldHalf className="icon me-2" />
-              <span className="myfooter">
-                Trasparenza sui contenuti consigliati
-              </span>
-            </span>
-            <p className="questions">
-              Scopri di più sui contenuti consigliati.
-            </p>
-          </div>
-        </Col>
-        <Col xs={12} md={6} lg={2}>
-          <div className="questions ">
-            Seleziona lingua
-            <div>
-              <select className="language mt-1">
-                <option>English</option>
-                <option>Español</option>
-                <option>Italiano</option>
-                <option>Français</option>
-                <option>Deutsch</option>
-                <option>Polski</option>
-                <option>Svenska</option>
-                <option>Portuguese</option>
-                <option>Arabic</option>
-                <option>Tagalog</option>
-              </select>
+          <div className="d-flex flex-column flex-lg-row ">
+            <div className="d-flex flex-column" style={{ minWidth: "90%" }}>
+              <div>
+                <span>
+                  <HiQuestionMarkCircle className="icon me-2" />
+                </span>
+                <span className="myfooter">Domande?</span>
+                <p className="questions ">
+                  Visita il nostro Centro assistenza.
+                </p>
+              </div>
+              <div>
+                <span>
+                  <IoSettingsSharp className="icon me-2" />
+                </span>
+                <span className="myfooter">
+                  Gestisci il tuo account e la tua privacy
+                </span>
+                <p className="questions">Vai alle impostazioni</p>
+              </div>
+              <div>
+                <span>
+                  <IoShieldHalf className="icon me-2" />
+                  <span className="myfooter">
+                    Trasparenza sui contenuti consigliati
+                  </span>
+                </span>
+                <p className="questions">
+                  Scopri di più sui contenuti consigliati.
+                </p>
+              </div>
+            </div>
+
+            <div className="questions ">
+              Seleziona lingua
+              <div>
+                <select className="language mt-1">
+                  <option>English</option>
+                  <option>Español</option>
+                  <option>Italiano</option>
+                  <option>Français</option>
+                  <option>Deutsch</option>
+                  <option>Polski</option>
+                  <option>Svenska</option>
+                  <option>Portuguese</option>
+                  <option>Arabic</option>
+                  <option>Tagalog</option>
+                </select>
+              </div>
             </div>
           </div>
         </Col>
