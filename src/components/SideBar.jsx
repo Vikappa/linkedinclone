@@ -6,6 +6,7 @@ import Card from "react-bootstrap/Card";
 import Image from "react-bootstrap/Image";
 import Button from "react-bootstrap/Button";
 import { useEffect, useState } from "react";
+import Modal from "react-bootstrap/Modal";
 
 const SideBar = () => {
   const AllTheProfilesURL =
@@ -15,6 +16,7 @@ const SideBar = () => {
 
   const [profileOfOthers, setProfileOfOthers] = useState([]);
   const [showAllProfiles, setShowAllProfiles] = useState(false);
+  const [selectedProfile, setSelectedProfile] = useState(null);
 
   const gettingProfiles = async () => {
     try {
@@ -38,6 +40,10 @@ const SideBar = () => {
   useEffect(() => {
     gettingProfiles();
   }, []);
+
+  const handleCloseModal = () => {
+    setSelectedProfile(null);
+  };
 
   return (
     <Container className="d-none d-md-block mt-2">
@@ -104,6 +110,9 @@ const SideBar = () => {
                         size="sm"
                         variant="outline-secondary"
                         className="rounded-5 border-2  fw-semibold"
+                        onClick={() => {
+                          setSelectedProfile(profile);
+                        }}
                       >
                         <i className="bi bi-person-plus-fill me-1"></i>
                         Collegati
@@ -177,6 +186,24 @@ const SideBar = () => {
           </Card>
         </Col>
       </Row>
+      <Modal show={selectedProfile !== null} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Profile Details</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {selectedProfile && (
+            <>
+              <h5>{`${selectedProfile.name} ${selectedProfile.surname}`}</h5>
+              <p>{selectedProfile.title}</p>
+            </>
+          )}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseModal}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Container>
   );
 };
