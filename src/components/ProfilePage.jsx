@@ -8,11 +8,12 @@ function ProfilePage() {
       <Container>
         <Row>
           {/* lato sinistro */}
-          <Col></Col>
+          <Col>
+            <Footer></Footer>
+          </Col>
           {/* sidebar */}
           <Col></Col>
         </Row>
-        <Footer></Footer>
       </Container>
     </>
   );

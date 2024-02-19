@@ -1,67 +1,104 @@
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import "bootstrap-icons";
+import { HiQuestionMarkCircle } from "react-icons/hi";
+import { IoSettingsSharp } from "react-icons/io5";
+import { IoShieldHalf } from "react-icons/io5";
+import { IoMdArrowDropdown } from "react-icons/io";
 const Footer = () => {
   return (
     <Container
       fluid
-      className="p-2 w-100 "
+      className="p-2 w-100"
       style={{ backgroundColor: "#f4f2ee" }}
     >
       <Row
         className="mt-2 fs-6 fw-bold "
         xs={12}
-        md={3}
+        md={6}
         lg={5}
         style={{ color: "#626160", cursor: "pointer" }}
       >
         <Col>
-          <p id="info">Informazioni</p>
-          <p id="lineeguida">Linee guida della community</p>
-          <p id="privacy">Privacy e condizioni </p>
-          <p id="sales">Sales Solutions</p>
-          <p id="security">Centro Sicurezza</p>
+          <p id="info" className="myfooterp">
+            Informazioni
+          </p>
+          <p id="lineeguida" className="myfooterp">
+            Linee guida della community
+          </p>
+          <p id="privacy" className="myfooterp">
+            Privacy e condizioni
+            <span>
+              <IoMdArrowDropdown />
+            </span>
+          </p>
+          <p id="sales" className="myfooterp">
+            Sales Solutions
+          </p>
+          <p id="security" className="myfooterp">
+            Centro Sicurezza
+          </p>
         </Col>
         <Col>
-          <p id="access">Accessibilità</p>
-          <p id="career">Carriera</p>
-          <p id="options">Opzioni per gli annunci pubbicitari</p>
-          <p id="mobile">Mobile</p>
+          <p id="access" className="myfooterp">
+            Accessibilità
+          </p>
+          <p id="career" className="myfooterp">
+            Carriera
+          </p>
+          <p id="options" className="myfooterp">
+            Opzioni per gli annunci pubbicitari
+          </p>
+          <p id="mobile" className="myfooterp">
+            Mobile
+          </p>
         </Col>
         <Col>
-          <p id="talent">Talent Solutions</p>
-          <p id="marketing">Soluzioni di marketing</p>
-          <p id="pub">Pubblicità</p>
-          <p id="imprese">Piccole imprese</p>
+          <p id="talent" className="myfooterp">
+            Talent Solutions
+          </p>
+          <p id="marketing" className="myfooterp">
+            Soluzioni di marketing
+          </p>
+          <p id="pub" className="myfooterp">
+            Pubblicità
+          </p>
+          <p id="imprese" className="myfooterp">
+            Piccole imprese
+          </p>
           <p></p>
         </Col>
-        <Col>
+        <Col xs={12} md={6} lg={3}>
           <div>
             <span>
-              <i className="bi bi-question-circle-fill"></i>Domande?
+              <HiQuestionMarkCircle className="icon me-2" />
             </span>
-            <p className="questions">Visita il nostro Centro assistenza.</p>
+            <span className="myfooter">Domande?</span>
+            <p className="questions ">Visita il nostro Centro assistenza.</p>
           </div>
           <div>
             <span>
-              <i className="bi bi-gear-fill"></i>Gestisci il tuo account e la
-              tua privacy
+              <IoSettingsSharp className="icon me-2" />
+            </span>
+            <span className="myfooter">
+              Gestisci il tuo account e la tua privacy
             </span>
             <p className="questions">Vai alle impostazioni</p>
           </div>
           <div>
             <span>
-              <i className="bi bi-shield-shaded"></i>Trasparenza sui contenuti
-              consigliati
+              <IoShieldHalf className="icon me-2" />
+              <span className="myfooter">
+                Trasparenza sui contenuti consigliati
+              </span>
             </span>
             <p className="questions">
               Scopri di più sui contenuti consigliati.
             </p>
           </div>
         </Col>
-        <Col>
-          <div className="questions mx-2">
+        <Col xs={12} md={6} lg={2}>
+          <div className="questions ">
             Seleziona lingua
             <div>
               <select className="language mt-1">
@@ -81,7 +118,7 @@ const Footer = () => {
         </Col>
       </Row>
       <Row>
-        <Col xs={12} md={3} className="date">
+        <Col xs={12} md={12} lg={3} className="date">
           Linkedin Corporation &copy; 2024
         </Col>
       </Row>
