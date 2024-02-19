@@ -142,10 +142,10 @@ const SideBar = () => {
                 "
                 >
                   <span className="me-2">
-                    <Image src="https://placebear.com/g/80/80" roundedCircle />
+                    <Image src="https://placebear.com/g/60/60" roundedCircle />
                   </span>
 
-                  <div className="d-flex flex-column">
+                  <div className="d-flex flex-column justify-content-end">
                     <div className="d-flex flex-row">
                       <p className="text-dark fw-semibold">
                         Emanuele Brancaforte
