@@ -1,7 +1,10 @@
-import { Col } from "react-bootstrap";
-import { Container, Row } from "react-bootstrap";
-import LinkedInNavBar from "./LinkedInNavBar";
-import Analisi from "./Analisi";
+import { Col } from "react-bootstrap"
+import { Container, Row } from "react-bootstrap"
+import LinkedInNavBar from "./LinkedInNavBar"
+import Analisi from "./Analisi"
+import Footer from "./Footer"
+import './style.css'
+
 function ProfilePage() {
   return (
     <>
@@ -9,16 +12,17 @@ function ProfilePage() {
       <Container>
         <Row>
           {/* lato sinistro */}
-          <Col xs={9}>
-            {" "}
-            <Analisi />
-          </Col>
+          <Col xs={12} lg={9}>
+
+            {/* <Analisi /> */}
+            <Footer/>
+          </Col >
           {/* sidebar */}
-          <Col></Col>
+          <Col xs={0} lg={3}></Col>
         </Row>
       </Container>
     </>
-  );
+  )
 }
 
-export default ProfilePage;
+export default ProfilePage
