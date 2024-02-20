@@ -4,6 +4,7 @@ import LinkedInNavBar from "./LinkedInNavBar"
 import Analisi from "./Analisi"
 import Footer from "./Footer"
 import './style.css'
+import Risorse from "./Risorse"
 
 function ProfilePage() {
   return (
@@ -16,7 +17,8 @@ function ProfilePage() {
           className="py-3"
           >
 
-            {/* <Analisi /> */}
+            <Analisi />
+            <Risorse/>
           </Col >
           {/* sidebar */}
           <Col xs={0} lg={3}></Col>
