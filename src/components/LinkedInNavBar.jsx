@@ -93,7 +93,7 @@ function LinkedInNavBar() {
       <Link to={`/profile/`}>
         <img src={currentUser.image} alt="profile pic mockup" className="rounded-circle d-sm-none" id='profilePic' />
       </Link>
-      : <><img src='https://http.cat/images/404.jpg' /></>}
+      : <><img src='https://http.cat/images/404.jpg' className="rounded-circle d-sm-none" id='profilePic'  /></>}
       <Container className='p-0 d-sm-none'>
         <Form className='w-100 d-flex align-items-center'>
         <BsSearch className='position-relative' id='searchIcon' />
