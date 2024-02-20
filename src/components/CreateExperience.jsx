@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addExperience } from "../Redux/Actions/ADD_EXPERIENCE";
-import { Col } from "react-bootstrap";
+import { Button, Col } from "react-bootstrap";
 
-const CreateExperience = () => {
+const CreateExperience = (fetchExperience) => {
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     role: "",
@@ -54,6 +54,7 @@ const CreateExperience = () => {
         description: "",
         // image: "",
       });
+      fetchExperience();
     } catch (error) {
       console.error("Errore durante la richiesta POST:", error);
     }
@@ -149,8 +150,11 @@ const CreateExperience = () => {
             </label>
           </Col>
         </Col>
-
-        <button type="submit">Invia</button>
+        <Col>
+          <Button type="submit" variant="success" style={{ width: "75%" }}>
+            Invia
+          </Button>
+        </Col>
       </form>
     </div>
   );

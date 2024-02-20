@@ -3,6 +3,7 @@ import { Button, Col } from "react-bootstrap";
 import { differenceInMonths } from "date-fns";
 import CreateExperience from "./CreateExperience";
 import DeleteExperience from "./DeleteExperience";
+import { FaTrashAlt } from "react-icons/fa";
 
 const Experience = () => {
   const formatDate = (dateString) => {
@@ -67,17 +68,27 @@ const Experience = () => {
     setShowCreateExperience(false);
   };
   return (
-    <div className="border rounded p-2">
+    <div className="border rounded p-2 mt-5">
       <h4 className="text-start">Esperienza</h4>{" "}
       {showCreateExperience && (
-        <CreateExperience onClose={handleCreateExperienceClose} />
+        <CreateExperience
+          onClose={handleCreateExperienceClose}
+          fetchExperience={fetchExperience}
+        />
       )}
-      <Button onClick={handleAddExperienceClick}>
+      <Button
+        style={{ width: "150px", height: "50px" }}
+        onClick={handleAddExperienceClick}
+        className="mb-3"
+      >
         {" "}
         {showCreateExperience ? "Hide" : "ADD EXPERIENCE"}
       </Button>
       {experience.map((exp) => (
-        <Col className="d-flex  mb-2 text-start" key={exp._id}>
+        <Col
+          className="d-flex  mb-2 text-start position-relative"
+          key={exp._id}
+        >
           <img
             src={exp.image}
             alt="logo"
@@ -94,17 +105,27 @@ const Experience = () => {
               <Col>{exp.area}</Col>
             </Col>
             <Col className="mb-2"> {exp.description} </Col>
-          </Col>
-          <Button variant="danger" onClick={() => handleDeleteClick(exp._id)}>
-            DELETE
-          </Button>
+            <Button
+              style={{
+                width: "50px",
+                height: "50px",
+                position: "absolute",
+                bottom: 0,
+                right: 0,
+              }}
+              variant="danger"
+              onClick={() => handleDeleteClick(exp._id)}
+            >
+              <FaTrashAlt />
+            </Button>
 
-          {showDeleteModal && deleteExperienceId === exp._id && (
-            <DeleteExperience
-              experienceId={deleteExperienceId}
-              onClose={handleDeleteModalClose}
-            />
-          )}
+            {showDeleteModal && deleteExperienceId === exp._id && (
+              <DeleteExperience
+                experienceId={deleteExperienceId}
+                onClose={handleDeleteModalClose}
+              />
+            )}
+          </Col>
         </Col>
       ))}
     </div>
