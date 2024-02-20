@@ -27,7 +27,7 @@ const ProfileBarOnHomepage = () => {
                 />
               </div>
               <Card.Title className="mt-5">Card Title</Card.Title>
-              <Card.Text>
+              <Card.Text className="fw-light text-secondary">
                 Some quick example text to build on the card title and make up
                 the bulk of the cards content.
               </Card.Text>
@@ -39,9 +39,15 @@ const ProfileBarOnHomepage = () => {
               </ListGroup.Item>
               <ListGroup.Item>
                 Raggiungi i tuoi obiettivi con Premium
-                <span>Prova Premium per 0 EUR</span>
+                <p className="fw-light">
+                  <i className="bi bi-square-half text-warning"></i> Prova
+                  Premium per 0 EUR
+                </p>
               </ListGroup.Item>
-              <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
+              <ListGroup.Item>
+                <i className="bi bi-bookmark-fill text-secondary"></i> I miei
+                elementi
+              </ListGroup.Item>
             </ListGroup>
           </Card>
         </Col>
