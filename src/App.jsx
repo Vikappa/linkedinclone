@@ -1,4 +1,3 @@
-import ProfileCards from './components/ProfileHero'
 
 
 
@@ -8,7 +7,6 @@ function App() {
   return (
     <>
 
-    <ProfileCards/>
 
       <ProfilePage />
 

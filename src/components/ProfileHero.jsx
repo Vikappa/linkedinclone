@@ -76,7 +76,7 @@ function ProfileCard() {
   return (
     <>
       {profile && (
-        <Card key={profile._id} style={{ width: '50rem', marginTop: '10px', position: 'relative', overflow: 'hidden', backgroundColor: "white" }}>
+        <Card key={profile._id} style={{ width: '100%', marginTop: '8%', position: 'relative', overflow: 'hidden', paddingBottom:"50px",backgroundColor: "white"}}>
           <div
             style={{
               width: '100%',
@@ -91,12 +91,12 @@ function ProfileCard() {
             }}
           />
           <Card.Body style={{ zIndex: 3, position: 'relative', textAlign: 'left', marginLeft: '20px', top: "2.5rem" }}>
-            <Card.Img className='ProfileImg' src={profile.image} alt="Profile Image" width={100} style={{ borderRadius: "50%", border: "4px solid white" }} />
+            <Card.Img className='ProfileImg' src={profile.image} alt="Profile Image" style={{ borderRadius: "50%", border: "4px solid white", width:"150px"  }} />
             <Card.Title style={{ color: 'black', marginBottom: '10px', position: 'relative', zIndex: 4, fontSize: "40px" }}>
               {profile.name ? profile.name : <span style={{ color: 'red' }}>Name not available</span>}
               {' '}
               {profile.surname ? profile.surname : <span style={{ color: 'red' }}>Surname not available</span>}
-              {!isEditing && <button className='Verify' style={{ marginLeft: '10px' }} onClick={() => setIsEditing(true)}>Modifica</button>}
+              {!isEditing && <button className='Verify' style={{ marginLeft: '10px', width:"20%" }} onClick={() => setIsEditing(true)}>Modifica</button>}
             </Card.Title>
             {!isEditing && (
               <>
@@ -143,8 +143,8 @@ function ProfileCard() {
                     <Form.Control style={{color:"black", backgroundColor:"white"}} as="textarea" rows={3} name="bio" value={formData.bio} onChange={handleInputChange} placeholder="Enter your bio" />
                   </Form.Group>
                   <div className="d-flex justify-content-between align-items-center">
-                    <Button style={{paddingTop:"4px",paddingBottom:"4px",paddingLeft:"15px",paddingRight:"15px",marginLeft:"5px", fontSize:"12px"}} variant="secondary" onClick={() => setIsEditing(false)}>Cancel</Button>
-                    <Button style={{paddingTop:"4px",paddingBottom:"4px",paddingLeft:"15px",paddingRight:"15px",marginLeft:"5px", fontSize:"12px"}} variant="primary" type="submit">Save Changes</Button>
+                    <Button style={{backgroundColor:"#DC3545", border:"none",marginTop:"10px",paddingTop:"4px",paddingBottom:"4px",paddingLeft:"15px",paddingRight:"15px",marginLeft:"5px", fontSize:"12px"}} onClick={() => setIsEditing(false)}>Cancel</Button>
+                    <Button className='Savebtn' style={{border:"none", backgroundColor:"green" ,marginTop:"10px",paddingTop:"4px",paddingBottom:"4px",paddingLeft:"15px",paddingRight:"15px",marginLeft:"5px", fontSize:"12px"}} type="submit">Save Changes</Button>
                   </div>
                 </Form>
               </Card>
