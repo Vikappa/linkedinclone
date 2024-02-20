@@ -84,138 +84,155 @@ DropDownTu.displayName = "DropDownTu";
 function LinkedInNavBar() {
   let currentUser = useSelector((state) => state.currentUser.currentUser);
 
+  
   useEffect(() => {
-    console.log(currentUser);
-  }, [currentUser]);
+    console.log(currentUserStore)
+    setCurrentUser(currentUserStore)
+    console.log(currentUser)
+  }, [currentUserStore])
+  
 
   const [mostraModaleDestro, setMostraModaleDestro] = useState(false);
 
   const toggleModaleDestro = () => {
-    setMostraModaleDestro(!mostraModaleDestro);
-  };
+    setMostraModaleDestro(!mostraModaleDestro)
+  }
+
+  const ToggleDropDownTu = React.forwardRef(({ childrentu, onClick }, ref) => (
+    <a className='d-flex flex-column align-items-center justify-content-center'
+      href=""
+      ref={ref}
+      onClick={(e) => {
+        e.preventDefault();
+        onClick(e);
+      }}
+    >
+    {currentUser ? <img src={currentUser.image} alt="profile pic mockup" className="rounded-circle pt-1" style={{height:"28px"}}  /> : <img src="https://placekitten.com/80/80" alt="profile pic mockup" className="rounded-circle pt-1" style={{height:"28px"}}  />}
+    <p className='d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP'>Tu  &#x25bc;</p>
+    </a>
+  ))
+  
+  
+  const DropDownTu = React.forwardRef(
+    ({ childrentu, style, className, 'aria-labelledby': labeledBy }, ref) => {
+      const [value, setValue] = useState('');
+  
+      return (
+        <div
+          ref={ref}
+          style={style}
+          className={className}
+          aria-labelledby={labeledBy}
+        >
+  <div className="d-flex flex-column align-items-start">
+  
+  <div className='d-flex align-items-center'>
+  {currentUser ? <img src={currentUser.image} alt="profile pic mockup" className="rounded-circle p-1" style={{width:"30%"}}/> : <img src="https://placekitten.com/80/80" alt="profile pic mockup" className="rounded-circle p-1" style={{width:"30%"}}/>}
+    <div className='d-flex flex-column justify-content-start'>
+      <Link to={`/profile/`}>
+    <h6 className='titoliDropDownTu text-start m-0'>{currentUser? currentUser.name + " " + currentUser.surname:"Error 404"}</h6>
+      </Link>
+    {currentUser? <p className='testiDropDownTu'>Formazione dell&apos;utente</p> : <p className='testiDropDownTu'>Errore 404</p>}
+  </div>
+  </div>
+    <div className='d-flex flex-column justify-content-start p-1'>
+    <h6 className='titoliDropDownTu text-start m-0'>Account</h6>
+    <p className='testiDropDownTu'>Impostazioni e privacy</p>
+    <p className='testiDropDownTu'>Guida</p>
+    <p className='testiDropDownTu'>Lingua</p>
+  </div>
+    <div className='d-flex flex-column justify-content-start p-1'>
+    <h6 className='titoliDropDownTu text-start m-0'>Gestisci</h6>
+    <p className='testiDropDownTu'>Post e attività</p>
+  </div>
+    <div className='d-flex flex-column justify-content-start p-1'>
+    <p className='testiDropDownTu'>Esci</p>
+  </div>
+  </div>
+        </div>
+      );
+    },
+  );
+  
+  DropDownTu.displayName = 'DropDownTu'
+  ToggleDropDownTu.displayName = 'ToggleDropDownTu';
+
 
   return (
     <>
-      <Navbar
-        fixed="top"
-        className="bg-body-tertiary justify-content-between container-fluid w-100 p-1"
-      >
-        {currentUser ? (
-          <Link to={`/profile/`}>
-            <img
-              src={currentUser.image}
-              alt="profile pic mockup"
-              className="rounded-circle d-sm-none"
-              id="profilePic"
+    <Navbar sticky='top' className="bg-body-tertiary justify-content-between container-fluid w-100 p-1">
+      {currentUser?      
+      <Link to={`/profile/`}>
+        <img src={currentUser.image} alt="profile pic mockup" className="rounded-circle d-sm-none" id='profilePic' />
+      </Link>
+      : <><img src='https://http.cat/images/404.jpg' className="rounded-circle d-sm-none" id='profilePic'  /></>}
+      <Container className='p-0 d-sm-none'>
+        <Form className='w-100 d-flex align-items-center'>
+        <BsSearch className='position-relative' id='searchIcon' />
+          <Form.Control
+            id='formControlNavBar'
+            type="text"
+            placeholder="     Cerca"
+            className="mr-sm-2 container-fluid border-0 "
             />
-          </Link>
-        ) : (
-          <>
-            <img
-              src="https://http.cat/images/404.jpg"
-              className="rounded-circle d-sm-none"
-              id="profilePic"
-            />
-          </>
-        )}
-        <Container className="p-0 d-sm-none">
-          <Form className="w-100 d-flex align-items-center">
-            <BsSearch className="position-relative" id="searchIcon" />
-            <Form.Control
-              id="formControlNavBar"
-              type="text"
-              placeholder="     Cerca"
-              className="mr-sm-2 container-fluid border-0 "
-            />
-          </Form>
-        </Container>
-        <Link>
-          <i
-            className="fa-solid fa-comment-dots d-sm-none"
-            id="messageIcon"
-          ></i>
-        </Link>
-        <Link>
-          <img
-            src={linkedInIcon}
-            alt="linkedin icon"
-            height={"36px"}
-            className="d-none d-sm-flex d-flex align-items-center mx-sm-3"
-            id="linkedInIcon"
+        </Form>
+      </Container >
+      <Link>
+      <i className="fa-solid fa-comment-dots d-sm-none" id="messageIcon"></i>
+      </Link>
+     <Link to="/">
+        <img src={linkedInIcon} alt='linkedin icon' height={'36px'} className='d-none d-sm-flex d-flex align-items-center mx-sm-3' id='linkedInIcon' />
+     </Link>
+     
+{currentUser?
+      <Container className=' d-none d-sm-flex sectionOneNavbar'>
+
+      <div className='d-flex flex-column text-center'>
+      <i className="bi bi-search navBarDedicatedButton d-lg-none" > </i>
+      <p className='d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP d-lg-none'>Cerca</p>
+      <Form className='w-100 d-flex align-items-center d-none d-lg-flex'>
+      <BsSearch className='position-relative' id='searchIcon' />
+        <Form.Control
+          id='formControlNavBar'
+          type="text"
+          placeholder="     Cerca"
+          className="mr-sm-2 container-fluid border-0 "
           />
-        </Link>
-        <Container className=" d-none d-sm-flex sectionOneNavbar">
-          <div className="d-flex flex-column text-center">
-            <i className="bi bi-search navBarDedicatedButton d-lg-none"> </i>
-            <p className="d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP d-lg-none">
-              Cerca
-            </p>
-            <Form className="w-100 d-flex align-items-center d-none d-lg-flex">
-              <BsSearch className="position-relative" id="searchIcon" />
-              <Form.Control
-                id="formControlNavBar"
-                type="text"
-                placeholder="     Cerca"
-                className="mr-sm-2 container-fluid border-0 "
-              />
-            </Form>
-          </div>
-          <div className="d-flex flex-column text-center topBarButton">
-            <i className="bi bi-house-door-fill navBarDedicatedButton "> </i>
-            <p className="d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP">
-              Home
-            </p>
-          </div>
-          <div className="d-flex flex-column text-center topBarButton">
-            <i className="bi bi-person-fill navBarDedicatedButton "> </i>
-            <p className="d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP">
-              Rete
-            </p>
-          </div>
-          <div className="d-flex flex-column text-center topBarButton">
-            <i className="bi bi-briefcase-fill navBarDedicatedButton "> </i>
-            <p className="d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP">
-              Lavoro
-            </p>
-          </div>
-          <div className="d-flex flex-column text-center topBarButton">
-            <i className="bi bi-chat-dots-fill navBarDedicatedButton "> </i>
-            <p className="d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP">
-              Messaggistica
-            </p>
-          </div>
-          <div className="d-flex flex-column text-center topBarButton">
-            <i className="bi bi-bell-fill navBarDedicatedButton "> </i>
-            <p className="d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP">
-              Notifiche
-            </p>
-          </div>
-          <Dropdown>
-            <Dropdown.Toggle
-              as={ToggleDropDownTu}
-              id="dropdown-custom-components"
-            ></Dropdown.Toggle>
+      </Form>
+      </div>
+      <div className='d-flex flex-column text-center topBarButton'>
+      <i className="bi bi-house-door-fill navBarDedicatedButton " > </i>
+      <p className='d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP'>Home</p>
+      </div>
+      <div className='d-flex flex-column text-center topBarButton'>
+      <i className="bi bi-person-fill navBarDedicatedButton " > </i>
+      <p className='d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP'>Rete</p>
+      </div>
+      <div className='d-flex flex-column text-center topBarButton'>
+      <i className="bi bi-briefcase-fill navBarDedicatedButton " > </i>
+      <p className='d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP'>Lavoro</p>
+      </div>
+      <div className='d-flex flex-column text-center topBarButton'>
+      <i className="bi bi-chat-dots-fill navBarDedicatedButton " > </i>
+      <p className='d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP'>Messaggistica</p>
+      </div>
+      <div className='d-flex flex-column text-center topBarButton'>
+      <i className="bi bi-bell-fill navBarDedicatedButton " > </i>
+      <p className='d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP'>Notifiche</p>
+      </div>
+      <Dropdown>
+  <Dropdown.Toggle as={ToggleDropDownTu} id="dropdown-custom-components">
+  </Dropdown.Toggle>
 
-            <Dropdown.Menu as={DropDownTu}></Dropdown.Menu>
-          </Dropdown>
-        </Container>
+  <Dropdown.Menu as={DropDownTu}>
 
-        <Container className="container-fluid d-none d-sm-flex justify-content-start">
-          <div
-            onClick={toggleModaleDestro}
-            className="d-flex flex-column text-center align-items-center justify-content-center"
-          >
-            <i className="bi bi-x-diamond-fill"></i>
-            <p className="d-none d-md-inline p-0 m-0 navBarDedicatedButtonP2">
-              Per le aziende ▼
-            </p>
-          </div>
+  </Dropdown.Menu>
+</Dropdown>
 
-          <div className="d-flex flex-column text-center goliardiaPortamiVia">
-            <a className="text-nowrap">Prova Epicode e paga tra 2 anni!</a>
-          </div>
-        </Container>
-      </Navbar>
+    </Container>
+    :
+    <div style={{width:"100%"}}></div>
+    }
 
       <Navbar
         fixed="bottom"
