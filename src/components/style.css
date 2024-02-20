@@ -1,0 +1,89 @@
+ 
+#eye-text{
+    display: inline;
+    color: grey;
+}
+i{
+    color: rgb(92, 90, 90);
+}
+#user-friends{
+    display: inline-block;
+    
+    
+}
+#user-friends-para{
+ 
+margin: 0px 30px;
+}
+#friends{
+    position: absolute;
+    margin: 10px 0px;
+}
+#user-friends-title{
+padding-left: 30px;
+font-weight:bold;
+}
+#second-div{
+    margin: 20px 100px; 
+    display: flex;
+    
+}
+#container{
+    display: flex;
+}
+#ricerca-title{
+    margin-left: 30px;
+    font-weight:bold;
+    display: inline-block;
+    }
+#ricerca-para{
+    margin: 0px 50px;    
+}
+
+button{
+    height: 30px; 
+    width: 700px;
+    color: grey;
+    font-weight:150;  
+    font-size:20px;
+    background-color: white;
+    border: 0px;
+}
+button:hover {
+    background-color: #EBEBEB;
+     
+  }
+
+  #risorse-title{
+    margin-left: 10px;
+    font-weight:bold;
+    display: inline-block;
+  }
+  #no{
+    background-color: #E8E8E8;
+    padding: 5px;
+  }
+  
+  #risorse-title{
+    margin-left: 5px;
+    font-weight:bold;
+  }
+  #risorse-para{
+    margin: 0px 30px; 
+}
+#rete-title{ 
+    font-weight:bold;
+margin: 30px 0px 0px 30px ;}
+ 
+#rete-logo{
+    position: absolute;
+    margin: 30px 0px 0px 0px;
+    
+}
+#rete-para{
+    margin: 0px 30px;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
