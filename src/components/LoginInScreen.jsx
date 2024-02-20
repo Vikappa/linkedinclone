@@ -17,10 +17,13 @@ const LoginInScreen = () => {
       setSelectedUser("Vincenzo");
       return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzMjI4YTI0ZjYwNTAwMTkzN2Q0NzciLCJpYXQiOjE3MDgzMzU3NTUsImV4cCI6MTcwOTU0NTM1NX0.rPYXfWxZ2hjRBQRSIY8v2KnWuiurQ9ni42quyqpLtvQ";
       case "Elisa":
+      setSelectedUser("Elisa");
       return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzMTUzYjI0ZjYwNTAwMTkzN2Q0NmEiLCJpYXQiOjE3MDgzMzIzNDcsImV4cCI6MTcwOTU0MTk0N30.PhTpxaqmoqshGHbwVUIWDlVbF1mGD_vRAaHWmdvBCIs"
       case "Wendy":
+      setSelectedUser("Wendy");
       return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQ0YmIyZTljNDM3MDAwMTkzYzM2MzYiLCJpYXQiOjE3MDg0NDAzNjcsImV4cCI6MTcwOTY0OTk2N30.fhr0aoKpxqYCzNzu4Su0fI7nIMXVKTW4RhJ1oOq6SMk"
       case "Hamed":
+      setSelectedUser("Hamed");
       return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzMTFlNDI0ZjYwNTAwMTkzN2Q0NTYiLCJpYXQiOjE3MDg0NDAxNDUsImV4cCI6MTcwOTY0OTc0NX0.vBL6Ff4BJ74LRFlUylu-xSvoDHJOCOW3yIv8QCy1Kd8"
       default:
         setSelectedUser("");
