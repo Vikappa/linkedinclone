@@ -1,8 +1,6 @@
 import { useState } from "react";
-import { Col } from "react-bootstrap";
+
 import { Link } from "react-router-dom";
-import Row from "react-bootstrap/Row";
-import ProfileBarOnHomepage from "./ProfileBarOnHomepage";
 
 const LoginInScreen = () => {
   const [selectedUser, setSelectedUser] = useState("");
