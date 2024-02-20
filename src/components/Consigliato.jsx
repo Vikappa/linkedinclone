@@ -14,6 +14,7 @@ import Wendy from "./Wendy";
 const Consigliato = () => {
   const [show, setShow] = useState(false); // setto lo stato del  primo modale
   const [show2, setShow2] = useState(false); // setto stato del secondo modale
+  const [show3, setShow3] = useState(false); // 3° modale
 
   const [isLoading, setIsLoading] = useState(true); // spinner
 
@@ -22,6 +23,9 @@ const Consigliato = () => {
 
   const handleShow2 = () => setShow2(true); // funzione associata al 2° modale
   const handleClose2 = () => setShow2(false); // funzione associata al 2° modale
+
+  const handleShow3 = () => setShow3(true);
+  const handleClose3 = () => setShow3(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -60,10 +64,51 @@ const Consigliato = () => {
             <span className="consigliato me-1 mb-0">
               Completa 2 passaggi per raggiungere il livello
             </span>
-            <Link to="/profile-status/" className="link">
+            <Link to="/profile-status/" className="link" onClick={handleShow3}>
               Massimo
             </Link>
           </div>
+          <Modal show={show3} onHide={handleClose3}>
+            <Modal.Header closeButton>
+              <Modal.Title>Stato del profilo</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <p className="text-black">
+                Il livello del profilo indica quanto è completo il tuo profilo.
+                Completa le sezioni consigliate per raggiungere i tuoi obiettivi
+                professionali.
+              </p>
+              <div>
+                <ul>
+                  <li>
+                    <h6 className="fw-semibold mb-0">Principiante</h6>
+                    <p>
+                      Tutti gli utenti iniziano come principianti e raggiungono
+                      il livello Intermedio completando 4 sezioni.
+                    </p>
+                  </li>
+                  <li>
+                    <h6 className="fw-semibold mb-0">Intermedio</h6>
+                    <p>
+                      Gli utenti con un profilo di livello Intermedio
+                      visualizzano segnalazioni di offerte di lavoro più
+                      pertinenti e suggerimenti di collegamento mirati. Completa
+                      4 sezioni per raggiungere il livello Intermedio.{" "}
+                    </p>
+                  </li>
+                  <li>
+                    <h6 className="fw-semibold mb-0">Massimo</h6>
+                    <p>
+                      Gli utenti con un profilo di livello Intermedio
+                      visualizzano segnalazioni di offerte di lavoro più
+                      pertinenti e suggerimenti di collegamento mirati. Completa
+                      4 sezioni per raggiungere il livello Intermedio.{" "}
+                    </p>
+                  </li>
+                </ul>
+              </div>
+            </Modal.Body>
+          </Modal>
         </Row>
         {/*      PRIMA CARD     */}
         <Row>
@@ -71,13 +116,13 @@ const Consigliato = () => {
             <Card className="card">
               <Card.Body>
                 <Card.Title>Dove ti trovi?</Card.Title>
-                <Card.Text>
+                <Card.Text className="card-text text-black ">
                   Gli utenti che includono una località con codice postale
                   ricevono fino al 70% in più di visualizzazioni del profilo.
                 </Card.Text>
                 <Button
                   type="submit"
-                  className="btn rounded-pill border border-black text-secondary py-1 bg-body-tertiary button fw-semibold"
+                  className="btn rounded-pill border border-black text-secondary py-1  bg-body-tertiary button fw-semibold"
                   onClick={handleShow}
                 >
                   Aggiungi una località
@@ -88,7 +133,7 @@ const Consigliato = () => {
                     {isLoading ? (
                       <h4>Caricamento in corso</h4>
                     ) : (
-                      <Modal.Title>Aggungi località</Modal.Title>
+                      <Modal.Title>Aggiungi località</Modal.Title>
                     )}
                   </Modal.Header>
                   <Modal.Body>
@@ -143,9 +188,9 @@ const Consigliato = () => {
                   Scrivi un riepilogo per mettere in evidenza la tua personalità
                   o la tua esperienza lavorativa
                 </Card.Title>
-                <Card.Text>
-                  Gli utenti che includono una località con codice postale
-                  ricevono fino al 70% in più di visualizzazioni del profilo.
+                <Card.Text className="text-black">
+                  Gli utenti che includono un riepilogo ricevono fino a 3,9
+                  volte più visualizzazioni del profilo.
                 </Card.Text>
                 <Button
                   type="submit"
@@ -158,31 +203,46 @@ const Consigliato = () => {
 
                 <Modal show={show2} onHide={handleClose2}>
                   <Modal.Header closeButton>
-                    <Modal.Title>Modal heading</Modal.Title>
+                    {isLoading ? (
+                      <h4>Caricamento in corso</h4>
+                    ) : (
+                      <Modal.Title>Aggiungi riepilogo</Modal.Title>
+                    )}
                   </Modal.Header>
                   <Modal.Body>
-                    <Form onSubmit={handleSubmit2}>
-                      <Form.Group>
-                        <Form.Label>Email</Form.Label>
-                        <Form.Control />
-                      </Form.Group>
+                    {isLoading ? (
+                      <Wendy
+                        isLoading={isLoading}
+                        setIsLoading={setIsLoading}
+                      />
+                    ) : (
+                      <>
+                        <h4>Aggiungiamo il tuo riepilogo</h4>
+                        <p className="mb-1">
+                          Puoi includere anni di esperienza, settore o
+                          competenze acquisite. Potresti anche inserire i
+                          risultati raggiunti o le esperienze di lavoro
+                          precedenti.
+                        </p>
 
-                      <Form.Group>
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password" />
-                      </Form.Group>
-
-                      <Button variant="primary" type="submit">
-                        Invia
-                      </Button>
-                    </Form>
+                        <Form onSubmit={handleSubmit2}>
+                          <Form.Group
+                            className="mb-3"
+                            controlId="exampleForm.ControlTextarea1"
+                          >
+                            <Form.Control as="textarea" rows={8} />
+                          </Form.Group>
+                        </Form>
+                      </>
+                    )}
                   </Modal.Body>
                   <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose2}>
-                      Close
-                    </Button>
-                    <Button variant="primary" onClick={handleClose2}>
-                      Save Changes
+                    <Button
+                      variant="primary"
+                      onClick={handleClose2}
+                      className="salva rounded-pill text-white fw-semibold"
+                    >
+                      Salva
                     </Button>
                   </Modal.Footer>
                 </Modal>
