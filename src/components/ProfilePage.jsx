@@ -2,6 +2,7 @@ import { Col } from "react-bootstrap";
 import { Container, Row } from "react-bootstrap";
 // import Analisi from "./Analisi";
 import "./style.css";
+import Consigliato from "./Consigliato";
 import Experience from "./Experience";
 import SideBar from "./SideBar";
 import ProfileCards from './ProfileHero'
@@ -18,6 +19,7 @@ function ProfilePage() {
 
             <ProfileCards/>
             <Experience />
+            <Consigliato />
             {/* <Analisi /> */}
           </Col>
           {/* sidebar */}

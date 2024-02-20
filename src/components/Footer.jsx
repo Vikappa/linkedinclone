@@ -123,7 +123,7 @@ const Footer = () => {
         </Col>
       </Row>
       <Row>
-        <Col xs={12} md={12} lg={3} className="date">
+        <Col xs={12} md={12} lg={3} className="date mb-4">
           Linkedin Corporation &copy; 2024
         </Col>
       </Row>

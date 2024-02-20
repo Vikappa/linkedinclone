@@ -6,19 +6,16 @@ import LinkedInNavBar from "./components/LinkedInNavBar";
 import Footer from "./components/Footer";
 import LoginInScreen from "./components/LoginInScreen";
 
-
 function App() {
-
-  
   return (
     <>
-      <LinkedInNavBar/>
+      <LinkedInNavBar />
       <Routes>
         <Route path="/" element={<LoginInScreen />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/profile" element={<ProfilePage />} />
       </Routes>
-      <Footer/>
+      <Footer />
     </>
   );
 }
