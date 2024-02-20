@@ -92,6 +92,50 @@ text-align: start;
   margin: 0;
 }
 
+#login-page {
+  min-height: 75vh;
+  background: #f2f2f2;
+}
+
+#login-form {
+  height: auto;
+  width: auto;
+  max-width: 800px !important;
+  padding: 20px; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: white; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  border-radius: 10px;
+}
+
+.fratmSelect {
+  width: 100%;
+  padding: 10px; 
+  margin-top: 10px; 
+  border-radius: 20px; 
+  border: 1px solid #ccc; 
+  -webkit-appearance: none; 
+  -moz-appearance: none; 
+  appearance: none; 
+  background: url('icona-freccia-giù.png') no-repeat right;
+  background-size: 12px; 
+}
+
+select:hover {
+  border: 1px solid #888; 
+}
+
+h1, p {
+  margin: 0 0 10px 0; /* Aggiustamenti ai margini */
+}
+
+
+
+/* ------------------------------------------ FINE CSS VINCENZO -------------------------------- */
+
 #info,
 #lineeguida,
 #privacy,
