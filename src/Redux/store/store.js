@@ -1,25 +1,13 @@
 // import { combineReducers } from "redux";
 import { experienceReducer } from "../Reducers/index";
-import { combineReducers, configureStore } from "@reduxjs/toolkit"
-import currentUserReducer from "../Reducers/fetchCurrentUser";
+import { configureStore } from "@reduxjs/toolkit";
 
-
-const rootReducer = combineReducers({
-
-  //currentUser: reducerCurrentUser,
-  //arrayAllUsers: allUserReducers,
-  
-})
-
-
-const mainReducer = combineReducers({
+const rootReducer = {
   experience: experienceReducer,
-  currentUser: currentUserReducer,
-  //arrayAllUsers: allUserReducers,
-})
+};
 
 const store = configureStore({
-  reducer: mainReducer,
-})
+  reducer: rootReducer,
+});
 
 export default store;
