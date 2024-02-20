@@ -4,6 +4,7 @@ import LinkedInNavBar from "./LinkedInNavBar";
 import Analisi from "./Analisi";
 import Footer from "./Footer";
 import "./style.css";
+import Consigliato from "./Consigliato";
 
 function ProfilePage() {
   return (
