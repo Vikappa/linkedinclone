@@ -1,18 +1,20 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import Navbar from 'react-bootstrap/Navbar';
-import Form from 'react-bootstrap/Form';
-import Container from 'react-bootstrap/Container';
+import Navbar from "react-bootstrap/Navbar";
+import Form from "react-bootstrap/Form";
+import Container from "react-bootstrap/Container";
 import { BsSearch } from "react-icons/bs";
-import profilePic from '../assets/mockupProfilepic.jpg'
-import { Link } from 'react-router-dom'
-import linkedInIcon from '../assets/iconSmall.png'
-import React, { useState } from 'react';
-import Dropdown from 'react-bootstrap/Dropdown';
-import ModaleDestro from './PezziDiNavBar/ModaleDestro'
+import profilePic from "../assets/mockupProfilepic.jpg";
+import { Link } from "react-router-dom";
+import linkedInIcon from "../assets/iconSmall.png";
+import React, { useState, useEffect } from "react";
+import Dropdown from "react-bootstrap/Dropdown";
+import ModaleDestro from "./PezziDiNavBar/ModaleDestro";
+import { useSelector } from "react-redux";
 
 const ToggleDropDownTu = React.forwardRef(({ childrentu, onClick }, ref) => (
-  <a className='d-flex flex-column align-items-center justify-content-center'
+  <a
+    className="d-flex flex-column align-items-center justify-content-center"
     href=""
     ref={ref}
     onClick={(e) => {
@@ -20,16 +22,23 @@ const ToggleDropDownTu = React.forwardRef(({ childrentu, onClick }, ref) => (
       onClick(e);
     }}
   >
-  <img src={profilePic} alt="profile pic mockup" className="rounded-circle pt-1" style={{height:"28px"}}  />
-  <p className='d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP'>Tu&#x25bc;</p>
+    <img
+      src={profilePic}
+      alt="profile pic mockup"
+      className="rounded-circle pt-1"
+      style={{ height: "28px" }}
+    />
+    <p className="d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP">
+      Tu&#x25bc;
+    </p>
   </a>
-))
+));
 
-ToggleDropDownTu.displayName = 'ToggleDropDownTu';
+ToggleDropDownTu.displayName = "ToggleDropDownTu";
 
 const DropDownTu = React.forwardRef(
-  ({ childrentu, style, className, 'aria-labelledby': labeledBy }, ref) => {
-    const [value, setValue] = useState('');
+  ({ childrentu, style, className, "aria-labelledby": labeledBy }, ref) => {
+    const [value, setValue] = useState("");
 
     return (
       <div
@@ -38,151 +47,199 @@ const DropDownTu = React.forwardRef(
         className={className}
         aria-labelledby={labeledBy}
       >
-<div className="d-flex flex-column align-items-start">
-
-<div className='d-flex align-items-center'>
-<img src={profilePic} alt="profile pic mockup" className="rounded-circle p-1" style={{width:"30%"}}/>
-  <div className='d-flex flex-column justify-content-start'>
-  <h6 className='titoliDropDownTu text-start m-0'>Nome Utente</h6>
-  <p className='testiDropDownTu'>Formazione dell'utente</p>
-</div>
-</div>
-  <div className='d-flex flex-column justify-content-start p-1'>
-  <h6 className='titoliDropDownTu text-start m-0'>Account</h6>
-  <p className='testiDropDownTu'>Impostazioni e privacy</p>
-  <p className='testiDropDownTu'>Guida</p>
-  <p className='testiDropDownTu'>Lingua</p>
-</div>
-  <div className='d-flex flex-column justify-content-start p-1'>
-  <h6 className='titoliDropDownTu text-start m-0'>Gestisci</h6>
-  <p className='testiDropDownTu'>Post e attività</p>
-</div>
-  <div className='d-flex flex-column justify-content-start p-1'>
-  <p className='testiDropDownTu'>Esci</p>
-</div>
-</div>
+        <div className="d-flex flex-column align-items-start">
+          <div className="d-flex align-items-center">
+            <img
+              src={profilePic}
+              alt="profile pic mockup"
+              className="rounded-circle p-1"
+              style={{ width: "30%" }}
+            />
+            <div className="d-flex flex-column justify-content-start">
+              <h6 className="titoliDropDownTu text-start m-0">Nome Utente</h6>
+              <p className="testiDropDownTu">Formazione dell'utente</p>
+            </div>
+          </div>
+          <div className="d-flex flex-column justify-content-start p-1">
+            <h6 className="titoliDropDownTu text-start m-0">Account</h6>
+            <p className="testiDropDownTu">Impostazioni e privacy</p>
+            <p className="testiDropDownTu">Guida</p>
+            <p className="testiDropDownTu">Lingua</p>
+          </div>
+          <div className="d-flex flex-column justify-content-start p-1">
+            <h6 className="titoliDropDownTu text-start m-0">Gestisci</h6>
+            <p className="testiDropDownTu">Post e attività</p>
+          </div>
+          <div className="d-flex flex-column justify-content-start p-1">
+            <p className="testiDropDownTu">Esci</p>
+          </div>
+        </div>
       </div>
     );
-  },
+  }
 );
 
-DropDownTu.displayName = 'DropDownTu';
-
+DropDownTu.displayName = "DropDownTu";
 
 function LinkedInNavBar() {
+  let currentUser = useSelector((state) => state.currentUser.currentUser);
+
+  useEffect(() => {
+    console.log(currentUser);
+  }, [currentUser]);
 
   const [mostraModaleDestro, setMostraModaleDestro] = useState(false);
 
   const toggleModaleDestro = () => {
     setMostraModaleDestro(!mostraModaleDestro);
   };
-  
 
   return (
     <>
-    <Navbar fixed='top' className="bg-body-tertiary justify-content-between container-fluid w-100 p-1">
-      <Link>
-        <img src={profilePic} alt="profile pic mockup" className="rounded-circle d-sm-none" id='profilePic' />
-      </Link>
-      <Container className='p-0 d-sm-none'>
-        <Form className='w-100 d-flex align-items-center'>
-        <BsSearch className='position-relative' id='searchIcon' />
-          <Form.Control
-            id='formControlNavBar'
-            type="text"
-            placeholder="     Cerca"
-            className="mr-sm-2 container-fluid border-0 "
+      <Navbar
+        fixed="top"
+        className="bg-body-tertiary justify-content-between container-fluid w-100 p-1"
+      >
+        {currentUser ? (
+          <Link to={`/profile/`}>
+            <img
+              src={currentUser.image}
+              alt="profile pic mockup"
+              className="rounded-circle d-sm-none"
+              id="profilePic"
             />
-        </Form>
-      </Container >
-      <Link>
-      <i className="fa-solid fa-comment-dots d-sm-none" id="messageIcon"></i>
-      </Link>
-     <Link>
-        <img src={linkedInIcon} alt='linkedin icon' height={'36px'} className='d-none d-sm-flex d-flex align-items-center mx-sm-3' id='linkedInIcon' />
-     </Link>
-      <Container className=' d-none d-sm-flex sectionOneNavbar'>
-
-        <div className='d-flex flex-column text-center'>
-        <i className="bi bi-search navBarDedicatedButton d-lg-none" > </i>
-        <p className='d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP d-lg-none'>Cerca</p>
-        <Form className='w-100 d-flex align-items-center d-none d-lg-flex'>
-        <BsSearch className='position-relative' id='searchIcon' />
-          <Form.Control
-            id='formControlNavBar'
-            type="text"
-            placeholder="     Cerca"
-            className="mr-sm-2 container-fluid border-0 "
+          </Link>
+        ) : (
+          <>
+            <img
+              src="https://http.cat/images/404.jpg"
+              className="rounded-circle d-sm-none"
+              id="profilePic"
             />
-        </Form>
-        </div>
-        <div className='d-flex flex-column text-center topBarButton'>
-        <i className="bi bi-house-door-fill navBarDedicatedButton " > </i>
-        <p className='d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP'>Home</p>
-        </div>
-        <div className='d-flex flex-column text-center topBarButton'>
-        <i className="bi bi-person-fill navBarDedicatedButton " > </i>
-        <p className='d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP'>Rete</p>
-        </div>
-        <div className='d-flex flex-column text-center topBarButton'>
-        <i className="bi bi-briefcase-fill navBarDedicatedButton " > </i>
-        <p className='d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP'>Lavoro</p>
-        </div>
-        <div className='d-flex flex-column text-center topBarButton'>
-        <i className="bi bi-chat-dots-fill navBarDedicatedButton " > </i>
-        <p className='d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP'>Messaggistica</p>
-        </div>
-        <div className='d-flex flex-column text-center topBarButton'>
-        <i className="bi bi-bell-fill navBarDedicatedButton " > </i>
-        <p className='d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP'>Notifiche</p>
-        </div>
-        <Dropdown>
-    <Dropdown.Toggle as={ToggleDropDownTu} id="dropdown-custom-components">
-    </Dropdown.Toggle>
+          </>
+        )}
+        <Container className="p-0 d-sm-none">
+          <Form className="w-100 d-flex align-items-center">
+            <BsSearch className="position-relative" id="searchIcon" />
+            <Form.Control
+              id="formControlNavBar"
+              type="text"
+              placeholder="     Cerca"
+              className="mr-sm-2 container-fluid border-0 "
+            />
+          </Form>
+        </Container>
+        <Link>
+          <i
+            className="fa-solid fa-comment-dots d-sm-none"
+            id="messageIcon"
+          ></i>
+        </Link>
+        <Link>
+          <img
+            src={linkedInIcon}
+            alt="linkedin icon"
+            height={"36px"}
+            className="d-none d-sm-flex d-flex align-items-center mx-sm-3"
+            id="linkedInIcon"
+          />
+        </Link>
+        <Container className=" d-none d-sm-flex sectionOneNavbar">
+          <div className="d-flex flex-column text-center">
+            <i className="bi bi-search navBarDedicatedButton d-lg-none"> </i>
+            <p className="d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP d-lg-none">
+              Cerca
+            </p>
+            <Form className="w-100 d-flex align-items-center d-none d-lg-flex">
+              <BsSearch className="position-relative" id="searchIcon" />
+              <Form.Control
+                id="formControlNavBar"
+                type="text"
+                placeholder="     Cerca"
+                className="mr-sm-2 container-fluid border-0 "
+              />
+            </Form>
+          </div>
+          <div className="d-flex flex-column text-center topBarButton">
+            <i className="bi bi-house-door-fill navBarDedicatedButton "> </i>
+            <p className="d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP">
+              Home
+            </p>
+          </div>
+          <div className="d-flex flex-column text-center topBarButton">
+            <i className="bi bi-person-fill navBarDedicatedButton "> </i>
+            <p className="d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP">
+              Rete
+            </p>
+          </div>
+          <div className="d-flex flex-column text-center topBarButton">
+            <i className="bi bi-briefcase-fill navBarDedicatedButton "> </i>
+            <p className="d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP">
+              Lavoro
+            </p>
+          </div>
+          <div className="d-flex flex-column text-center topBarButton">
+            <i className="bi bi-chat-dots-fill navBarDedicatedButton "> </i>
+            <p className="d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP">
+              Messaggistica
+            </p>
+          </div>
+          <div className="d-flex flex-column text-center topBarButton">
+            <i className="bi bi-bell-fill navBarDedicatedButton "> </i>
+            <p className="d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP">
+              Notifiche
+            </p>
+          </div>
+          <Dropdown>
+            <Dropdown.Toggle
+              as={ToggleDropDownTu}
+              id="dropdown-custom-components"
+            ></Dropdown.Toggle>
 
-    <Dropdown.Menu as={DropDownTu}>
+            <Dropdown.Menu as={DropDownTu}></Dropdown.Menu>
+          </Dropdown>
+        </Container>
 
-    </Dropdown.Menu>
-  </Dropdown>
+        <Container className="container-fluid d-none d-sm-flex justify-content-start">
+          <div
+            onClick={toggleModaleDestro}
+            className="d-flex flex-column text-center align-items-center justify-content-center"
+          >
+            <i className="bi bi-x-diamond-fill"></i>
+            <p className="d-none d-md-inline p-0 m-0 navBarDedicatedButtonP2">
+              Per le aziende ▼
+            </p>
+          </div>
 
-      </Container>
+          <div className="d-flex flex-column text-center goliardiaPortamiVia">
+            <a className="text-nowrap">Prova Epicode e paga tra 2 anni!</a>
+          </div>
+        </Container>
+      </Navbar>
 
-      <Container className='container-fluid d-none d-sm-flex justify-content-start'>
-
-      <div
-      onClick={toggleModaleDestro}
-      className='d-flex flex-column text-center align-items-center justify-content-center'>
-      <i className="bi bi-x-diamond-fill"></i>
-      <p className='d-none d-md-inline p-0 m-0 navBarDedicatedButtonP2'>Per le aziende ▼</p>
-      </div>
-
-      <div className='d-flex flex-column text-center goliardiaPortamiVia'>
-      <a className='text-nowrap'>Prova Epicode e paga tra 2 anni!</a>
-      </div>
-
-</Container>
-    </Navbar>
-
-<Navbar fixed='bottom' className="bg-body-tertiary justify-content-between container-fluid w-100 d-sm-none p-0">
-  <Link className='navbar2Buttons' >
-<i className="bi bi-house-door-fill"></i>
-  </Link>
-  <Link className='navbar2Buttons' >
-<i className="bi bi-person-fill"></i>
-  </Link>
-  <Link className='navbar2Buttons' >
-<i className="bi bi-plus-square-fill"></i>
-  </Link>
-<Link className='navbar2Buttons' >
-<i className="bi bi-bell-fill"></i>
-</Link>
-<Link className='navbar2Buttons' >
-<i className="bi bi-briefcase-fill"></i>
-</Link>
-</Navbar>
-<ModaleDestro mostraModaleDestro={mostraModaleDestro} />
+      <Navbar
+        fixed="bottom"
+        className="bg-body-tertiary justify-content-between container-fluid w-100 d-sm-none p-0"
+      >
+        <Link className="navbar2Buttons">
+          <i className="bi bi-house-door-fill"></i>
+        </Link>
+        <Link className="navbar2Buttons">
+          <i className="bi bi-person-fill"></i>
+        </Link>
+        <Link className="navbar2Buttons">
+          <i className="bi bi-plus-square-fill"></i>
+        </Link>
+        <Link className="navbar2Buttons">
+          <i className="bi bi-bell-fill"></i>
+        </Link>
+        <Link className="navbar2Buttons">
+          <i className="bi bi-briefcase-fill"></i>
+        </Link>
+      </Navbar>
+      <ModaleDestro mostraModaleDestro={mostraModaleDestro} />
     </>
-  )
+  );
 }
 
 export default LinkedInNavBar;
