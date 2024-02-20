@@ -6,6 +6,8 @@ import Footer from "./Footer";
 import "./style.css";
 import Experience from "./Experience";
 import SideBar from "./SideBar";
+import ProfileCards from './ProfileHero'
+
 
 function ProfilePage() {
   return (
@@ -16,6 +18,8 @@ function ProfilePage() {
           {/* lato sinistro */}
 
           <Col xs={12} lg={9} className="py-3">
+
+            <ProfileCards/>
             <Experience />
             {/* <Analisi /> */}
           </Col>
