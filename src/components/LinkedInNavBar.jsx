@@ -10,7 +10,6 @@ import { useSelector } from 'react-redux';
 import React, { useState, useEffect } from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 import ModaleDestro from './PezziDiNavBar/ModaleDestro'
-import { current } from '@reduxjs/toolkit';
 
 function LinkedInNavBar() {
 
