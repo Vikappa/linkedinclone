@@ -76,7 +76,6 @@ function HomePage() {
 
         const data = await res.json();
         dispatch({ type: ADD_EXPERIENCE, payload: data });
-        console.log("experience", data);
       } catch (error) {
         console.log("Errore", error);
       }
