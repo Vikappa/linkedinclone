@@ -1,10 +1,9 @@
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import { Col } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import LinkedInNavBar from "./LinkedInNavBar";
 import Analisi from "./Analisi";
 import Footer from "./Footer";
-import Consigliato from "./Consigliato";
+import "./style.css";
 
 function ProfilePage() {
   return (
@@ -18,11 +17,12 @@ function ProfilePage() {
             <Consigliato />
           </Col>
           {/* sidebar */}
-          <Col></Col>
+          <Col xs={0} lg={3}></Col>
         </Row>
-        <Footer></Footer>
+        <Footer />
       </Container>
     </>
   );
 }
+
 export default ProfilePage;
