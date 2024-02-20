@@ -5,6 +5,7 @@ import Analisi from "./Analisi";
 import Footer from "./Footer";
 import "./style.css";
 import Consigliato from "./Consigliato";
+import Experience from "./Experience";
 
 function ProfilePage() {
   return (
@@ -13,9 +14,10 @@ function ProfilePage() {
       <Container>
         <Row>
           {/* lato sinistro */}
-          <Col xs={12} lg={9}>
-            <Analisi />
-            <Consigliato />
+
+          <Col xs={12} lg={9} className="py-3">
+            <Experience />
+            {/* <Analisi /> */}
           </Col>
           {/* sidebar */}
           <Col xs={0} lg={3}></Col>
