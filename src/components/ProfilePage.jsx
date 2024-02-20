@@ -18,7 +18,8 @@ function ProfilePage() {
 
           <Col xs={12} lg={9} className="py-3">
             <Experience />
-            {/* <Analisi /> */}
+            <Analisi /> 
+            <Risorse/>
           </Col>
           {/* sidebar */}
           <Col xs={0} lg={3}>
