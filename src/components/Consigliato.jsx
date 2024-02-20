@@ -112,7 +112,7 @@ const Consigliato = () => {
         </Row>
         {/*      PRIMA CARD     */}
         <Row>
-          <Col md={6} lg={6}>
+          <Col xs={12} md={6} lg={6}>
             <Card className="card">
               <Card.Body className="d-flex flex-column">
                 <Card.Title className="fw-semibold">Dove ti trovi?</Card.Title>
@@ -181,7 +181,7 @@ const Consigliato = () => {
             </Card>
           </Col>
           {/*        SECONDA CARD       */}
-          <Col md={6} lg={6}>
+          <Col xs={12} md={6} lg={6}>
             <Card>
               <Card.Body>
                 <Card.Title className="fw-semibold">
