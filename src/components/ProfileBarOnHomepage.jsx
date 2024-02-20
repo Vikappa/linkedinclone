@@ -14,6 +14,7 @@ const ProfileBarOnHomepage = () => {
             <Card.Img
               variant="top"
               src="https://img.freepik.com/free-photo/vibrant-colors-blend-abstract-backdrop-pattern-generated-by-ai_188544-9565.jpg"
+              style={{ height: "150px" }}
             />
             <Card.Body className="position-relative text-center">
               <div className="position-absolute top-0 start-50 translate-middle">
@@ -23,7 +24,6 @@ const ProfileBarOnHomepage = () => {
                   fluid
                   thumbnail
                   style={{ width: "80px", height: "80px" }}
-                  className="border-1"
                 />
               </div>
               <Card.Title className="mt-5">Card Title</Card.Title>
