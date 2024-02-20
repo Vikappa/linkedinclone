@@ -94,7 +94,7 @@ function LinkedInNavBar() {
 
   return (
     <>
-    <Navbar fixed='top' className="bg-body-tertiary justify-content-between container-fluid w-100 p-1">
+    <Navbar sticky='top' className="bg-body-tertiary justify-content-between container-fluid w-100 p-1">
       {currentUser?      
       <Link to={`/profile/`}>
         <img src={currentUser.image} alt="profile pic mockup" className="rounded-circle d-sm-none" id='profilePic' />
