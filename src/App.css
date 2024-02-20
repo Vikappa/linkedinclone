@@ -203,6 +203,20 @@
   box-sizing: border-box;
 }
 
+.Verify{
+  background-color: white;
+  border: 1px solid #031633;
+  border-radius: 10px ;
+  color: black;
+}
+
+.Verify:hover{
+  color: white;
+  background-color: #031633 ;
+}
+
+
+
 @media (prefers-reduced-motion: no-preference) {
   :root {
     scroll-behavior: smooth;
