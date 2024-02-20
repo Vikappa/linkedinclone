@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { addExperience } from "../Redux/Actions/ADD_EXPERIENCE";
 import { Button, Col } from "react-bootstrap";
 
-const CreateExperience = (fetchExperience) => {
+const CreateExperience = ({ fetchExperience }) => {
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     role: "",
@@ -150,8 +150,13 @@ const CreateExperience = (fetchExperience) => {
             </label>
           </Col>
         </Col>
-        <Col>
-          <Button type="submit" variant="success" style={{ width: "75%" }}>
+        <Col className=" d-flex justify-content-center mt-2 mb-5 border-bottom">
+          <Button
+            type="submit"
+            variant="success"
+            style={{ width: "75%", height: "50%" }}
+            className="mb-5 mt-5"
+          >
             Invia
           </Button>
         </Col>
