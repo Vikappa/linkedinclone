@@ -66,16 +66,16 @@ const DropDownTu = React.forwardRef(
   },
 );
 
-DropDownTu.displayName = 'DropDownTu';
+DropDownTu.displayName = 'DropDownTu'
 
 
 function LinkedInNavBar() {
 
-  const [mostraModaleDestro, setMostraModaleDestro] = useState(false);
+  const [mostraModaleDestro, setMostraModaleDestro] = useState(false)
 
   const toggleModaleDestro = () => {
-    setMostraModaleDestro(!mostraModaleDestro);
-  };
+    setMostraModaleDestro(!mostraModaleDestro)
+  }
   
 
   return (
