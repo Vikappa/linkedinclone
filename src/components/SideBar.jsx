@@ -37,6 +37,7 @@ const SideBar = () => {
       console.log(error);
     }
   };
+  // funzione HARDCODED USERS
   const gettingSelectedProfiles = async () => {
     try {
       let response = await fetch(AllTheProfilesURL, {
