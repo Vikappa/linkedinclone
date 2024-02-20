@@ -123,6 +123,7 @@ const Experience = () => {
               <DeleteExperience
                 experienceId={deleteExperienceId}
                 onClose={handleDeleteModalClose}
+                fetchExperience={fetchExperience}
               />
             )}
           </Col>

@@ -46,7 +46,7 @@ const SideBar = () => {
   };
 
   return (
-    <Container className="d-none d-md-block mt-2">
+    <Container className="d-none d-lg-block my-2">
       <Row className="justify-content-center">
         <Col>
           <Card>
@@ -107,6 +107,7 @@ const SideBar = () => {
                     </div>
                     <div className=" mt-2 text-center">
                       <Button
+                        style={{ maxWidth: "fit-content" }}
                         size="sm"
                         variant="outline-secondary"
                         className="rounded-5 border-2  fw-semibold"
@@ -123,6 +124,7 @@ const SideBar = () => {
             </ListGroup>
             <ListGroup.Item className="text-center">
               <Button
+                style={{ maxWidth: "fit-content" }}
                 variant="light"
                 className="bg-transparent"
                 onClick={() => setShowAllProfiles(!showAllProfiles)}
@@ -171,6 +173,7 @@ const SideBar = () => {
                     size="sm"
                     variant="outline-secondary"
                     className="rounded-5 border-2  fw-semibold "
+                    style={{ maxWidth: "fit-content" }}
                   >
                     <i className="bi bi-person-plus-fill me-1"></i>
                     Collegati
@@ -178,7 +181,11 @@ const SideBar = () => {
                 </div>
               </ListGroup.Item>
               <ListGroup.Item className="text-center">
-                <Button variant="light" className="bg-transaprent">
+                <Button
+                  style={{ maxWidth: "fit-content" }}
+                  variant="light"
+                  className="bg-transaprent"
+                >
                   Mostra tutto
                 </Button>
               </ListGroup.Item>
