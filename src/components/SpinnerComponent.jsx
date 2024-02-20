@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 import Spinner from "react-bootstrap/Spinner";
 
-function Wendy(props) {
+function SpinnerComponent(props) {
   useEffect(() => {
     setTimeout(() => {
       props.setIsLoading(false);
@@ -18,4 +18,4 @@ function Wendy(props) {
   );
 }
 
-export default Wendy;
+export default SpinnerComponent;

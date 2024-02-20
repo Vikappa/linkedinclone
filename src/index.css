@@ -155,6 +155,9 @@
   color: #0b65c2;
   font-weight: 500;
 }
+.link:hover {
+  text-decoration: underline;
+}
 
 .progressbar {
   width: 37rem;
@@ -191,7 +194,7 @@ p {
   color: #0b65c2;
 }
 .cap {
-  color: #545454;
+  color: grey;
 }
 li {
   font-size: 1.5rem;

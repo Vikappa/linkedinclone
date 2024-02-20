@@ -9,7 +9,7 @@ import { ProgressBar } from "react-bootstrap";
 import { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
-import Wendy from "./Wendy";
+import SpinnerComponent from "./SpinnerComponent";
 
 const Consigliato = () => {
   const [show, setShow] = useState(false); // setto lo stato del  primo modale
@@ -115,7 +115,7 @@ const Consigliato = () => {
           <Col md={6} lg={6}>
             <Card className="card">
               <Card.Body>
-                <Card.Title>Dove ti trovi?</Card.Title>
+                <Card.Title className="fw-semibold">Dove ti trovi?</Card.Title>
                 <Card.Text className="card-text text-black ">
                   Gli utenti che includono una località con codice postale
                   ricevono fino al 70% in più di visualizzazioni del profilo.
@@ -138,7 +138,7 @@ const Consigliato = () => {
                   </Modal.Header>
                   <Modal.Body>
                     {isLoading ? (
-                      <Wendy
+                      <SpinnerComponent
                         isLoading={isLoading}
                         setIsLoading={setIsLoading}
                       />
@@ -184,7 +184,7 @@ const Consigliato = () => {
           <Col md={6} lg={6}>
             <Card>
               <Card.Body>
-                <Card.Title>
+                <Card.Title className="fw-semibold">
                   Scrivi un riepilogo per mettere in evidenza la tua personalità
                   o la tua esperienza lavorativa
                 </Card.Title>
@@ -211,7 +211,7 @@ const Consigliato = () => {
                   </Modal.Header>
                   <Modal.Body>
                     {isLoading ? (
-                      <Wendy
+                      <SpinnerComponent
                         isLoading={isLoading}
                         setIsLoading={setIsLoading}
                       />
