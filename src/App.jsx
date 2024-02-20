@@ -1,8 +1,6 @@
-
-
-
 import "./App.css";
 import ProfilePage from "./components/ProfilePage";
+import { useEffect } from "react" 
 function App() {
 
   useEffect(() => {
