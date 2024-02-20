@@ -1,20 +1,23 @@
-import { Col } from "react-bootstrap"
-import { Container, Row } from "react-bootstrap"
+import { Col } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
+import Experience from "./Experience";
 
-function ProfilePage(){
+function ProfilePage() {
+  return (
+    <>
+      <Container>
+        <Row>
+          {/* lato sinistro */}
+          <Col md={9}>
+            <Experience />
+          </Col>
+          {/* sidebar */}
 
-    return (
-        <>
-        <Container>
-            <Row>
-                {/* lato sinistro */}
-            <Col></Col>
-            {/* sidebar */}
-            <Col></Col>
-            </Row>
-        </Container>
-        </>
-    )
+          <Col md={3}>SIDE</Col>
+        </Row>
+      </Container>
+    </>
+  );
 }
 
-export default ProfilePage
+export default ProfilePage;
