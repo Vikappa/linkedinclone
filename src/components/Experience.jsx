@@ -6,47 +6,47 @@ import DeleteExperience from "./DeleteExperience";
 import { FaTrashAlt } from "react-icons/fa";
 
 const Experience = () => {
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    return date.toISOString().split("T")[0];
-  };
-  const calculateExperience = (startDate, endDate) => {
-    const months = differenceInMonths(new Date(endDate), new Date(startDate));
-    const years = Math.floor(months / 12);
-    const remainingMonths = months % 12;
-    return `${years} anni ${remainingMonths} mesi`;
-  };
+  // const formatDate = (dateString) => {
+  //   const date = new Date(dateString);
+  //   return date.toISOString().split("T")[0];
+  // };
+  // const calculateExperience = (startDate, endDate) => {
+  //   const months = differenceInMonths(new Date(endDate), new Date(startDate));
+  //   const years = Math.floor(months / 12);
+  //   const remainingMonths = months % 12;
+  //   return `${years} anni ${remainingMonths} mesi`;
+  // };
 
-  const [experience, setExperience] = useState([]);
-  const myUrlFetchProfile =
-    "https://striveschool-api.herokuapp.com/api/profile/65d322a824f605001937d478/experiences";
-  const bearerToken =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzMjJhODI0ZjYwNTAwMTkzN2Q0NzgiLCJpYXQiOjE3MDgzMzU3ODQsImV4cCI6MTcwOTU0NTM4NH0.pioeDwZO2GA-_tAisq4KElbrIk9InfeCBaG2-L3oQJA";
+  // const [experience, setExperience] = useState([]);
+  // const myUrlFetchProfile =
+  //   "https://striveschool-api.herokuapp.com/api/profile/65d322a824f605001937d478/experiences";
+  // const bearerToken =
+  //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzMjJhODI0ZjYwNTAwMTkzN2Q0NzgiLCJpYXQiOjE3MDgzMzU3ODQsImV4cCI6MTcwOTU0NTM4NH0.pioeDwZO2GA-_tAisq4KElbrIk9InfeCBaG2-L3oQJA";
 
-  const fetchExperience = async () => {
-    try {
-      const res = await fetch(myUrlFetchProfile, {
-        method: "GET",
-        headers: {
-          Authorization: "Bearer " + bearerToken,
-          "Content-type": "application/json",
-        },
-      });
+  // const fetchExperience = async () => {
+  //   try {
+  //     const res = await fetch(myUrlFetchProfile, {
+  //       method: "GET",
+  //       headers: {
+  //         Authorization: "Bearer " + bearerToken,
+  //         "Content-type": "application/json",
+  //       },
+  //     });
 
-      if (!res.ok) {
-        throw new Error("Errore");
-      }
+  //     if (!res.ok) {
+  //       throw new Error("Errore");
+  //     }
 
-      const data = await res.json();
-      setExperience(data);
-      console.log("experience", data);
-    } catch (error) {
-      console.log("Errore", error);
-    }
-  };
+  //     const data = await res.json();
+  //     setExperience(data);
+  //     console.log("experience", data);
+  //   } catch (error) {
+  //     console.log("Errore", error);
+  //   }
+  // };
 
   useEffect(() => {
-    fetchExperience();
+    // fetchExperience();
   }, []);
 
   const [showDeleteModal, setShowDeleteModal] = useState(false);
