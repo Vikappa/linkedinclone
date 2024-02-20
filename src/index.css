@@ -64,3 +64,31 @@
   cursor: pointer;
   color: #b289dc;
 }
+
+.consigliato {
+  font-size: medium;
+}
+.link {
+  text-decoration: none;
+  color: #0b65c2;
+  font-weight: 500;
+}
+
+.progressbar {
+  width: 37rem;
+  height: 0.5rem;
+}
+
+.consigliato {
+  font-size: small;
+}
+/* .button {
+  /* color: #191919; */
+/* } */
+/* .button:hover { */
+/* background-color: grey; */
+/* border: solid black; */
+/* } */
+.card {
+  background-color: #f7fafd;
+}
