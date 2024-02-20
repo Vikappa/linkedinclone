@@ -14,11 +14,12 @@ import ModaleDestro from './PezziDiNavBar/ModaleDestro'
 
 function LinkedInNavBar() {
 
-  let currentUserObg = useSelector(state => state.experience.experience)
+  let currentUser = useSelector(state => state.currentUser.currentUser)
 
   useEffect(() => {
-    console.log(currentUserObg)
-  }, [currentUserObg])
+    console.log(currentUser)
+    
+  }, [currentUser])
   
 
   const [mostraModaleDestro, setMostraModaleDestro] = useState(false)
@@ -88,9 +89,11 @@ function LinkedInNavBar() {
   return (
     <>
     <Navbar fixed='top' className="bg-body-tertiary justify-content-between container-fluid w-100 p-1">
-      <Link>
-        <img src={profilePic} alt="profile pic mockup" className="rounded-circle d-sm-none" id='profilePic' />
+      {currentUser?      
+      <Link to={`/profile/`}>
+        <img src={currentUser.image} alt="profile pic mockup" className="rounded-circle d-sm-none" id='profilePic' />
       </Link>
+      : <><img src='https://http.cat/images/404.jpg' className="rounded-circle d-sm-none" id='profilePic'  /></>}
       <Container className='p-0 d-sm-none'>
         <Form className='w-100 d-flex align-items-center'>
         <BsSearch className='position-relative' id='searchIcon' />
