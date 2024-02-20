@@ -17,12 +17,11 @@ function ProfilePage() {
           >
 
             {/* <Analisi /> */}
-            <Footer/>
           </Col >
           {/* sidebar */}
           <Col xs={0} lg={3}></Col>
         </Row>
-        <Footer></Footer>
+        <Footer/>
       </Container>
     </>
   )
