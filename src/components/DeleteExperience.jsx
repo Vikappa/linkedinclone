@@ -6,7 +6,7 @@ import { removeExperience } from "../Redux/Actions/ADD_EXPERIENCE";
 import { Button, Modal } from "react-bootstrap";
 
 // eslint-disable-next-line react/prop-types
-const DeleteExperience = ({ experienceId, onClose }) => {
+const DeleteExperience = ({ experienceId, onClose, fetchExperience }) => {
   const dispatch = useDispatch();
   const myUrlFetchProfile = ` https://striveschool-api.herokuapp.com/api/profile/65d322a824f605001937d478/experiences/${experienceId}`;
 
@@ -23,7 +23,7 @@ const DeleteExperience = ({ experienceId, onClose }) => {
       });
 
       dispatch(removeExperience(experienceId));
-
+      fetchExperience();
       onClose();
     } catch (error) {
       console.error("Errore durante l'eliminazione:", error);
