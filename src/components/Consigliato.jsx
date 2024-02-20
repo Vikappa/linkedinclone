@@ -114,7 +114,7 @@ const Consigliato = () => {
         <Row>
           <Col md={6} lg={6}>
             <Card className="card">
-              <Card.Body>
+              <Card.Body className="d-flex flex-column">
                 <Card.Title className="fw-semibold">Dove ti trovi?</Card.Title>
                 <Card.Text className="card-text text-black ">
                   Gli utenti che includono una località con codice postale
@@ -122,7 +122,7 @@ const Consigliato = () => {
                 </Card.Text>
                 <Button
                   type="submit"
-                  className="btn rounded-pill border border-black text-secondary py-1  bg-body-tertiary button fw-semibold"
+                  className="btn rounded-pill border border-black text-secondary py-1  bg-body-tertiary button fw-semibold mt-auto d-flex align-items-center"
                   onClick={handleShow}
                 >
                   Aggiungi una località
@@ -194,7 +194,7 @@ const Consigliato = () => {
                 </Card.Text>
                 <Button
                   type="submit"
-                  className="btn rounded-pill border border-black text-secondary py-1  bg-body-tertiary button fw-semibold"
+                  className="btn rounded-pill border border-black text-secondary py-1  bg-body-tertiary button fw-semibold d-flex align-items-center"
                   onClick={handleShow2}
                 >
                   Aggiungi un riepilogo
