@@ -24,6 +24,9 @@ const LoginInScreen = () => {
       case "Hamed":
         setSelectedUser("Hamed");
         return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzMTFlNDI0ZjYwNTAwMTkzN2Q0NTYiLCJpYXQiOjE3MDg0NDAxNDUsImV4cCI6MTcwOTY0OTc0NX0.vBL6Ff4BJ74LRFlUylu-xSvoDHJOCOW3yIv8QCy1Kd8";
+      case "Fidan":
+        setSelectedUser("Fidan");
+        return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQ1YzIyMGEzM2ZjOTAwMTk2NTgyZjgiLCJpYXQiOjE3MDg1MDc2ODAsImV4cCI6MTcwOTcxNzI4MH0.h6G9ywPSU53S02ibgYdu4jqjmvx0AelbUZ4MpDqL2_I";
       default:
         setSelectedUser("");
         console.log(
