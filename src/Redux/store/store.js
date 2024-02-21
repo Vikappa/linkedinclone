@@ -5,13 +5,15 @@ import currentUserReducer from "../Reducers/fetchCurrentUser";
 import allUserReducer from '../Reducers/fetchAllUsers'
 import fetchAllPostReducer from "../Reducers/fetchAllPostReducer";
 import reducerInspectedUser from "../Reducers/reducerInspectedUser";
+import focusedPostReducer from "../Reducers/focusedPostReducer";
 
 const mainReducer = combineReducers({
   experience: experienceReducer,
   currentUser: currentUserReducer,
   allUserArray: allUserReducer,
   arrayAllPosts: fetchAllPostReducer,
-  inspectedUser: reducerInspectedUser
+  inspectedUser: reducerInspectedUser,
+  idFocusedPost: focusedPostReducer
 })
 
 const store = configureStore({
