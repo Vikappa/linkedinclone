@@ -1,20 +1,62 @@
 /* eslint-disable no-unused-vars */
-import { useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 import {
   FETCH_CURRENT_USER,
   FETCH_ALL_USERS,
-  ADD_EXPERIENCE,
+  FETCH_CURRENT_USER_EXPERIENCES,
 } from "../Redux/Actions/ADD_EXPERIENCE";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import ProfileBarOnHomepage from "./ProfileBarOnHomepage";
-
+ 
 function HomePage() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
+
+  const [currentUser, setCurrentUser] = useState(null)
+  let currentUserStore = useSelector(state => state.currentUser.currentUser)
 
   useEffect(() => {
+    setCurrentUser(currentUserStore)
+  }, [currentUserStore])
+  
+  useEffect(() => {
+
+const fetchExperiencesCurrentUser = async () => {
+
+  try {
+    const fetchedExperiences = await fetch(`https://striveschool-api.herokuapp.com/api/profile/${currentUser._id}/experiences`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${sessionStorage.getItem("accessToken")}`,
+      },
+    });
+  
+    if (!fetchedExperiences.ok) {
+      throw new Error("Errore nella fetch delle esperienze");
+    }
+  
+    const experiencesData = await fetchedExperiences.json();
+  
+    // Dispatch dell'azione Redux
+    dispatch({
+      type: FETCH_CURRENT_USER_EXPERIENCES,
+      payload: experiencesData,
+    });
+  } catch (error) {
+    console.log("Errore", error);
+  }
+  
+
+}
+fetchExperiencesCurrentUser()
+  }, [currentUser])
+    
+
+  useEffect(() => {
+    console.log("inizio")
     const accessToken = sessionStorage.getItem("accessToken");
 
     const fetchCurrentUser = async () => {
@@ -30,12 +72,11 @@ function HomePage() {
               }`,
             },
           }
-        );
+        )
         if (!res.ok) {
           throw new Error("Errore");
         }
         const data = await res.json();
-        console.log(data);
         dispatch({
           type: FETCH_CURRENT_USER,
           payload: data,
@@ -44,7 +85,7 @@ function HomePage() {
         console.log("Errore", error);
       }
     };
-
+  
     const fetchAllUsers = async () => {
       try {
         const res = await fetch(
@@ -63,7 +104,6 @@ function HomePage() {
           throw new Error("Errore");
         }
         const data = await res.json();
-        console.log(data);
         dispatch({
           type: FETCH_ALL_USERS,
           payload: data,
@@ -72,33 +112,8 @@ function HomePage() {
         console.log("Errore", error);
       }
     };
-    const myUrlFetchProfile =
-      "https://striveschool-api.herokuapp.com/api/profile/65d322a824f605001937d478/experiences";
-    const bearerToken =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzMjJhODI0ZjYwNTAwMTkzN2Q0NzgiLCJpYXQiOjE3MDgzMzU3ODQsImV4cCI6MTcwOTU0NTM4NH0.pioeDwZO2GA-_tAisq4KElbrIk9InfeCBaG2-L3oQJA";
 
-    const fetchExperience = async () => {
-      try {
-        const res = await fetch(myUrlFetchProfile, {
-          method: "GET",
-          headers: {
-            Authorization: "Bearer " + bearerToken,
-            "Content-type": "application/json",
-          },
-        });
 
-        if (!res.ok) {
-          throw new Error("Errore");
-        }
-
-        const data = await res.json();
-        dispatch({ type: ADD_EXPERIENCE, payload: data });
-      } catch (error) {
-        console.log("Errore", error);
-      }
-    };
-
-    fetchExperience();
     fetchCurrentUser();
     fetchAllUsers();
     

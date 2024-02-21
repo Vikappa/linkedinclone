@@ -20,9 +20,7 @@ function LinkedInNavBar() {
 
   
   useEffect(() => {
-    console.log(currentUserStore)
     setCurrentUser(currentUserStore)
-    console.log(currentUser)
   }, [currentUserStore])
   
 
