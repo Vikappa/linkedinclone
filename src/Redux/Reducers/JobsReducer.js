@@ -2,7 +2,7 @@ export const SEARCHING_JOBS = "SEARCH_JOBS";
 export const LOADING_JOBS = "LOADING_JOBS";
 export const FINISH_LOADING_JOBS = "FINISH_LOADING_JOBS";
 const initialState = {
-  list: [],
+  allTheJobs: [],
   isLoading: false,
 };
 

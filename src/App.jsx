@@ -6,6 +6,7 @@ import LinkedInNavBar from "./components/LinkedInNavBar";
 import Footer from "./components/Footer";
 import LoginInScreen from "./components/LoginInScreen";
 import SearchJobsPage from "./components/SearchJobsPage";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
