@@ -12,20 +12,6 @@ function formatISODate(isoString) {
   return `${day} ${month} ${year}`; 
 }
 
-function handleDateChange(event) {
-  const formattedDate = formatDate(event.target.value);
-  console.log(formattedDate)
-}
-
-function formatDate(date) {
-  const d = new Date(date),
-        day = '' + d.getDate(),
-        month = '' + (d.getMonth() + 1),
-        year = d.getFullYear();
-
-  return [day.padStart(2, '0'), month.padStart(2, '0'), year].join(' ');
-}
-
 const Experience = () => {
 
   const storeEsperienze = useSelector(state => state.experience.experiences)
