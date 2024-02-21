@@ -1,3 +1,4 @@
+import "../components/style.css" 
 
 function analisi(){
 return(
