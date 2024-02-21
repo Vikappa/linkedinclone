@@ -59,7 +59,7 @@ function ProfileCard() {
   return (
     <>
       {profile && (
-        <Card key={profile._id} style={{ width: '100%', marginTop: '8%', position: 'relative', overflow: 'hidden', paddingBottom:"50px",backgroundColor: "white"}}>
+        <Card key={profile._id} style={{ width: '100%', position: 'relative', overflow: 'hidden', paddingBottom:"50px",backgroundColor: "white"}}>
           <div
             style={{
               width: '100%',

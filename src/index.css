@@ -196,3 +196,7 @@ h1, p {
 .jobLine{
   width: 100%;
 }
+
+.bi.bi-plus-circle:hover{
+cursor: pointer;
+}
