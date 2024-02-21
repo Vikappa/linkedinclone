@@ -29,6 +29,14 @@ function ProfileCard() {
 
   const accessToken = sessionStorage.getItem("accessToken"); // modificato per prendere l'accestoken dell'utente corrente
 
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {

@@ -7,6 +7,7 @@ import Image from "react-bootstrap/Image";
 import Button from "react-bootstrap/Button";
 import { useEffect, useState } from "react";
 import Modal from "react-bootstrap/Modal";
+import { useSelector } from "react-redux";
 
 const SideBar = () => {
   const AllTheProfilesURL =
@@ -14,29 +15,30 @@ const SideBar = () => {
   const myKey =
     "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzMTUzYjI0ZjYwNTAwMTkzN2Q0NmEiLCJpYXQiOjE3MDgzMzIzNDcsImV4cCI6MTcwOTU0MTk0N30.PhTpxaqmoqshGHbwVUIWDlVbF1mGD_vRAaHWmdvBCIs";
 
+  const arrUsers = useSelector((state) => state.allUserArray.currentUser);
   const [profileOfOthers, setProfileOfOthers] = useState([]);
   const [showAllProfiles, setShowAllProfiles] = useState(false);
   const [selectedProfile, setSelectedProfile] = useState(null);
   const [selectedProfiles, setSelectedProfiles] = useState([]);
   // funzione fetcha  gli utenti
-  const gettingProfiles = async () => {
-    try {
-      let response = await fetch(AllTheProfilesURL, {
-        headers: {
-          Authorization: myKey,
-        },
-      });
-      if (response.ok) {
-        let data = await response.json();
-        // console.log(data);
-        setProfileOfOthers(data);
-      } else {
-        throw new Error("Errore: " + response.statusText);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const gettingProfiles = async () => {
+  //   try {
+  //     let response = await fetch(AllTheProfilesURL, {
+  //       headers: {
+  //         Authorization: myKey,
+  //       },
+  //     });
+  //     if (response.ok) {
+  //       let data = await response.json();
+  //       // console.log(data);
+  //       setProfileOfOthers(data);
+  //     } else {
+  //       throw new Error("Errore: " + response.statusText);
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
   // funzione HARDCODED USERS
   const gettingSelectedProfiles = async () => {
     try {
@@ -56,14 +58,6 @@ const SideBar = () => {
           data[231]
         );
         setSelectedProfiles(ArrayOfSelected);
-        // console.log(
-        //   data[207],
-        //   data[211],
-        //   data[202],
-        //   data[224],
-        //   data[232],
-        //   data[231]
-        // );
       } else {
         throw new Error("Errore: " + response.statusText);
       }
@@ -73,8 +67,9 @@ const SideBar = () => {
   };
 
   useEffect(() => {
-    gettingProfiles();
+    setProfileOfOthers(arrUsers);
     gettingSelectedProfiles();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   // funzione per chiuder il modale di Collegati
   const handleCloseModal = () => {
