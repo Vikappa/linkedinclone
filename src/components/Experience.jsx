@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import React from "react";
 import ModaleAggiungiEsperienza from "./ModaleAggiungiEsperienza";
 import { useDispatch } from "react-redux";
 import { FETCH_CURRENT_USER_EXPERIENCES } from "../Redux/Actions/ADD_EXPERIENCE";
@@ -24,13 +23,9 @@ const Experience = () => {
   }, [currentUserStore]);
 
   const storeEsperienze = useSelector((state) => state.experience.experiences);
-  const [esperienze, setEsperienze] = useState(storeEsperienze);
   const [visibilitàModaleAddEsperienza, setVisibilitàModaleAddEsperienza] =
     useState(false);
 
-  useEffect(() => {
-    setEsperienze(esperienze);
-  }, [storeEsperienze]);
   const handleAddEsperienza = (e) => {
     e.preventDefault();
     console.log("show");
@@ -85,7 +80,7 @@ const Experience = () => {
             onClick={handleAddEsperienza}
           ></i>
         </div>
-        {esperienze.map((esperienza, index) => (
+        {storeEsperienze.map((esperienza, index) => (
           <div key={index} className="d-flex align-items-center ">
             <div className="d-flex justify-content-start align-items-center jobLine p-2">
               <i
