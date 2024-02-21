@@ -10,7 +10,7 @@ const mainReducer = combineReducers({
   experience: experienceReducer,
   currentUser: currentUserReducer,
   allUserArray: allUserReducer,
-  arrayPosts: fetchAllPostReducer,
+  arrayAllPosts: fetchAllPostReducer,
   inspectedUser: reducerInspectedUser
 })
 

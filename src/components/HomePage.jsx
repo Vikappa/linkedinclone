@@ -51,7 +51,7 @@ const fetchExperiencesCurrentUser = async () => {
 
 }
 fetchExperiencesCurrentUser()
-  }, [currentUser])
+  }, [currentUser, dispatch])
     
   useEffect(() => {
     const accessToken = sessionStorage.getItem("accessToken");
