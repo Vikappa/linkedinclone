@@ -87,3 +87,8 @@ a{
     text-decoration: none;
     color: black;
 }
+
+
+.sizePostDiv{
+    min-height: 25vh;
+}
