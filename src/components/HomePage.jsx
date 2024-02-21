@@ -11,6 +11,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import ProfileBarOnHomepage from "./ProfileBarOnHomepage";
+import AllUserPosts from "./AllUserPosts";
 
 function HomePage() {
   const dispatch = useDispatch();
@@ -148,12 +149,17 @@ function HomePage() {
   return (
     <Container fluid>
       <Row>
-        <Col xs={12} md={3}>
-          <ProfileBarOnHomepage />
-        </Col>
+      <Col xs={12} lg={3}>
+        <ProfileBarOnHomepage/>
+      </Col>
+        <Col xs={12} lg={7} className="py-3">
+          <AllUserPosts/>
+      </Col>
+        <Col xs={0} lg={3}>
+      </Col>
       </Row>
     </Container>
   );
 }
 
-export default HomePage;
+export default HomePage
