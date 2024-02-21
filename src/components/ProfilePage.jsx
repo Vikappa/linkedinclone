@@ -4,8 +4,8 @@ import { Container, Row } from "react-bootstrap";
 import "./style.css";
 import Experience from "./Experience";
 import SideBar from "./SideBar";
-import ProfileCards from './ProfileHero'
-
+import ProfileCards from "./ProfileHero";
+import Consigliato from "./Consigliato";
 
 function ProfilePage() {
   return (
@@ -13,11 +13,11 @@ function ProfilePage() {
       <Container>
         <Row>
           {/* lato sinistro */}
-<Col xs={0} lg={2}></Col>
+          <Col xs={0} lg={2}></Col>
           <Col xs={12} lg={7} className="py-3">
-
-            <ProfileCards/>
+            <ProfileCards />
             <Experience />
+            <Consigliato />
             {/* <Analisi /> */}
           </Col>
           {/* sidebar */}
