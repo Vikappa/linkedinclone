@@ -3,6 +3,9 @@ import { useSelector } from "react-redux";
 import ModaleAggiungiEsperienza from "./ModaleAggiungiEsperienza";
 import { useDispatch } from "react-redux";
 import { FETCH_CURRENT_USER_EXPERIENCES } from "../Redux/Actions/ADD_EXPERIENCE";
+import { FaTrashAlt } from "react-icons/fa";
+import { Button } from "react-bootstrap";
+import DeleteExperience from "./DeleteExperience";
 
 function formatISODate(isoString) {
   const date = new Date(isoString);
@@ -66,6 +69,16 @@ const Experience = () => {
     setVisibilitàModaleAddEsperienza(false);
   };
 
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [deleteExperienceId, setDeleteExperienceId] = useState(null);
+  const handleDeleteClick = (experienceId) => {
+    setDeleteExperienceId(experienceId);
+    setShowDeleteModal(true);
+  };
+  const handleDeleteModalClose = () => {
+    setShowDeleteModal(false);
+  };
+
   return (
     <>
       <div
@@ -81,7 +94,7 @@ const Experience = () => {
           ></i>
         </div>
         {storeEsperienze.map((esperienza, index) => (
-          <div key={index} className="d-flex align-items-center ">
+          <div key={index} className="d-flex align-items-center border-bottom ">
             <div className="d-flex justify-content-start align-items-center jobLine p-2">
               <i
                 className="bi bi-briefcase-fill p-2"
@@ -119,6 +132,21 @@ const Experience = () => {
                 )}
               </div>
             </div>
+
+            <Button
+              style={{ width: "40px", height: "40px" }}
+              variant="danger"
+              onClick={() => handleDeleteClick(esperienza._id)}
+              className="d-flex align-items-center"
+            >
+              <FaTrashAlt />
+            </Button>
+            {showDeleteModal && deleteExperienceId === esperienza._id && (
+              <DeleteExperience
+                experienceId={deleteExperienceId}
+                onClose={handleDeleteModalClose}
+              />
+            )}
           </div>
         ))}
       </div>
