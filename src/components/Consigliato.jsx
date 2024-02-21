@@ -134,9 +134,7 @@ const Consigliato = () => {
             <Row>
               <Col xs={12} md={6} lg={6}>
                 {/* PRIMO TERNARIO */}
-                {(userToRender.area.length > 0) &
-                (userToRender.image ===
-                  "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png") ? (
+                {userToRender.area.length > 0 ? (
                   ""
                 ) : (
                   <Card className="cardconsigliato">
