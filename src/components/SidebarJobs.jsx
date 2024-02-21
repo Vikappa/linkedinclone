@@ -3,12 +3,17 @@ import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { RiBookmarkFill } from "react-icons/ri";
+import { FaListUl } from "react-icons/fa";
+import { LiaClipboardCheckSolid } from "react-icons/lia";
+import { RiFileVideoFill } from "react-icons/ri";
+import { IoSettingsSharp } from "react-icons/io5";
+import Button from "react-bootstrap/Button";
 
 const SidebarJobs = () => {
   return (
     <Container>
       <Row>
-        <Col xs={12} md={3}>
+        <Col xs={12} md={3} lg={3}>
           <Card>
             <Card.Body>
               {/* <Card.Text>
@@ -24,28 +29,29 @@ const SidebarJobs = () => {
             </div>
             <div>
               <span>
-                <RiBookmarkFill />
+                <FaListUl />
               </span>
-              <span>Le mie offerte di lavoro</span>
+              <span>Preferenze</span>
             </div>
             <div>
               <span>
-                <RiBookmarkFill />
+                <LiaClipboardCheckSolid />
               </span>
-              <span>Le mie offerte di lavoro</span>
+              <span>Valutazioni delle competenze</span>
             </div>
             <div>
               <span>
-                <RiBookmarkFill />
+                <RiFileVideoFill />
               </span>
-              <span>Le mie offerte di lavoro</span>
+              <span>Indicazioni per chi cerca lavoro</span>
             </div>
             <div>
               <span>
-                <RiBookmarkFill />
+                <IoSettingsSharp />
               </span>
-              <span>Le mie offerte di lavoro</span>
+              <span>Impostazioni candidatura</span>
             </div>
+            <Button></Button>
           </Card>
         </Col>
       </Row>
