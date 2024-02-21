@@ -149,7 +149,8 @@ function HomePage() {
   return (
     <Container fluid>
       <Row>
-      <Col xs={12} lg={3}>
+        <Col xs={0} lg={1}></Col>
+      <Col xs={12} lg={2}>
         <ProfileBarOnHomepage/>
       </Col>
         <Col xs={12} lg={7} className="py-3">

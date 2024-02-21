@@ -24,8 +24,7 @@ const CreateExperience = ({ fetchExperience }) => {
 
   const myPostUrl =
     "https://striveschool-api.herokuapp.com/api/profile/65d322a824f605001937d478/experiences";
-  const bearerToken =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzMjJhODI0ZjYwNTAwMTkzN2Q0NzgiLCJpYXQiOjE3MDgzMzU3ODQsImV4cCI6MTcwOTU0NTM4NH0.pioeDwZO2GA-_tAisq4KElbrIk9InfeCBaG2-L3oQJA";
+  const bearerToken = sessionStorage.getItem("accessToken")
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
