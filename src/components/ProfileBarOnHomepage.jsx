@@ -43,27 +43,27 @@ const ProfileBarOnHomepage = () => {
                   </h4>
                 </Card.Title>
                 <Card.Text className="fw-light text-secondary">
-                  <h6>{currentProfile.title}</h6>
+                  {currentProfile.title}
                 </Card.Text>
               </Card.Body>
               <ListGroup className="list-group-flush d-none d-md-block">
-                <ListGroup.Item>
-                  <h6 className="text-secondary m-0">Collegamenti</h6>
-                  <p>Espandi la tua rete</p>
+                <ListGroup.Item className="text-secondary m-0">
+                  Collegamenti
+                  <span className="d-block text-black">
+                    Espandi la tua rete
+                  </span>
                 </ListGroup.Item>
                 <ListGroup.Item>
-                  <h6>Raggiungi i tuoi obiettivi con Premium</h6>
-                  <p className="fw-light">
+                  Raggiungi i tuoi obiettivi con Premium
+                  <span className="fw-light d-block fs-6">
                     <i className="bi bi-square-half text-warning"></i> Prova
                     Premium per 0 EUR
-                  </p>
+                  </span>
                 </ListGroup.Item>
                 <ListGroup.Item>
-                  <h6>
-                    {" "}
-                    <i className="bi bi-bookmark-fill text-secondary"></i> I
-                    miei elementi
-                  </h6>
+                  {" "}
+                  <i className="bi bi-bookmark-fill text-secondary"></i> I miei
+                  elementi
                 </ListGroup.Item>
               </ListGroup>
             </Card>
