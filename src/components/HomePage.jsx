@@ -5,6 +5,7 @@ import {
   FETCH_CURRENT_USER,
   FETCH_ALL_USERS,
   FETCH_CURRENT_USER_EXPERIENCES,
+  FETCH_ALL_POSTS,
 } from "../Redux/Actions/ADD_EXPERIENCE";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -22,9 +23,7 @@ function HomePage() {
   }, [currentUserStore])
   
   useEffect(() => {
-
 const fetchExperiencesCurrentUser = async () => {
-
   try {
     const fetchedExperiences = await fetch(`https://striveschool-api.herokuapp.com/api/profile/${currentUser._id}/experiences`, {
       method: "GET",
@@ -54,11 +53,8 @@ const fetchExperiencesCurrentUser = async () => {
 fetchExperiencesCurrentUser()
   }, [currentUser])
     
-
   useEffect(() => {
-    console.log("inizio")
     const accessToken = sessionStorage.getItem("accessToken");
-
     const fetchCurrentUser = async () => {
       try {
         const res = await fetch(
@@ -111,13 +107,41 @@ fetchExperiencesCurrentUser()
       } catch (error) {
         console.log("Errore", error);
       }
-    };
+    }
+
+    const fetchAllPost = async () => { 
+try{
+   const res = await fetch(`https://striveschool-api.herokuapp.com/api/posts`,
+   {
+     headers: {
+       Authorization: `Bearer ${
+         accessToken
+           ? accessToken
+           : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzMjJhODI0ZjYwNTAwMTkzN2Q0NzgiLCJpYXQiOjE3MDgzMzU3ODQsImV4cCI6MTcwOTU0NTM4NH0.pioeDwZO2GA-_tAisq4KElbrIk9InfeCBaG2-L3oQJA"
+       }`,
+     },
+   }
+ );
+ if (!res.ok) {
+   throw new Error("Errore");
+ }
+ const data = await res.json();
+ dispatch({
+   type: FETCH_ALL_POSTS,
+   payload: data,
+ });
+}catch(error){
+  console.log(error)
+}
 
 
-    fetchCurrentUser();
-    fetchAllUsers();
-    
-    //fetch2
+     }
+
+
+    fetchCurrentUser()
+    fetchAllUsers()
+    fetchAllPost()
+
     //fetch3
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
