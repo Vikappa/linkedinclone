@@ -6,6 +6,8 @@ import { FETCH_CURRENT_USER_EXPERIENCES } from "../Redux/Actions/ADD_EXPERIENCE"
 import { FaTrashAlt } from "react-icons/fa";
 import { Button } from "react-bootstrap";
 import DeleteExperience from "./DeleteExperience";
+import { FaPen } from "react-icons/fa";
+import PutExperience from "./PutExperience";
 
 function formatISODate(isoString) {
   const date = new Date(isoString);
@@ -67,16 +69,31 @@ const Experience = () => {
     fetchExperiencesCurrentUser();
 
     setVisibilitàModaleAddEsperienza(false);
+    setVisibilitàModaleEditEsperienza(false);
   };
 
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [deleteExperienceId, setDeleteExperienceId] = useState(null);
+
   const handleDeleteClick = (experienceId) => {
     setDeleteExperienceId(experienceId);
     setShowDeleteModal(true);
   };
+
   const handleDeleteModalClose = () => {
     setShowDeleteModal(false);
+  };
+
+  const [experienceToEdit, setExperienceToEdit] = useState(null);
+  const [editExperience, setEditExperience] = useState(null);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [visibilitàModaleEditEsperienza, setVisibilitàModaleEditEsperienza] =
+    useState(false);
+  const handleEditClick = (experience) => {
+    // setEditExperience(experience)
+    setExperienceToEdit(experience);
+    console.log(experience._id);
+    setVisibilitàModaleEditEsperienza(true);
   };
 
   return (
@@ -132,7 +149,14 @@ const Experience = () => {
                 )}
               </div>
             </div>
-
+            <Button
+              style={{ width: "40px", height: "40px" }}
+              variant="light"
+              onClick={() => handleEditClick(esperienza)}
+              className="d-flex align-items-center"
+            >
+              <FaPen />
+            </Button>
             <Button
               style={{ width: "40px", height: "40px" }}
               variant="danger"
@@ -153,6 +177,12 @@ const Experience = () => {
       <ModaleAggiungiEsperienza
         visibilitàModaleAddEsperienza={visibilitàModaleAddEsperienza}
         setVisibilitàModaleAddEsperienza={setVisibilitàModaleAddEsperienza}
+        onClose={handleChiudiAddEsperienza}
+      />
+      <PutExperience
+        visibilitàModaleEditEsperienza={visibilitàModaleEditEsperienza}
+        setVisibilitàModaleEditEsperienza={setVisibilitàModaleEditEsperienza}
+        experienceToEdit={experienceToEdit}
         onClose={handleChiudiAddEsperienza}
       />
     </>
