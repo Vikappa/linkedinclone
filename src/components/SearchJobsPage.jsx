@@ -6,9 +6,7 @@ const SearchJobsPage = () => {
   return (
     <Container fluid>
       <Row>
-        <Col xs={12} md={3}>
-          <ProfileBarOnHomepage />
-        </Col>
+        <Col xs={12} md={3}></Col>
       </Row>
     </Container>
   );
