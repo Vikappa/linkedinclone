@@ -190,7 +190,6 @@ function ModaleAggiungiEsperienza(props) {
         <Button
           className="d-flex align-items-center justify-content-center"
           variant="success"
-          type="submit"
           onClick={handleSubmit}
         >
           Invia
