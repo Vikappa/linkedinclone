@@ -34,7 +34,7 @@ const ModaleDestro = (props) => {
         <Modal.Body>
             
         <ListGroup>
-        <ListGroup.Item class="">Scopri altri prodotti LinkedIn</ListGroup.Item>
+        <ListGroup.Item>Scopri altri prodotti LinkedIn</ListGroup.Item>
         <ListGroup.Item className='d-flex flex-wrap justify-content-start '>
             <div className='m-1 mx-2 pulsanteIconaModaleDestro d-flex align-items-center justify-content-center '>
                 <div style={{width:"20%"}} className='d-flex flex-column justify-content-center align-items-center'>

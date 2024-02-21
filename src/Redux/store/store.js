@@ -1,21 +1,17 @@
 // import { combineReducers } from "redux";
-import { experienceReducer } from "../Reducers/index";
 import { combineReducers, configureStore } from "@reduxjs/toolkit"
+import experienceReducer from "../Reducers/experienceReducer";
 import currentUserReducer from "../Reducers/fetchCurrentUser";
-
-
-const rootReducer = combineReducers({
-
-  //currentUser: reducerCurrentUser,
-  //arrayAllUsers: allUserReducers,
-  
-})
-
+import allUserReducer from '../Reducers/fetchAllUsers'
+import fetchAllPostReducer from "../Reducers/fetchAllPostReducer";
+import reducerInspectedUser from "../Reducers/reducerInspectedUser";
 
 const mainReducer = combineReducers({
   experience: experienceReducer,
   currentUser: currentUserReducer,
-  //arrayAllUsers: allUserReducers,
+  allUserArray: allUserReducer,
+  arrayAllPosts: fetchAllPostReducer,
+  inspectedUser: reducerInspectedUser
 })
 
 const store = configureStore({
