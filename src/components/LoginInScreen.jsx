@@ -11,7 +11,7 @@ const LoginInScreen = () => {
         return "";
       case "Alex":
         setSelectedUser("Alex");
-        return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzMjJhODI0ZjYwNTAwMTkzN2Q0NzgiLCJpYXQiOjE3MDgzMzU3ODQsImV4cCI6MTcwOTU0NTM4NH0.pioeDwZO2GA-_tAisq4KElbrIk9InfeCBaG2-L3oQJA";
+        return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQ1ZjNhZmEzM2ZjOTAwMTk2NTgzOTMiLCJpYXQiOjE3MDg1MjAzNjcsImV4cCI6MTcwOTcyOTk2N30.NOK6WkzaBbxfdsJm56EzngNldjRWrMDl7Oi7kPLWkXU";
       case "Vincenzo":
         setSelectedUser("Vincenzo");
         return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzMjI4YTI0ZjYwNTAwMTkzN2Q0NzciLCJpYXQiOjE3MDgzMzU3NTUsImV4cCI6MTcwOTU0NTM1NX0.rPYXfWxZ2hjRBQRSIY8v2KnWuiurQ9ni42quyqpLtvQ";
