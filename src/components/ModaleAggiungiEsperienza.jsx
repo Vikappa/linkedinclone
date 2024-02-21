@@ -6,8 +6,31 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 function ModaleAggiungiEsperienza(props) {
   const [visibilitàModaleAddEsperienza, setVisibilitàModaleAddEsperienza] = useState(props.visibilitàModaleAddEsperienza)
+  const [newRuolo, setNewRuolo] = useState('');
+  const [newAzienda, setNewAzienda] = useState('');
+  const [newArea, setNewArea] = useState('');
+  const [newDescrizione, setNewDescrizione] = useState('')
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+  
   const handleClose = () => {props.onClose()}
   const handleShow = () => props.setVisibilitàModaleAddEsperienza(true);
+
+  const handleRuoloChange = (event) => {
+    setNewRuolo(event.target.value)
+  }
+
+  const handleAziendaChange = (event) => {
+    setNewAzienda(event.target.value)
+  }
+
+  const handleAreaChange = (event) => {
+    setNewArea(event.target.value)
+  }
+
+  const handleDescrizioneChange = (event) => {
+    setNewDescrizione(event.target.value)
+  }
 
   function handleDateChange(event) {
     const formattedDate = formatDate(event.target.value);
@@ -23,8 +46,7 @@ function ModaleAggiungiEsperienza(props) {
     return [day.padStart(2, '0'), month.padStart(2, '0'), year].join(' ');
   }
 
-    const [startDate, setStartDate] = useState(new Date());
-    const [endDate, setEndDate] = useState(new Date());
+
 
 useEffect(() => {
     setVisibilitàModaleAddEsperienza(props.visibilitàModaleAddEsperienza)
@@ -45,6 +67,8 @@ useEffect(() => {
                 type="text"
                 placeholder="Ruolo.."
                 autoFocus
+                value={newRuolo} 
+                onChange={handleRuoloChange}
                 required
               />
             </Form.Group>
@@ -53,6 +77,9 @@ useEffect(() => {
               <Form.Control
                 type="text"
                 placeholder="Azienda.."
+                value={newAzienda}
+                onChange={handleAreaChange}
+                required
               />
             </Form.Group>
 <div className='d-flex'>
@@ -62,6 +89,7 @@ useEffect(() => {
           selected={startDate}
           onChange={(date) => handleDateChange(date, setStartDate)}
           dateFormat="dd MM yyyy"
+          required
         />
       </Form.Group>
 
@@ -74,20 +102,26 @@ useEffect(() => {
         />
       </Form.Group>
 </div>
-
-            <Form.Group
-              className="mb-3"
-              controlId="valueTextAreaDescrizione"
-            >
-              <Form.Label>Descrizione</Form.Label>
-              <Form.Control as="textarea" rows={3} />
-            </Form.Group>
+<Form.Group
+        className="mb-3"
+        controlId="valueTextAreaDescrizione"
+      >
+        <Form.Label>Descrizione</Form.Label>
+        <Form.Control
+          as="textarea"
+          rows={3}
+          value={newDescrizione}
+          onChange={handleDescrizioneChange} // Aggiorna lo state ogni volta che il contenuto cambia
+        />
+      </Form.Group>
 
             <Form.Group className="mb-3" controlId="idValueArea">
               <Form.Label>Area</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Area.."
+                value={newArea}
+                onChange={handleAreaChange}
               />
             </Form.Group>
 
