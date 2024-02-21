@@ -231,7 +231,7 @@ const Consigliato = () => {
                       >
                         Aggiungi un riepilogo
                       </Button>
-                      {userToRender.area.length ? (
+                      {userToRender.area.length > 0 ? (
                         ""
                       ) : (
                         <Row>
