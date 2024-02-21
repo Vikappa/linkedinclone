@@ -104,7 +104,7 @@ const SearchJobsPage = () => {
                       <div>
                         <BsFillLightbulbFill />{" "}
                         <span className="ms-2" style={{ fontSize: "smaller" }}>
-                          lorem ipsus lorem ipsum lorem ipsum
+                          Informazioni sull&apos;offerta di lavoro
                         </span>
                       </div>
                       <Button variant="primary" className="rounded-pill">
