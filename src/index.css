@@ -190,3 +190,13 @@ h1, p {
   cursor: pointer;
   color: #b289dc;
 }
+
+
+/* ---------------------------------- ESPERIENZE ----------------------------------- */
+.jobLine{
+  width: 100%;
+}
+
+.bi.bi-plus-circle:hover{
+cursor: pointer;
+}

@@ -13,8 +13,8 @@ function ProfilePage() {
       <Container>
         <Row>
           {/* lato sinistro */}
-
-          <Col xs={12} lg={9} className="py-3">
+<Col xs={0} lg={2}></Col>
+          <Col xs={12} lg={7} className="py-3">
 
             <ProfileCards/>
             <Experience />
