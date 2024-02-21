@@ -87,3 +87,21 @@ a{
     text-decoration: none;
     color: black;
 }
+@media (max-width: 500px) {
+    #container{
+     display: inline;
+    }
+    #ricerca-title{
+     
+     /* display: inline; */
+     margin: 5px;
+     }
+     #ricerca-para{
+         margin: 10px ;    
+     }
+     #second-div{
+         margin: 0px; 
+         display: block;
+         
+     }
+     }
