@@ -45,6 +45,7 @@ useEffect(() => {
                 type="text"
                 placeholder="Ruolo.."
                 autoFocus
+                required
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="idValueAzienda">
@@ -52,7 +53,6 @@ useEffect(() => {
               <Form.Control
                 type="text"
                 placeholder="Azienda.."
-                autoFocus
               />
             </Form.Group>
 <div className='d-flex'>
@@ -88,7 +88,6 @@ useEffect(() => {
               <Form.Control
                 type="text"
                 placeholder="Area.."
-                autoFocus
               />
             </Form.Group>
 
