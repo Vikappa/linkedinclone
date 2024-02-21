@@ -211,9 +211,7 @@ const Consigliato = () => {
 
               {/*        SECONDA CARD       */}
               <Col xs={12} md={6} lg={6}>
-                {(userToRender.bio.length > 0) &
-                (userToRender.image ===
-                  "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png") ? (
+                {userToRender.bio.length > 0 ? (
                   ""
                 ) : (
                   <Card>
@@ -233,6 +231,32 @@ const Consigliato = () => {
                       >
                         Aggiungi un riepilogo
                       </Button>
+                      {userToRender.area.length ? (
+                        ""
+                      ) : (
+                        <Row>
+                          <Card>
+                            <Card.Body>
+                              <Card.Title className="fw-semibold">
+                                Scrivi un riepilogo per mettere in evidenza la
+                                tua personalità o la tua esperienza lavorativa
+                              </Card.Title>
+                              <Card.Text className="text-black">
+                                Gli utenti che includono un riepilogo ricevono
+                                fino a 3,9 volte più visualizzazioni del
+                                profilo.
+                              </Card.Text>
+                              <Button
+                                type="submit"
+                                className="btn rounded-pill border border-black text-secondary py-1  bg-body-tertiary button fw-semibold d-flex align-items-center"
+                                onClick={handleShow2}
+                              >
+                                Aggiungi un riepilogo
+                              </Button>
+                            </Card.Body>
+                          </Card>
+                        </Row>
+                      )}
                       {/*      SECONDO MODALE       */}
 
                       <Modal show={show2} onHide={handleClose2}>
