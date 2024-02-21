@@ -39,8 +39,8 @@ const Consigliato = () => {
   const handleShow2 = () => setShow2(true); // funzione associata al 2° modale
   const handleClose2 = () => setShow2(false); // funzione associata al 2° modale
 
-  const handleShow3 = () => setShow3(true);
-  const handleClose3 = () => setShow3(false);
+  const handleShow3 = () => setShow3(true); // funzione associata al 3° modale
+  const handleClose3 = () => setShow3(false); // funzione associata al 3° modale
 
   const handleSubmit = (e) => {
     e.preventDefault();
