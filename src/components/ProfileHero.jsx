@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { useSelector } from 'react-redux';
 
 function ProfileCard() {
   const [profile, setProfile] = useState(null);
@@ -15,38 +16,20 @@ function ProfileCard() {
     title: '',
     username: ''
   });
-  const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzMjNiMzI0ZjYwNTAwMTkzN2Q0NzkiLCJpYXQiOjE3MDgzMzYwNTEsImV4cCI6MTcwOTU0NTY1MX0.QwQijjjSxZNMPrGebk1FQ-jba4Y2hhdlK43ytPhzCnc';
+
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  const storedProfile = useSelector(state => state.currentUser.currentUser) //Prende l'user dallo store
 
   useEffect(() => {
-    fetch('https://striveschool-api.herokuapp.com/api/profile/', {
-      headers: {
-        'Authorization': `Bearer ${accessToken}`
-      }
-    })
-    .then(response => response.json())
-    .then(data => {
-      setProfile(data[0]); 
-      setFormData({
-        name: data[0].name,
-        surname: data[0].surname,
-        bio: data[0].bio,
-        email: data[0].email,
-        title: data[0].title,
-        username: data[0].username
-      });
-    })
-    .catch(error => {
-      console.error('Si è verificato un errore:', error);
-    });
-  }, []);
+    setProfile(storedProfile)
+  }, [storedProfile]) //Setta il profilo preso dallo store come stato del componente
+  
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
-  };
+  const accessToken = sessionStorage.getItem('accessToken') // modificato per prendere l'accestoken dell'utente corrente
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
