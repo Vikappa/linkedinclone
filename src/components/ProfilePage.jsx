@@ -17,7 +17,7 @@ function ProfilePage() {
           {/* lato sinistro */}
 
           <Col xs={12} lg={9} className="py-3">
-            <Experience />
+            <Experience/>
             <Analisi /> 
             <Risorse/>
           </Col>
