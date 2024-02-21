@@ -81,11 +81,7 @@ const Consigliato = () => {
                 <span className="consigliato me-1 mb-0">
                   Completa 2 passaggi per raggiungere il livello
                 </span>
-                <Link
-                  to="/profile-status/"
-                  className="link"
-                  onClick={handleShow3}
-                >
+                <Link to="/profile" className="link" onClick={handleShow3}>
                   Massimo
                 </Link>
               </div>
@@ -138,8 +134,7 @@ const Consigliato = () => {
             <Row>
               <Col xs={12} md={6} lg={6}>
                 {/* PRIMO TERNARIO */}
-                {(userToRender.bio.length > 0) &
-                (userToRender.area.length > 0) &
+                {(userToRender.area.length > 0) &
                 (userToRender.image ===
                   "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png") ? (
                   ""
@@ -219,7 +214,6 @@ const Consigliato = () => {
               {/*        SECONDA CARD       */}
               <Col xs={12} md={6} lg={6}>
                 {(userToRender.bio.length > 0) &
-                (userToRender.area.length > 0) &
                 (userToRender.image ===
                   "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png") ? (
                   ""
