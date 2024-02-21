@@ -16,7 +16,7 @@ const AddPost = function() {
         e.preventDefault()
     
         const postData = {
-            "text": postText,
+            text: `${postText}`,
         }
     
         try {
@@ -24,7 +24,7 @@ const AddPost = function() {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': sessionStorage.getItem("accessToken")
+                    'Authorization': "Bearer " + sessionStorage.getItem("accessToken")
                 },
                 body: JSON.stringify(postData),
             });
