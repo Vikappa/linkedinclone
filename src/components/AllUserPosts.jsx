@@ -20,7 +20,7 @@ function AllUserPosts(){
 
     return(
         <div>
-            {interoStore.slice(-25).map((post, index) => (
+            {interoStore.slice(-25).reverse().map((post, index) => (
             <div key={index} style={{border:"1px solid lightgrey"}} className="d-flex flex-column bg-white rounded rounded-2 m-1 my-2 p-2 sizePostDiv">
              
                 <div className="d-flex align-items-center">
