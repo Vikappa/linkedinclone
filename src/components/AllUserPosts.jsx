@@ -36,7 +36,7 @@ function AllUserPosts(){
                                     </div>
                                 </div>
                             </div>
-                            <p className="p-2 px-4">{post.text}</p>
+                            <p className="p-2 px-4" style={{color:"black"}}>{post.text}</p>
                             <PostCommentArea post={post}/>
                         </div>
                     ))}
