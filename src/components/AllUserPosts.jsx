@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import AddPost from "./AddPost.jsx";
-import { Button } from "react-bootstrap";
+import { Button, Spinner } from "react-bootstrap";
 import { FaPen } from "react-icons/fa";
 import { FaTrashAlt } from "react-icons/fa";
 import DeletePost from "./DeletePost.jsx";
+import PutPost from "./PutPost.jsx";
+import { useDispatch } from "react-redux";
+import { FETCH_ALL_POSTS } from "../Redux/Actions/ADD_EXPERIENCE.js";
 function formatDate(date) {
   const d = new Date(date),
     day = "" + d.getDate(),
@@ -15,8 +18,10 @@ function formatDate(date) {
 }
 
 function AllUserPosts() {
+  const dispatch = useDispatch();
   const [showDeleteModalPost, setShowDeleteModalPost] = useState(false);
   const [deletePostId, setDeletePostId] = useState(null);
+  ///
   const handleDeleteClick = (PostId) => {
     setDeletePostId(PostId);
     setShowDeleteModalPost(true);
@@ -25,19 +30,65 @@ function AllUserPosts() {
     setShowDeleteModalPost(false);
   };
 
+  ///
+  const [postToEdit, setPostToEdit] = useState(null);
+  const [visibilitàModaleEditPost, setVisibilitàModaleEditPost] =
+    useState(false);
+  const handleEditClickPost = (post) => {
+    // setEditExperience(experience)
+    setPostToEdit(post);
+    console.log("PUT DI POST ID", post._id);
+    setVisibilitàModaleEditPost(true);
+  };
+  ///
   const interoStore = useSelector((state) => state.arrayAllPosts.arrayPosts);
   const currentUser = useSelector((state) => state.currentUser.currentUser);
 
   const idPost = useSelector((state) => state.arrayAllPosts.arrayPosts._id);
-  const idUser = useSelector((state) => state.currentUser.currentUser._id);
-  console.log("mio id USER", idUser);
+
+  // console.log("mio id USER", currentUser._id);
   useEffect(() => {
     console.log(interoStore.slice(-25));
   }, []);
 
+  ///
+
+  const handleChiudiEditPost = () => {
+    const fetchPostEdit = async () => {
+      try {
+        const res = await fetch(
+          `https://striveschool-api.herokuapp.com/api/posts`,
+          {
+            headers: {
+              Authorization: `Bearer ${sessionStorage.getItem("accessToken")}`,
+            },
+          }
+        );
+
+        if (!res.ok) {
+          throw new Error("Errore durante il recupero dei post");
+        }
+
+        const data = await res.json();
+
+        dispatch({
+          type: FETCH_ALL_POSTS,
+          payload: data,
+        });
+      } catch (error) {
+        console.log("Errore durante il recupero dei post", error);
+      }
+    };
+
+    if (currentUser && currentUser._id) {
+      fetchPostEdit();
+    }
+    setVisibilitàModaleEditPost(false);
+  };
+
   return (
     <div>
-      {interoStore ? (
+      {interoStore && currentUser ? (
         <>
           <AddPost />
           {interoStore
@@ -79,12 +130,12 @@ function AllUserPosts() {
                   </div>
                 </div>
                 <p className="p-2 px-4">{post.text}</p>
-                {idUser && post.user._id === idUser && (
+                {currentUser._id && post.user._id === currentUser._id && (
                   <div className="d-flex justify-content-end">
                     <Button
                       style={{ width: "40px", height: "40px" }}
                       variant="light"
-                      // onClick={() => handleEditClick(esperienza)}
+                      onClick={() => handleEditClickPost(post)}
                       className="d-flex align-items-center me-1"
                     >
                       <FaPen />
@@ -109,7 +160,17 @@ function AllUserPosts() {
             ))}
         </>
       ) : (
-        "Caricamento"
+        <Spinner variant="warning" animation="border" />
+      )}
+      {postToEdit ? (
+        <PutPost
+          post={postToEdit}
+          visibilitàModaleEditPost={visibilitàModaleEditPost}
+          setVisibilitàModaleEditPost={setVisibilitàModaleEditPost}
+          onClose={handleChiudiEditPost}
+        />
+      ) : (
+        <Spinner variant="warning" animation="border" />
       )}
     </div>
   );

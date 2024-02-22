@@ -5,7 +5,7 @@ import { FETCH_ALL_POSTS } from "../Redux/Actions/ADD_EXPERIENCE";
 
 const DeletePost = ({ postId, onClose }) => {
   const dispatch = useDispatch();
-  console.log("id del post", postId);
+  //   console.log("id del post", postId);
   const myUrlDeletePost = `https://striveschool-api.herokuapp.com/api/posts/${postId}`;
 
   const handleDelete = async () => {
