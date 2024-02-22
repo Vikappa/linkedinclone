@@ -30,6 +30,12 @@ const dispatch = useDispatch()
         return [year, month.padStart(2, "0"), day.padStart(2, "0")].join("-")
     }
 
+    function handleEditComment(e){
+        e.preventDefault()
+
+        
+    }
+
     function handleDeleteComment(e){
         e.preventDefault();
     
@@ -95,7 +101,9 @@ const dispatch = useDispatch()
                 {props.comment.comment}
               </span>
     
-              <i style={{ color: "grey", fontSize: "0.8rem" }} className="optionCommentIcon ms-auto bi bi-pencil me-1"></i>
+              <i
+              onClick={handleEditComment} 
+              style={{ color: "grey", fontSize: "0.8rem" }} className="optionCommentIcon ms-auto bi bi-pencil me-1"></i>
               <i
               onClick={handleDeleteComment}
               style={{ color: "grey", fontSize: "0.8rem" }} className="optionCommentIcon bi bi-trash3 mx-1"></i>
