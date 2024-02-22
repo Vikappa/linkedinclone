@@ -1,43 +1,69 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { FETCH_ALL_POSTS } from "../Redux/Actions/ADD_EXPERIENCE";
+import { Button, Form, FormControl } from "react-bootstrap";
 
 const AddPost = function () {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.currentUser.currentUser);
   const [postText, setPostText] = useState("");
+  const [imageFile, setImageFile] = useState(null);
   function handleChangeTextInput(e) {
     setPostText(e.target.value);
   }
 
+  function handleImageChange(e) {
+    const file = e.target.files[0];
+    setImageFile(file);
+  }
   async function handleSubmit(e) {
     e.preventDefault();
     setPostText("");
+    setImageFile(null);
 
-    const postData = {
-      text: postText,
-    };
+    // const postData = {
+    //   text: postText,
+    //   post: imageFile,
+    // };
 
+    const myURl = `https://striveschool-api.herokuapp.com/api/posts/`;
+
+    const bearerToken = sessionStorage.getItem("accessToken");
     try {
-      const response = await fetch(
-        "https://striveschool-api.herokuapp.com/api/posts/",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + sessionStorage.getItem("accessToken"),
-          },
-          body: JSON.stringify(postData),
-        }
-      );
+      const formData = {
+        text: postText,
+      };
+      const response = await fetch(myURl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + bearerToken,
+        },
+        body: JSON.stringify(formData),
+      });
 
       if (!response.ok) {
         throw new Error("Errore nella fetch post");
       }
 
       const data = await response.json();
-      console.log("Commento inviato con successo:", data);
+      console.log("Commento inviato con successo:", data._id);
+      const myUrlImage = `https://striveschool-api.herokuapp.com/api/posts/${data._id}`;
 
+      const formDataImage = new FormData();
+      formDataImage.append("post", imageFile);
+
+      const responseImage = await fetch(myUrlImage, {
+        method: "POST",
+        headers: {
+          Authorization: "Bearer " + bearerToken,
+        },
+        body: formDataImage,
+      });
+      if (!responseImage.ok) {
+        throw new Error("Errore nella richiesta POST per l'immagine");
+      }
+      setImageFile("");
       await fetchAllPosts();
     } catch (error) {
       console.error("Errore invio del commento:", error);
@@ -82,8 +108,8 @@ const AddPost = function () {
             width={"48px"}
             className="border rounded-circle"
           />
-          <form style={{ width: "100%" }} onSubmit={handleSubmit}>
-            <input
+          <Form style={{ width: "100%" }} onSubmit={handleSubmit}>
+            <FormControl
               style={{ width: "100%" }}
               className="rounded-pill p-2"
               type="text"
@@ -91,7 +117,9 @@ const AddPost = function () {
               value={postText}
               onChange={handleChangeTextInput}
             />
-          </form>
+            <FormControl type="file" onChange={handleImageChange} />
+            <Button type="submit"> invia</Button>
+          </Form>
         </div>
       ) : (
         ""

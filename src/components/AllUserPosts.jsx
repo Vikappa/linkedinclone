@@ -130,6 +130,7 @@ function AllUserPosts() {
                   </div>
                 </div>
                 <p className="p-2 px-4">{post.text}</p>
+                <img src={post.image} alt="" />{" "}
                 {currentUser._id && post.user._id === currentUser._id && (
                   <div className="d-flex justify-content-end">
                     <Button
