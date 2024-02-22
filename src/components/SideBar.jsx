@@ -8,6 +8,9 @@ import Button from "react-bootstrap/Button";
 import { useEffect, useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { AddToNetworkAction } from "../Redux/Actions/ADD_TO_NETWORK";
 
 const SideBar = () => {
   const AllTheProfilesURL =
@@ -21,6 +24,12 @@ const SideBar = () => {
   const [showAllProfiles, setShowAllProfiles] = useState(false);
   const [selectedProfile, setSelectedProfile] = useState(null);
   const [selectedProfiles, setSelectedProfiles] = useState([]);
+
+  // DISPACCIO sul bottone del modale
+  const dispatch = useDispatch();
+
+  // per navigare da modale a Rete
+  const navigate = useNavigate();
 
   const gettingSelectedProfiles = async () => {
     try {
@@ -110,7 +119,7 @@ const SideBar = () => {
             </Card.Header>
             <ListGroup variant="flush">
               {profileOfOthers
-                .slice(0, showAllProfiles ? profileOfOthers.length : 5)
+                .slice(204, showAllProfiles ? profileOfOthers.length : 210)
                 .map((profile) => (
                   <ListGroup.Item key={profile._id} className="p-1">
                     <div className="d-flex flex-row justify-content-start align-items-baseline">
@@ -166,7 +175,7 @@ const SideBar = () => {
           </Card>
         </Col>
         {/* COLONNA UTENTI CHE POTRESTI CONOSCERE
-          PS.non è ancora dinamica */}
+         */}
         <Col xs={12} className="mt-3">
           <Card>
             <Card.Header className="fw-semibold">
@@ -241,16 +250,46 @@ const SideBar = () => {
         <Modal.Header closeButton>
           <Modal.Title>Profile Details</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className="d-flex justify-content-center flex-column align-items-center">
           {selectedProfile && (
             <>
               <h5>{`${selectedProfile.name} ${selectedProfile.surname}`}</h5>
               <p>{selectedProfile.title}</p>
+              <p>{selectedProfile.email}</p>
             </>
           )}
+          <div className="d-flex justify-content-center align-items-center ">
+            <Button
+              className="p-2 d-flex align-items-center justify-content-center m-1"
+              size="md"
+              style={{ maxWidth: "fit-content" }}
+              variant="primary"
+              onClick={() => {
+                dispatch(AddToNetworkAction(selectedProfile));
+              }}
+            >
+              Collega alla tua rete
+            </Button>
+            <Button
+              className="p-2 d-flex align-items-center justify-content-center "
+              size="md"
+              style={{ maxWidth: "fit-content" }}
+              variant="primary"
+              onClick={() => {
+                navigate("/network");
+              }}
+            >
+              Vai alla tua rete
+            </Button>
+          </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseModal}>
+          <Button
+            className="d-flex align-items-center justify-content-center"
+            variant="secondary"
+            style={{ maxWidth: "fit-content" }}
+            onClick={handleCloseModal}
+          >
             Close
           </Button>
         </Modal.Footer>

@@ -18,6 +18,7 @@ const PutExperience = (props) => {
   const [newDescrizione, setNewDescrizione] = useState("");
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
+  const [newImage, setNewImage] = useState(null);
   const handleShow = () => props.setVisibilitàModaleEditEsperienza(true);
 
   const job = props.experienceToEdit;
@@ -39,6 +40,10 @@ const PutExperience = (props) => {
   const handleClose = () => {
     props.onClose();
     console.log("HANDOLO CLOSO");
+  };
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    setNewImage(file);
   };
   const handleRuoloChange = (event) => {
     setNewRuolo(event.target.value);
@@ -100,13 +105,22 @@ const PutExperience = (props) => {
       if (!response.ok) {
         throw new Error("Errore nella richiesta POST");
       }
+      const myUrlImage = `https://striveschool-api.herokuapp.com/api/profile/${currentUser._id}/experiences/${job._id}/picture`;
+      const formDataImage = new FormData();
+      formDataImage.append("experience", newImage);
 
-      // setNewRuolo("");
-      // setNewAzienda("");
-      // setNewArea("");
-      // setNewDescrizione("");
-      // setStartDate(new Date());
-      // setEndDate(new Date());
+      const responseImage = await fetch(myUrlImage, {
+        method: "POST",
+        headers: {
+          Authorization: "Bearer " + bearerToken,
+        },
+        body: formDataImage,
+      });
+
+      if (!responseImage.ok) {
+        throw new Error("Errore nella richiesta POST per l'immagine");
+      }
+
       handleClose();
     } catch (error) {
       console.error("Errore durante la richiesta POST:", error);
@@ -182,6 +196,15 @@ const PutExperience = (props) => {
               placeholder="Area.."
               value={newArea}
               onChange={handleAreaChange}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="idValueImage">
+            <Form.Label>Select Image</Form.Label>
+            <Form.Control
+              type="file"
+              placeholder="file"
+              accept="image/*"
+              onChange={handleImageChange}
             />
           </Form.Group>
         </Form>

@@ -10,11 +10,22 @@ import { useSelector } from "react-redux";
 import React, { useState, useEffect } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import ModaleDestro from "./PezziDiNavBar/ModaleDestro";
+import { useDispatch } from "react-redux";
+import { DELETE_CURRENT_USER } from "../Redux/Actions/ADD_EXPERIENCE";
 
 function LinkedInNavBar() {
   const [currentUser, setCurrentUser] = useState(null);
   const [currentUserExperience, setCurrentUserExperience] = useState([]);
   let currentUserStore = useSelector((state) => state.currentUser.currentUser);
+
+  const dispatch = useDispatch();
+
+  const deleteUserFetch = () => {
+    dispatch({
+      type: DELETE_CURRENT_USER,
+      payload: null,
+    });
+  };
 
   useEffect(() => {
     setCurrentUser(currentUserStore);
@@ -40,15 +51,15 @@ function LinkedInNavBar() {
         <img
           src={currentUser.image}
           alt="profile pic mockup"
-          className="rounded-circle pt-1"
-          style={{ height: "28px" }}
+          className="rounded-circle"
+          style={{ height: "24px", width: "24px" }}
         />
       ) : (
         <img
           src="https://placekitten.com/80/80"
           alt="profile pic mockup"
-          className="rounded-circle pt-1"
-          style={{ height: "28px" }}
+          className="rounded-circle"
+          style={{ height: "24px", width: "24px" }}
         />
       )}
       <p className="d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP">
@@ -75,14 +86,14 @@ function LinkedInNavBar() {
                   src={currentUser.image}
                   alt="profile pic mockup"
                   className="rounded-circle p-1"
-                  style={{ width: "30%" }}
+                  style={{ width: "50px", height: "50px" }}
                 />
               ) : (
                 <img
                   src="https://placekitten.com/80/80"
                   alt="profile pic mockup"
                   className="rounded-circle p-1"
-                  style={{ width: "30%" }}
+                  style={{ width: "50px", height: "50px" }}
                 />
               )}
               <div className="d-flex flex-column justify-content-start">
@@ -116,7 +127,9 @@ function LinkedInNavBar() {
             </div>
             <Link to={`/`}>
               <div className="d-flex flex-column justify-content-start p-1">
-                <p className="testiDropDownTu">Esci</p>
+                <p className="testiDropDownTu" onClick={deleteUserFetch}>
+                  Esci
+                </p>
               </div>
             </Link>
           </div>
@@ -206,12 +219,14 @@ function LinkedInNavBar() {
                 </p>
               </div>
             </Link>
-            <div className="d-flex flex-column text-center topBarButton">
-              <i className="bi bi-person-fill navBarDedicatedButton "> </i>
-              <p className="d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP">
-                Rete
-              </p>
-            </div>
+            <Link to={`/network`}>
+              <div className="d-flex flex-column text-center topBarButton">
+                <i className="bi bi-person-fill navBarDedicatedButton "> </i>
+                <p className="d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP">
+                  Rete
+                </p>
+              </div>
+            </Link>
             <div className="d-flex flex-column text-center topBarButton">
               <i className="bi bi-briefcase-fill navBarDedicatedButton "> </i>
               <p className="d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP">
@@ -255,7 +270,13 @@ function LinkedInNavBar() {
           </div>
 
           <div className="d-flex flex-column text-center goliardiaPortamiVia">
-            <a className="text-nowrap">Prova Epicode e paga tra 2 anni!</a>
+            <a
+              className="text-nowrap text-black fw-bold fs-6"
+              href="https://epicode.com"
+              target="_blank"
+            >
+              Prova Epicode e paga tra 2 anni!
+            </a>
           </div>
         </Container>
       </Navbar>
