@@ -130,9 +130,9 @@ const AddPost = function () {
               className="mt-2 text-center"
               variant="secondary"
               style={{ width: "15%", height: "10%" }}
+              disabled={postText.length===0}
             >
-              {" "}
-              invia
+              Invia
             </Button>
           </Form>
         </div>
