@@ -11,48 +11,50 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import ProfileBarOnHomepage from "./ProfileBarOnHomepage";
- 
+import AllUserPosts from "./AllUserPosts";
+
 function HomePage() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const [currentUser, setCurrentUser] = useState(null)
-  let currentUserStore = useSelector(state => state.currentUser.currentUser)
+  const [currentUser, setCurrentUser] = useState(null);
+  let currentUserStore = useSelector((state) => state.currentUser.currentUser);
 
   useEffect(() => {
-    setCurrentUser(currentUserStore)
-  }, [currentUserStore])
-  
-  useEffect(() => {
-const fetchExperiencesCurrentUser = async () => {
-  try {
-    const fetchedExperiences = await fetch(`https://striveschool-api.herokuapp.com/api/profile/${currentUser._id}/experiences`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${sessionStorage.getItem("accessToken")}`,
-      },
-    });
-  
-    if (!fetchedExperiences.ok) {
-      throw new Error("Errore nella fetch delle esperienze");
-    }
-  
-    const experiencesData = await fetchedExperiences.json();
-  
-    // Dispatch dell'azione Redux
-    dispatch({
-      type: FETCH_CURRENT_USER_EXPERIENCES,
-      payload: experiencesData,
-    });
-  } catch (error) {
-    console.log("Errore", error);
-  }
-  
+    setCurrentUser(currentUserStore);
+  }, [currentUserStore]);
 
-}
-fetchExperiencesCurrentUser()
-  }, [currentUser, dispatch])
-    
+  useEffect(() => {
+    const fetchExperiencesCurrentUser = async () => {
+      try {
+        const fetchedExperiences = await fetch(
+          `https://striveschool-api.herokuapp.com/api/profile/${currentUser._id}/experiences`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${sessionStorage.getItem("accessToken")}`,
+            },
+          }
+        );
+
+        if (!fetchedExperiences.ok) {
+          throw new Error("Errore nella fetch delle esperienze");
+        }
+
+        const experiencesData = await fetchedExperiences.json();
+
+        // Dispatch dell'azione Redux
+        dispatch({
+          type: FETCH_CURRENT_USER_EXPERIENCES,
+          payload: experiencesData,
+        });
+      } catch (error) {
+        console.log("Errore", error);
+      }
+    };
+    fetchExperiencesCurrentUser();
+  }, [currentUser, dispatch]);
+
   useEffect(() => {
     const accessToken = sessionStorage.getItem("accessToken");
     const fetchCurrentUser = async () => {
@@ -68,7 +70,7 @@ fetchExperiencesCurrentUser()
               }`,
             },
           }
-        )
+        );
         if (!res.ok) {
           throw new Error("Errore");
         }
@@ -81,7 +83,7 @@ fetchExperiencesCurrentUser()
         console.log("Errore", error);
       }
     };
-  
+
     const fetchAllUsers = async () => {
       try {
         const res = await fetch(
@@ -107,40 +109,38 @@ fetchExperiencesCurrentUser()
       } catch (error) {
         console.log("Errore", error);
       }
-    }
+    };
 
-    const fetchAllPost = async () => { 
-try{
-   const res = await fetch(`https://striveschool-api.herokuapp.com/api/posts`,
-   {
-     headers: {
-       Authorization: `Bearer ${
-         accessToken
-           ? accessToken
-           : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzMjJhODI0ZjYwNTAwMTkzN2Q0NzgiLCJpYXQiOjE3MDgzMzU3ODQsImV4cCI6MTcwOTU0NTM4NH0.pioeDwZO2GA-_tAisq4KElbrIk9InfeCBaG2-L3oQJA"
-       }`,
-     },
-   }
- );
- if (!res.ok) {
-   throw new Error("Errore");
- }
- const data = await res.json();
- dispatch({
-   type: FETCH_ALL_POSTS,
-   payload: data,
- });
-}catch(error){
-  console.log(error)
-}
+    const fetchAllPost = async () => {
+      try {
+        const res = await fetch(
+          `https://striveschool-api.herokuapp.com/api/posts`,
+          {
+            headers: {
+              Authorization: `Bearer ${
+                accessToken
+                  ? accessToken
+                  : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzMjJhODI0ZjYwNTAwMTkzN2Q0NzgiLCJpYXQiOjE3MDgzMzU3ODQsImV4cCI6MTcwOTU0NTM4NH0.pioeDwZO2GA-_tAisq4KElbrIk9InfeCBaG2-L3oQJA"
+              }`,
+            },
+          }
+        );
+        if (!res.ok) {
+          throw new Error("Errore");
+        }
+        const data = await res.json();
+        dispatch({
+          type: FETCH_ALL_POSTS,
+          payload: data,
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
-
-     }
-
-
-    fetchCurrentUser()
-    fetchAllUsers()
-    fetchAllPost()
+    fetchCurrentUser();
+    fetchAllUsers();
+    fetchAllPost();
 
     //fetch3
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -149,12 +149,18 @@ try{
   return (
     <Container fluid>
       <Row>
-        <Col xs={12} md={3}>
-          <ProfileBarOnHomepage />
-        </Col>
+        <Col xs={0} lg={1}></Col>
+      <Col xs={12} lg={2}>
+        <ProfileBarOnHomepage/>
+      </Col>
+        <Col xs={12} lg={7} className="py-3">
+          <AllUserPosts/>
+      </Col>
+        <Col xs={0} lg={3}>
+      </Col>
       </Row>
     </Container>
   );
 }
 
-export default HomePage;
+export default HomePage

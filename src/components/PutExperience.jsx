@@ -1,30 +1,45 @@
 /* eslint-disable react/prop-types */
-import { useState, useEffect } from "react";
-import { Modal, Button, Form } from "react-bootstrap";
+import { formatDate } from "date-fns";
+import React, { useEffect, useState } from "react";
+import { Button, Form, Modal } from "react-bootstrap";
 import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import {
-  ADD_EXPERIENCE,
-  FETCH_CURRENT_USER_EXPERIENCES,
-} from "../Redux/Actions/ADD_EXPERIENCE";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 
-function ModaleAggiungiEsperienza(props) {
-  const [visibilitàModaleAddEsperienza, setVisibilitàModaleAddEsperienza] =
-    useState(props.visibilitàModaleAddEsperienza);
+const PutExperience = (props) => {
+  let currentUserStore = useSelector((state) => state.currentUser.currentUser);
+  const [currentUser, setCurrentUser] = useState(currentUserStore);
+  const storeEsperienze = useSelector((state) => state.experience.experiences);
+  const dispatch = useDispatch();
+
   const [newRuolo, setNewRuolo] = useState("");
   const [newAzienda, setNewAzienda] = useState("");
   const [newArea, setNewArea] = useState("");
   const [newDescrizione, setNewDescrizione] = useState("");
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
+  const handleShow = () => props.setVisibilitàModaleEditEsperienza(true);
 
+  const job = props.experienceToEdit;
+  useEffect(() => {
+    // Inizializza lo stato locale con il valore della prop quando il componente viene montato
+    setNewRuolo(job ? job.role : "");
+    setNewAzienda(job ? job.company : "");
+    setNewArea(job ? job.area : "");
+    setNewDescrizione(job ? job.description : "");
+    setStartDate(job ? new Date(job.startDate) : new Date());
+    setEndDate(
+      job ? (job.endDate ? new Date(job.endDate) : new Date()) : new Date()
+    );
+  }, [job]);
+  if (!job) {
+    // Se props.experienceToEdit non è ancora pronto, potresti mostrare un messaggio di caricamento o gestire diversamente il caso in cui i dati non sono ancora pronti
+    return <div></div>;
+  }
   const handleClose = () => {
     props.onClose();
+    console.log("HANDOLO CLOSO");
   };
-  const handleShow = () => props.setVisibilitàModaleAddEsperienza(true);
-
   const handleRuoloChange = (event) => {
     setNewRuolo(event.target.value);
   };
@@ -55,20 +70,11 @@ function ModaleAggiungiEsperienza(props) {
 
     return [year, month.padStart(2, "0"), day.padStart(2, "0")].join(" ");
   }
-  //!
 
-  let currentUserStore = useSelector((state) => state.currentUser.currentUser);
-  const [currentUser, setCurrentUser] = useState(currentUserStore);
-
-  useEffect(() => {
-    setCurrentUser(currentUserStore);
-  }, [currentUserStore]);
-  // console.log("id", currentUser._id);
-  const myPostUrl = ` https://striveschool-api.herokuapp.com/api/profile/${currentUser._id}/experiences`;
-
+  const myPostUrl = `https://striveschool-api.herokuapp.com/api/profile/${currentUser._id}/experiences/${job._id}`;
   const bearerToken = sessionStorage.getItem("accessToken");
 
-  const handleSubmit = async (e) => {
+  const handleEdit = async (e) => {
     e.preventDefault();
     console.log("Submit form");
     try {
@@ -82,7 +88,7 @@ function ModaleAggiungiEsperienza(props) {
       };
 
       const response = await fetch(myPostUrl, {
-        method: "POST",
+        method: "PUT",
         headers: {
           Authorization: "Bearer " + bearerToken,
           "Content-Type": "application/json",
@@ -95,32 +101,26 @@ function ModaleAggiungiEsperienza(props) {
         throw new Error("Errore nella richiesta POST");
       }
 
-      setNewRuolo("");
-      setNewAzienda("");
-      setNewArea("");
-      setNewDescrizione("");
-      setStartDate(new Date());
-      setEndDate(new Date());
+      // setNewRuolo("");
+      // setNewAzienda("");
+      // setNewArea("");
+      // setNewDescrizione("");
+      // setStartDate(new Date());
+      // setEndDate(new Date());
       handleClose();
     } catch (error) {
       console.error("Errore durante la richiesta POST:", error);
     }
   };
 
-  //!
-  useEffect(() => {
-    // console.log("Effetto collaterale eseguito");
-    setVisibilitàModaleAddEsperienza(props.visibilitàModaleAddEsperienza);
-  }, [props.visibilitàModaleAddEsperienza]);
-
   return (
     <Modal
-      show={visibilitàModaleAddEsperienza}
+      show={props.visibilitàModaleEditEsperienza}
       onHide={handleClose}
-      onSubmit={handleSubmit}
+      onSubmit={handleEdit}
     >
       <Modal.Header closeButton>
-        <Modal.Title>Aggiungi nuova esperienza</Modal.Title>
+        <Modal.Title>Modifica esperienza</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form>
@@ -190,7 +190,7 @@ function ModaleAggiungiEsperienza(props) {
         <Button
           className="d-flex align-items-center justify-content-center"
           variant="success"
-          onClick={handleSubmit}
+          onClick={handleEdit}
         >
           Invia
         </Button>
@@ -204,6 +204,6 @@ function ModaleAggiungiEsperienza(props) {
       </Modal.Footer>
     </Modal>
   );
-}
+};
 
-export default ModaleAggiungiEsperienza;
+export default PutExperience;

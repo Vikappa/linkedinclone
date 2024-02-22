@@ -16,30 +16,12 @@ const SideBar = () => {
     "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzMTUzYjI0ZjYwNTAwMTkzN2Q0NmEiLCJpYXQiOjE3MDgzMzIzNDcsImV4cCI6MTcwOTU0MTk0N30.PhTpxaqmoqshGHbwVUIWDlVbF1mGD_vRAaHWmdvBCIs";
 
   const arrUsers = useSelector((state) => state.allUserArray.currentUser);
+  const currentUser = useSelector((state) => state.currentUser.currentUser);
   const [profileOfOthers, setProfileOfOthers] = useState([]);
   const [showAllProfiles, setShowAllProfiles] = useState(false);
   const [selectedProfile, setSelectedProfile] = useState(null);
   const [selectedProfiles, setSelectedProfiles] = useState([]);
-  // funzione fetcha  gli utenti
-  // const gettingProfiles = async () => {
-  //   try {
-  //     let response = await fetch(AllTheProfilesURL, {
-  //       headers: {
-  //         Authorization: myKey,
-  //       },
-  //     });
-  //     if (response.ok) {
-  //       let data = await response.json();
-  //       // console.log(data);
-  //       setProfileOfOthers(data);
-  //     } else {
-  //       throw new Error("Errore: " + response.statusText);
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-  // funzione HARDCODED USERS
+
   const gettingSelectedProfiles = async () => {
     try {
       let response = await fetch(AllTheProfilesURL, {
@@ -49,15 +31,29 @@ const SideBar = () => {
       });
       if (response.ok) {
         let data = await response.json();
-        const ArrayOfSelected = [].concat(
-          data[207],
-          data[211],
-          data[202],
-          data[224],
-          data[232],
-          data[231]
+        //  Map arrUsers to create an array of user_ids
+        const currentUserIds = arrUsers.map((user) => user._id);
+
+        const elisa = "65d3153b24f605001937d46a";
+        const wendy = "65d4bb2e9c437000193c3636";
+        const vincenzo = "65d3228a24f605001937d477";
+        // const alex
+        const hamed = "65d311e424f605001937d456";
+        const alex = "65d322a824f605001937d478";
+        const includedUsersIds = [elisa, wendy, vincenzo, hamed, alex];
+        // Filter out currentUser_id
+        const otherUserIds = currentUserIds.filter(
+          (id) => id !== currentUser._id
         );
-        setSelectedProfiles(ArrayOfSelected);
+        // Select profiles based on otherUserIds
+
+        const selectedUsers = otherUserIds.filter((id) =>
+          includedUsersIds.includes(id)
+        );
+        const selectedProfiles = selectedUsers.map((id) =>
+          data.find((profile) => profile._id === id)
+        );
+        setSelectedProfiles(selectedProfiles);
       } else {
         throw new Error("Errore: " + response.statusText);
       }
@@ -117,8 +113,8 @@ const SideBar = () => {
                 .slice(0, showAllProfiles ? profileOfOthers.length : 5)
                 .map((profile) => (
                   <ListGroup.Item key={profile._id} className="p-1">
-                    <div className="d-flex flex-row justify-content-between align-items-baseline">
-                      <span>
+                    <div className="d-flex flex-row justify-content-start align-items-baseline">
+                      <span className="p-2">
                         <Image
                           src={profile.image}
                           roundedCircle
@@ -186,10 +182,10 @@ const SideBar = () => {
               {selectedProfiles.map((user) => (
                 <ListGroup.Item className="p-1 text-secondary" key={user._id}>
                   <div
-                    className="d-flex flex-row justify-content-between align-items-baseline
+                    className="d-flex flex-row justify-content-start align-items-baseline
                 "
                   >
-                    <span className="me-2">
+                    <span className="p-2">
                       <Image
                         src={user.image}
                         roundedCircle
@@ -226,7 +222,7 @@ const SideBar = () => {
                   </div>
                 </ListGroup.Item>
               ))}
-              <ListGroup.Item className="text-center">
+              {/* <ListGroup.Item className="text-center">
                 <Button
                   style={{ maxWidth: "fit-content" }}
                   variant="light"
@@ -235,7 +231,7 @@ const SideBar = () => {
                 >
                   {showAllProfiles ? "Mostra meno" : "Mostra tutto"}
                 </Button>
-              </ListGroup.Item>
+              </ListGroup.Item> */}
             </ListGroup>
           </Card>
         </Col>
