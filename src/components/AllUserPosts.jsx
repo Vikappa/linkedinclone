@@ -138,9 +138,9 @@ function AllUserPosts() {
                 <img
                   src={post.image}
                   alt=""
-                  className="border rounded postImg"
+                  className="rounded postImg"
                   style={{ width: "35%" }}
-                />{" "}
+                />
                 <PostCommentArea post={post} />
                 {currentUser._id && post.user._id === currentUser._id && (
                   <div className="d-flex justify-content-end">

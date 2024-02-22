@@ -1,4 +1,4 @@
-import { ADD_TO_NETWORK, REMOVE_FROM_NETWORK } from "../Actions/ADD_TO_NETWORK";
+import { ADD_TO_NETWORK, REMOVE_FROM_NETWORK, KILL_YOUR_FRIENDS } from "../Actions/ADD_TO_NETWORK";
 
 const initialState = { users: [] };
 const networkReducer = (state = initialState, action) => {
@@ -15,9 +15,13 @@ const networkReducer = (state = initialState, action) => {
           ...state.users.slice(0, action.payload),
           ...state.users.slice(action.payload + 1),
         ],
-      };
+      }
+    case KILL_YOUR_FRIENDS:
+      return {
+        users: []
+      }
     default:
-      return state;
+      return state
   }
-};
-export default networkReducer;
+}
+export default networkReducer

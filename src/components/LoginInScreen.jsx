@@ -71,13 +71,13 @@ const LoginInScreen = () => {
 
         {selectedUser !== "" ? (
           <Link to="/home">
-            <button className=" mt-3 d-flex align-items-center justify-content-center btn btn-primary">
+            <button className=" mt-3 d-flex align-items-center justify-content-center btn btn-primary loginButton">
               Accedi
             </button>
           </Link>
         ) : (
           <button
-            className=" mt-3 d-flex align-items-center justify-content-center btn btn-primary"
+            className=" mt-3 d-flex align-items-center justify-content-center btn btn-primary loginButton"
             disabled
           >
             Accedi

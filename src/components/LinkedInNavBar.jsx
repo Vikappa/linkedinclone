@@ -12,6 +12,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import ModaleDestro from "./PezziDiNavBar/ModaleDestro";
 import { useDispatch } from "react-redux";
 import { DELETE_CURRENT_USER } from "../Redux/Actions/ADD_EXPERIENCE";
+import { KILL_YOUR_FRIENDS } from "../Redux/Actions/ADD_TO_NETWORK";
 
 function LinkedInNavBar() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -25,6 +26,10 @@ function LinkedInNavBar() {
       type: DELETE_CURRENT_USER,
       payload: null,
     });
+    dispatch({
+      type: KILL_YOUR_FRIENDS, 
+      payload: null
+    })
   };
 
   useEffect(() => {
@@ -159,8 +164,8 @@ function LinkedInNavBar() {
         ) : (
           <>
             <img
-              src="https://http.cat/images/404.jpg"
-              className="rounded-circle d-sm-none"
+              src={linkedInIcon}
+              className="d-sm-none"
               id="profilePic"
             />
           </>
