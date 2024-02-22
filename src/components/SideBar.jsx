@@ -113,7 +113,8 @@ const SideBar = () => {
       <Row>
         {/* colonna PROFILI CONSULTATI  */}
         <Col xs={12} className="mt-3">
-          <Card>
+          <Card className="pb-2">
+            {" "}
             <Card.Header className="fw-semibold">
               Altri profili consultati
             </Card.Header>
@@ -121,7 +122,7 @@ const SideBar = () => {
               {profileOfOthers
                 .slice(204, showAllProfiles ? profileOfOthers.length : 210)
                 .map((profile) => (
-                  <ListGroup.Item key={profile._id} className="p-1">
+                  <ListGroup.Item key={profile._id} className="p-2">
                     <div className="d-flex flex-row justify-content-start align-items-baseline">
                       <span className="p-2">
                         <Image
@@ -140,7 +141,7 @@ const SideBar = () => {
                         </div>
 
                         <p className="text-muted m-0">{profile.title}</p>
-                        <span> COMPANY</span>
+                        <p className="fw-light"> {profile.area}</p>
                       </div>
                     </div>
                     <div className=" mt-2 text-center">
@@ -162,11 +163,11 @@ const SideBar = () => {
                 ))}
             </ListGroup>
             {/* BOTTONE CHE TOGGLA TUTTI GLI ALTRI UTENTI */}
-            <ListGroup.Item className="text-center">
+            <ListGroup.Item className="text-center d-flex justify-content-center align-items-center p-2">
               <Button
                 style={{ maxWidth: "fit-content" }}
                 variant="light"
-                className="bg-transparent"
+                className="bg-transparent d-flex justify-content-center align-items-center p-2"
                 onClick={() => setShowAllProfiles(!showAllProfiles)}
               >
                 {showAllProfiles ? "Mostra meno" : "Mostra tutto"}
@@ -177,7 +178,7 @@ const SideBar = () => {
         {/* COLONNA UTENTI CHE POTRESTI CONOSCERE
          */}
         <Col xs={12} className="mt-3">
-          <Card>
+          <Card className="pb-2">
             <Card.Header className="fw-semibold">
               <p className="pb-0 mb-0">Persone che potresti conoscere</p>
               <p
@@ -189,7 +190,7 @@ const SideBar = () => {
             </Card.Header>
             <ListGroup variant="flush">
               {selectedProfiles.map((user) => (
-                <ListGroup.Item className="p-1 text-secondary" key={user._id}>
+                <ListGroup.Item className="p-2 text-secondary" key={user._id}>
                   <div
                     className="d-flex flex-row justify-content-start align-items-baseline
                 "
@@ -219,7 +220,7 @@ const SideBar = () => {
                     <Button
                       size="sm"
                       variant="outline-secondary"
-                      className="rounded-5 border-2  fw-semibold "
+                      className="rounded-5 border-2 fw-semibold "
                       style={{ maxWidth: "fit-content" }}
                       onClick={() => {
                         setSelectedProfile(user);
