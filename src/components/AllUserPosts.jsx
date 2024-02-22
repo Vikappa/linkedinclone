@@ -138,7 +138,7 @@ function AllUserPosts() {
                   className="border rounded"
                   style={{ width: "35%" }}
                 />{" "}
-                <PostCommentArea />
+                <PostCommentArea post={post} />
                 {currentUser._id && post.user._id === currentUser._id && (
                   <div className="d-flex justify-content-end">
                     <Button

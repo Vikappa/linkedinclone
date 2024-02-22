@@ -270,7 +270,13 @@ function LinkedInNavBar() {
           </div>
 
           <div className="d-flex flex-column text-center goliardiaPortamiVia">
-            <a className="text-nowrap">Prova Epicode e paga tra 2 anni!</a>
+            <a
+              className="text-nowrap text-black fw-bold fs-6"
+              href="https://epicode.com"
+              target="_blank"
+            >
+              Prova Epicode e paga tra 2 anni!
+            </a>
           </div>
         </Container>
       </Navbar>
