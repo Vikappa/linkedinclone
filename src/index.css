@@ -241,8 +241,10 @@ p {
 
   .commentAuthor{
     font-size: 0.9rem;
-
+    word-wrap: nowrap;
     display: inline;
+    white-space: nowrap; 
+    margin: 0 5px 0 0;
   }
 
   .commentText{
