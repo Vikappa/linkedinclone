@@ -16,11 +16,8 @@ function ProfilePage() {
 
   const { userId } = useParams();
 
-  // Inizializzo lo state con il valore di userId ottenuto
   const [currentUserId, setCurrentUserId] = useState(userId);
-
-  // Opzionalmente, puoi utilizzare useEffect per aggiornare lo state
-  // se il componente rimane montato e l'URL cambia
+  
   useEffect(() => {
     setCurrentUserId(userId);
   }, [userId]);
