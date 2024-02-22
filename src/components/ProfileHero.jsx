@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 function ProfileCard() {
   const [profile, setProfile] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
+  const [newImage, setNewImage] = useState(null);
   const [formData, setFormData] = useState({
     name: "",
     surname: "",
@@ -36,10 +37,49 @@ function ProfileCard() {
       [name]: value,
     });
   };
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    setNewImage(file);
+  };
+  //!
+  const handleImageSubmit = async () => {
+    try {
+      if (newImage) {
+        const formDataImage = new FormData();
+        formDataImage.append("profile", newImage);
 
+        const responseImage = await fetch(
+          `https://striveschool-api.herokuapp.com/api/profile/${profile._id}/picture`,
+          {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+            body: formDataImage,
+          }
+        );
+
+        if (!responseImage.ok) {
+          throw new Error(
+            "Errore durante il caricamento dell'immagine del profilo"
+          );
+        }
+        const updatedProfileImage = await responseImage.json();
+        setNewImage(updatedProfileImage);
+      }
+    } catch (error) {
+      console.error(
+        "Si è verificato un errore durante il caricamento dell'immagine:",
+        error
+      );
+    }
+  };
+
+  //!
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
+      await handleImageSubmit();
       const response = await fetch(
         "https://striveschool-api.herokuapp.com/api/profile/",
         {
@@ -83,7 +123,7 @@ function ProfileCard() {
           <div
             style={{
               width: "100%",
-              // height: '150px',
+              height: "150px",
               backgroundImage: "url(./src/img/bg-linkedin.png)",
               backgroundRepeat: "no-repeat",
               backgroundSize: "cover",
@@ -107,9 +147,9 @@ function ProfileCard() {
               src={profile.image}
               alt="Profile Image"
               style={{
-                borderRadius: "50%",
+                borderRadius: "10%",
                 border: "4px solid white",
-                width: "150px",
+                width: "200px",
               }}
             />
             <Card.Title
@@ -199,6 +239,19 @@ function ProfileCard() {
                 }}
               >
                 <Form onSubmit={handleSubmit}>
+                  <Form.Group controlId="Image">
+                    <Form.Label style={{ color: "black" }}>
+                      Select a Image:
+                    </Form.Label>
+                    <Form.Control
+                      style={{ color: "black", backgroundColor: "white" }}
+                      type="file"
+                      name="image"
+                      value={formData.image}
+                      onChange={handleImageChange}
+                      placeholder="file"
+                    />
+                  </Form.Group>
                   <Form.Group controlId="name">
                     <Form.Label style={{ color: "black" }}>Name:</Form.Label>
                     <Form.Control

@@ -5,6 +5,7 @@ import HomePage from "./components/HomePage";
 import LinkedInNavBar from "./components/LinkedInNavBar";
 import Footer from "./components/Footer";
 import LoginInScreen from "./components/LoginInScreen";
+import Network from "./components/Network";
 import SearchJobsPage from "./components/SearchJobsPage";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -18,6 +19,7 @@ function App() {
         {/* <Route path="/profile" element={<ProfilePage />} /> */}
         <Route path="/jobs" element={<SearchJobsPage />} />
         <Route path="/profile/me" element={<ProfilePage />} />
+        <Route path="/network" element={<Network />} />
       </Routes>
       <Footer />
     </>

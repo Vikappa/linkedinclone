@@ -321,5 +321,9 @@ li {
   cursor: pointer;
 }
 #dropdown-basic:hover {
-  background-color: lightgrey !important;
+  background-color: lightgrey;
+}
+
+a {
+  text-decoration: none;
 }
