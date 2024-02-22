@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import AddPost from './AddPost.jsx'
+import PostCommentArea from './PostCommentArea.jsx'
 
 function formatDate(date) {
     const d = new Date(date),
@@ -13,19 +13,15 @@ function formatDate(date) {
 
 function AllUserPosts(){
 
-    const interoStore = useSelector(state => state.arrayAllPosts.arrayPosts)
-    const currentUser = useSelector(state => state.currentUser.currentUser)
+    const interoStoreDeiPost = useSelector(state => state.arrayAllPosts.arrayPosts)
 
-    useEffect(() => {
-        console.log(interoStore.slice(-25))
-    }, [])
 
     return(
         <div>
-            {interoStore ? (
+            {interoStoreDeiPost ? (
                 <>
                     <AddPost/>
-                    {interoStore.slice(-25).reverse().map((post, index) => (
+                    {interoStoreDeiPost.slice(-50).reverse().map((post, index) => (
                         <div key={index} style={{border:"1px solid lightgrey"}} className="d-flex flex-column bg-white rounded rounded-2 m-1 my-2 p-2 sizePostDiv">
                             <div className="d-flex align-items-center">
                                 <img src={post.user.image} className="m-2" height={"40px"} alt="Post Author Img"/>
@@ -41,6 +37,7 @@ function AllUserPosts(){
                                 </div>
                             </div>
                             <p className="p-2 px-4">{post.text}</p>
+                            <PostCommentArea post={post}/>
                         </div>
                     ))}
                 </>
