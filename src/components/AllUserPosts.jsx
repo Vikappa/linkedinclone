@@ -8,6 +8,8 @@ import DeletePost from "./DeletePost.jsx";
 import PutPost from "./PutPost.jsx";
 import { useDispatch } from "react-redux";
 import { FETCH_ALL_POSTS } from "../Redux/Actions/ADD_EXPERIENCE.js";
+import PostCommentArea from "./PostCommentArea.jsx";
+
 function formatDate(date) {
   const d = new Date(date),
     day = "" + d.getDate(),
@@ -136,6 +138,7 @@ function AllUserPosts() {
                   className="border rounded"
                   style={{ width: "35%" }}
                 />{" "}
+                <PostCommentArea />
                 {currentUser._id && post.user._id === currentUser._id && (
                   <div className="d-flex justify-content-end">
                     <Button

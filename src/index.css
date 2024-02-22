@@ -195,6 +195,60 @@ p {
   cursor: pointer;
   color: #b289dc;
 }
+/* -----------------------    CONSIGLIATO     ------------------------------- */
+
+.consigliato {
+  font-size: medium;
+}
+.link {
+  text-decoration: none;
+  color: #0b65c2;
+  font-weight: 500;
+}
+.link:hover {
+  text-decoration: underline;
+}
+
+.progressbar {
+  width: 37rem;
+  height: 0.5rem;
+}
+
+.consigliato {
+  font-size: small;
+}
+.button {
+  max-width: fit-content;
+}
+
+.button:hover {
+  background-color: darkgrey;
+  border: 1px solid black;
+}
+.cardconsigliato {
+  background-color: #f7fafd;
+  height: 100%;
+}
+
+h4 {
+  font-weight: 350;
+}
+.area,
+p {
+  color: grey;
+  font-size: small;
+}
+.salva {
+  width: 5rem;
+  padding: 2px;
+  color: #0b65c2;
+}
+.cap {
+  color: grey;
+}
+li {
+  font-size: 1.5rem;
+}
 
 /* ---------------------------------- ESPERIENZE ----------------------------------- */
 .jobLine {
@@ -203,4 +257,57 @@ p {
 
 .bi.bi-plus-circle:hover {
   cursor: pointer;
+}
+
+.buttonPostCommentArea{
+  font-size: 0.8rem;
+  width: 50%;
+}
+
+.liComment{
+  background-color: rgb(243, 249, 255);
+  border-radius: 20px;
+  padding: 2px !important;
+  padding-left: 10px !important;
+  overflow: hidden;
+}
+
+.commentDate{
+  display: none;
+  font-size: 0.5rem;
+  color: grey;
+}
+
+.commentAuthor{
+  font-size: 0.7rem;
+  color: grey;
+  
+}
+
+.commentText{
+  font-size: 0.7rem;
+}
+
+@media screen and (min-width: 576px) {
+  .commentDate{
+    display: inline;
+  }
+
+  .commentAuthor{
+    font-size: 0.9rem;
+    word-wrap: nowrap;
+    display: inline;
+    white-space: nowrap; 
+    margin: 0 5px 0 0;
+  }
+
+  .commentText{
+    font-size: 0.9rem;
+  }
+  
+}
+
+.optionCommentIcon:hover{
+  cursor: pointer;
+  color: black !important;
 }

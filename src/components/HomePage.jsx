@@ -6,6 +6,7 @@ import {
   FETCH_ALL_USERS,
   FETCH_CURRENT_USER_EXPERIENCES,
   FETCH_ALL_POSTS,
+  FETCH_ALL_POST_COMMENTS,
 } from "../Redux/Actions/ADD_EXPERIENCE";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -43,13 +44,11 @@ function HomePage() {
 
         const experiencesData = await fetchedExperiences.json();
 
-        // Dispatch dell'azione Redux
         dispatch({
           type: FETCH_CURRENT_USER_EXPERIENCES,
           payload: experiencesData,
         });
       } catch (error) {
-        console.log("Errore", error);
       }
     };
     fetchExperiencesCurrentUser();
@@ -138,11 +137,38 @@ function HomePage() {
       }
     };
 
+    const fetchAllPostComments = async function(){
+      try{
+        const result = await fetch(
+          `https://striveschool-api.herokuapp.com/api/comments/`,
+          {
+            headers: {
+              Authorization: `Bearer ${
+                accessToken
+                  ? accessToken
+                  : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzMjJhODI0ZjYwNTAwMTkzN2Q0NzgiLCJpYXQiOjE3MDgzMzU3ODQsImV4cCI6MTcwOTU0NTM4NH0.pioeDwZO2GA-_tAisq4KElbrIk9InfeCBaG2-L3oQJA"
+              }`,
+            },
+          }
+        )
+        if(!result.ok){
+          throw new Error("Errore GET COMMENTI")
+        }
+        const resultFetchCommentiPost = await result.json()
+        dispatch({
+          type: FETCH_ALL_POST_COMMENTS,
+          payload: resultFetchCommentiPost,
+        })
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    fetchAllPostComments()
     fetchCurrentUser();
     fetchAllUsers();
     fetchAllPost();
 
-    //fetch3
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -150,17 +176,16 @@ function HomePage() {
     <Container fluid>
       <Row>
         <Col xs={0} lg={1}></Col>
-      <Col xs={12} lg={2}>
-        <ProfileBarOnHomepage/>
-      </Col>
+        <Col xs={12} lg={2}>
+          <ProfileBarOnHomepage />
+        </Col>
         <Col xs={12} lg={7} className="py-3">
-          <AllUserPosts/>
-      </Col>
-        <Col xs={0} lg={3}>
-      </Col>
+          <AllUserPosts />
+        </Col>
+        <Col xs={0} lg={3}></Col>
       </Row>
     </Container>
   );
 }
 
-export default HomePage
+export default HomePage;

@@ -219,12 +219,14 @@ function LinkedInNavBar() {
                 </p>
               </div>
             </Link>
-            <div className="d-flex flex-column text-center topBarButton">
-              <i className="bi bi-person-fill navBarDedicatedButton "> </i>
-              <p className="d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP">
-                Rete
-              </p>
-            </div>
+            <Link to={`/network`}>
+              <div className="d-flex flex-column text-center topBarButton">
+                <i className="bi bi-person-fill navBarDedicatedButton "> </i>
+                <p className="d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP">
+                  Rete
+                </p>
+              </div>
+            </Link>
             <div className="d-flex flex-column text-center topBarButton">
               <i className="bi bi-briefcase-fill navBarDedicatedButton "> </i>
               <p className="d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP">
