@@ -16,7 +16,6 @@ import { BsBriefcaseFill } from "react-icons/bs";
 import { BsPeopleFill } from "react-icons/bs";
 import { BsFillLightbulbFill } from "react-icons/bs";
 import { FINISH_LOADING_JOBS } from "../Redux/Reducers/JobsReducer";
-// import { useNavigate } from "react-router-dom";
 import Anchor from "react-bootstrap/Anchor";
 
 const SearchJobsPage = () => {
@@ -29,7 +28,6 @@ const SearchJobsPage = () => {
   const values = [true, "lg-down"];
   const [fullscreen, setFullscreen] = useState(true);
   const [show, setShow] = useState(false);
-  // const navigate = useNavigate();
 
   function handleShow() {
     setShow(true);
@@ -39,13 +37,7 @@ const SearchJobsPage = () => {
 
   useEffect(() => {
     getJobs();
-    // console.log(setTextInput);
-    // console.log(wholeStore);
   }, []);
-
-  // useEffect(() => {
-  //   console.log(jobs.slice(0, 50));
-  // }, [jobs]);
 
   const getJobs = async () => {
     try {
@@ -64,13 +56,12 @@ const SearchJobsPage = () => {
       console.log(error);
     }
   };
-  // console.log(choosenJob);
 
   return (
     // <>
     <Container fluid>
       <Row>
-        <Col xs={12} md={3} lg={3}>
+        <Col xs={12} md={3}>
           <SidebarJobs />
         </Col>
         <Col md={6}>
@@ -93,13 +84,13 @@ const SearchJobsPage = () => {
                           setChoosenJob(job);
                           handleShow();
                         }}
-                        style={{ cursor: "pointer" }}
+                        style={{ cursor: "pointer", color: "#0b65c2" }}
                       >
                         {job.title}
                       </h5>
                       <p>{job.publication_date.slice(0, 10)}</p>
                     </div>
-                    <p className="mb-1">{job.company_name}</p>
+                    <p className="mb-1 text-black">{job.company_name} </p>
                     <p>{job.candidate_required_location}</p>
                   </div>
                 </div>
@@ -109,7 +100,6 @@ const SearchJobsPage = () => {
             "No jobs left!"
           )}
         </Col>
-        {/* <Col md={6}> */}
         {choosenJob !== null ? (
           <>
             <Modal show={show} fullscreen={true} onHide={() => setShow(false)}>
@@ -180,9 +170,8 @@ const SearchJobsPage = () => {
             </Modal>
           </>
         ) : (
-          "Seleziona un lavoro"
+          ""
         )}
-        {/* </Col> */}
       </Row>
     </Container>
     // </>
