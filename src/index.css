@@ -204,3 +204,54 @@ p {
 .bi.bi-plus-circle:hover {
   cursor: pointer;
 }
+
+.buttonPostCommentArea{
+  font-size: 0.8rem;
+  width: 50%;
+}
+
+.liComment{
+  background-color: rgb(243, 249, 255);
+  border-radius: 20px;
+  padding: 2px !important;
+  padding-left: 10px !important;
+  overflow: hidden;
+}
+
+.commentDate{
+  display: none;
+  font-size: 0.5rem;
+  color: grey;
+}
+
+.commentAuthor{
+  font-size: 0.7rem;
+  color: grey;
+  
+}
+
+.commentText{
+  font-size: 0.7rem;
+}
+
+@media screen and (min-width: 576px) {
+  .commentDate{
+    display: inline;
+  }
+
+  .commentAuthor{
+    font-size: 0.9rem;
+
+    display: inline;
+  }
+
+  .commentText{
+    font-size: 0.9rem;
+  }
+  
+}
+
+.optionCommentIcon:hover{
+  cursor: pointer;
+  color: black !important;
+}
