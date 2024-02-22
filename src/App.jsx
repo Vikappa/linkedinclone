@@ -5,6 +5,7 @@ import HomePage from "./components/HomePage";
 import LinkedInNavBar from "./components/LinkedInNavBar";
 import Footer from "./components/Footer";
 import LoginInScreen from "./components/LoginInScreen";
+import Network from "./components/Network";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" element={<LoginInScreen />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/profile/me" element={<ProfilePage />} />
+        <Route path="/network" element={<Network />} />
       </Routes>
       <Footer />
     </>

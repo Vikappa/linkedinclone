@@ -150,17 +150,16 @@ function HomePage() {
     <Container fluid>
       <Row>
         <Col xs={0} lg={1}></Col>
-      <Col xs={12} lg={2}>
-        <ProfileBarOnHomepage/>
-      </Col>
+        <Col xs={12} lg={2}>
+          <ProfileBarOnHomepage />
+        </Col>
         <Col xs={12} lg={7} className="py-3">
-          <AllUserPosts/>
-      </Col>
-        <Col xs={0} lg={3}>
-      </Col>
+          <AllUserPosts />
+        </Col>
+        <Col xs={0} lg={3}></Col>
       </Row>
     </Container>
   );
 }
 
-export default HomePage
+export default HomePage;
