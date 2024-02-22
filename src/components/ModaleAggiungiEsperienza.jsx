@@ -17,6 +17,7 @@ function ModaleAggiungiEsperienza(props) {
   const [newAzienda, setNewAzienda] = useState("");
   const [newArea, setNewArea] = useState("");
   const [newDescrizione, setNewDescrizione] = useState("");
+  const [newImage, setNewImage] = useState(null);
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
 
@@ -27,6 +28,10 @@ function ModaleAggiungiEsperienza(props) {
 
   const handleRuoloChange = (event) => {
     setNewRuolo(event.target.value);
+  };
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    setNewImage(file);
   };
 
   const handleAziendaChange = (event) => {
@@ -71,6 +76,7 @@ function ModaleAggiungiEsperienza(props) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Submit form");
+
     try {
       const formData = {
         role: newRuolo,
@@ -79,6 +85,7 @@ function ModaleAggiungiEsperienza(props) {
         endDate: formatDate(endDate),
         area: newArea,
         description: newDescrizione,
+        // image: newImage,
       };
 
       const response = await fetch(myPostUrl, {
@@ -94,6 +101,25 @@ function ModaleAggiungiEsperienza(props) {
       if (!response.ok) {
         throw new Error("Errore nella richiesta POST");
       }
+      const responseData = await response.json();
+      const experienceId = responseData._id;
+
+      const myUrlImage = `https://striveschool-api.herokuapp.com/api/profile/${currentUser._id}/experiences/${experienceId}/picture`;
+
+      const formDataImage = new FormData();
+      formDataImage.append("experience", newImage);
+
+      const responseImage = await fetch(myUrlImage, {
+        method: "POST",
+        headers: {
+          Authorization: "Bearer " + bearerToken,
+        },
+        body: formDataImage,
+      });
+
+      if (!responseImage.ok) {
+        throw new Error("Errore nella richiesta POST per l'immagine");
+      }
 
       setNewRuolo("");
       setNewAzienda("");
@@ -101,6 +127,7 @@ function ModaleAggiungiEsperienza(props) {
       setNewDescrizione("");
       setStartDate(new Date());
       setEndDate(new Date());
+      setNewImage("");
       handleClose();
     } catch (error) {
       console.error("Errore durante la richiesta POST:", error);
@@ -182,6 +209,15 @@ function ModaleAggiungiEsperienza(props) {
               placeholder="Area.."
               value={newArea}
               onChange={handleAreaChange}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="idValueArea">
+            <Form.Label>Select Image</Form.Label>
+            <Form.Control
+              type="file"
+              placeholder="file"
+              accept="image/*"
+              onChange={handleImageChange}
             />
           </Form.Group>
         </Form>

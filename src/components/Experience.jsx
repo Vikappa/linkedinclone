@@ -113,10 +113,21 @@ const Experience = () => {
         {storeEsperienze.map((esperienza, index) => (
           <div key={index} className="d-flex align-items-center border-bottom ">
             <div className="d-flex justify-content-start align-items-center jobLine p-2">
-              <i
-                className="bi bi-briefcase-fill p-2"
-                style={{ fontSize: "2.5rem" }}
-              ></i>
+              {esperienza.image ? (
+                <img
+                  src={esperienza.image}
+                  alt="image"
+                  className="border rounded-circle me-2"
+                  style={{ width: "40px", height: "40px" }}
+                />
+              ) : (
+                <img
+                  src="https://s3-eu-west-1.amazonaws.com/tpd/logos/62a6277627ee655c1226b624/0x0.png"
+                  alt="image"
+                  className="border rounded-circle me-2"
+                  style={{ width: "40px", height: "40px" }}
+                />
+              )}
               <div className="d-flex flex-column align-items-start">
                 <p className="m-0">{esperienza.role}</p>
                 <p
