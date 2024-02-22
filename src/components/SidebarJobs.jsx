@@ -11,16 +11,11 @@ import Button from "react-bootstrap/Button";
 
 const SidebarJobs = () => {
   return (
-    <Container>
+    <Container fluid>
       <Row>
-        <Col xs={12} md={3} lg={3}>
+        <Col>
           <Card>
-            <Card.Body>
-              {/* <Card.Text>
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
-              </Card.Text> */}
-            </Card.Body>
+            <Card.Body></Card.Body>
             <div>
               <span>
                 <RiBookmarkFill />

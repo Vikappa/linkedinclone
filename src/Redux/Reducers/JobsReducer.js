@@ -11,7 +11,7 @@ const jobsReducer = (state = initialState, action) => {
     case SEARCHING_JOBS:
       return {
         ...state,
-        list: action.payload,
+        allTheJobs: action.payload,
       };
     case LOADING_JOBS:
       return {
@@ -22,6 +22,7 @@ const jobsReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
+        allTheJobs: action.payload,
       };
     default:
       return state;

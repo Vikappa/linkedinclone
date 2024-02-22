@@ -15,11 +15,11 @@ const mainReducer = combineReducers({
   arrayAllPosts: fetchAllPostReducer,
   inspectedUser: reducerInspectedUser,
   idFocusedPost: focusedPostReducer,
+  jobs: jobsReducer,
 });
 
 const store = configureStore({
   reducer: mainReducer,
-  jobs: jobsReducer,
 });
 
 export default store;
