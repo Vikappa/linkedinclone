@@ -176,7 +176,7 @@ function AllUserPosts() {
           onClose={handleChiudiEditPost}
         />
       ) : (
-        <Spinner variant="warning" animation="border" />
+        ""
       )}
     </div>
   );
