@@ -4,7 +4,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import { BsSearch } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import linkedInIcon from "../assets/iconSmall.png";
 import { useSelector } from "react-redux";
 import React, { useState, useEffect } from "react";
@@ -15,12 +15,16 @@ import { DELETE_CURRENT_USER } from "../Redux/Actions/ADD_EXPERIENCE";
 import { KILL_YOUR_FRIENDS } from "../Redux/Actions/ADD_TO_NETWORK";
 
 function LinkedInNavBar() {
-  const [currentUser, setCurrentUser] = useState(null)
+  const [currentUser, setCurrentUser] = useState(null);
   const [currentUserExperience, setCurrentUserExperience] = useState([])
+  const [path, setPath] = useState(window.location.pathname)
   let currentUserStore = useSelector((state) => state.currentUser.currentUser)
-  const path = location.pathname
   const dispatch = useDispatch()
+  const location = useLocation()
 
+  useEffect(() => {
+    setPath(location.pathname)
+  }, [location.pathname])
 
   const deleteUserFetch = () => {
     dispatch({
@@ -215,7 +219,7 @@ function LinkedInNavBar() {
                 />
               </Form>
             </div>
-            <Link to={`/home/`}>
+            <Link to={`/home`}>
               {path==="/home"?              
               <div className="d-flex flex-column text-center topBarButton">
                 <i style={{color:"#0077B5"}}  className="bi bi-house-door-fill navBarDedicatedButton ">
@@ -236,7 +240,7 @@ function LinkedInNavBar() {
             <Link to={`/network`}>
             {path==='/network'?
                           <div className="d-flex flex-column text-center topBarButton">
-                          <i  style={{color:"#0077B5"}} className="bi bi-person-fill navBarDedicatedButton "> </i>
+                          <i style={{color:"#0077B5"}} className="bi bi-person-fill navBarDedicatedButton "> </i>
                           <p className="d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP">
                             Rete
                           </p>
@@ -250,13 +254,24 @@ function LinkedInNavBar() {
                       </div>  
             }
             </Link>
-            <div className="d-flex flex-column text-center topBarButton">
-              <i className="bi bi-briefcase-fill navBarDedicatedButton "> </i>
-              <p className="d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP">
-                Lavoro
-              </p>
-            </div>
+            <Link to={'/jobs'}>
+              {path ==="/jobs"?
+                          <div className="d-flex flex-column text-center topBarButton">
+                          <i style={{color:"#0077B5"}} className="bi bi-briefcase-fill navBarDedicatedButton "> </i>
+                          <p className="d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP">
+                            Lavoro
+                          </p>
+                        </div>
+                        :
+                        <div className="d-flex flex-column text-center topBarButton">
+                        <i className="bi bi-briefcase-fill navBarDedicatedButton "> </i>
+                        <p className="d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP">
+                          Lavoro
+                        </p>
+                      </div>
+                      }
             
+            </Link>
             <div className="d-flex flex-column text-center topBarButton">
               <i className="bi bi-chat-dots-fill navBarDedicatedButton "> </i>
               <p className="d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP">

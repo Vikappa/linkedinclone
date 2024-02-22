@@ -10,24 +10,33 @@ const CardSideBar = () => {
 
     return (
         <div className="card" style={{backgroundColor: 'white', borderRadius: '10px', textAlign: 'left' }}>
-            <h2 style={{textAlign:"center"}}>Linkedin Notizie</h2>
-            <ul style={{}}>
-                <li>Come fare un bilancio di competenze</li>
-                <li>Il lato positivo dell invidia</li>
-                <li>Ritorno al negozio (del futuro)</li>
-                <li>Verso una pubblica amministrazione ...</li>
-                <li>Il conto del cambiamento climatico</li>
-            </ul>
-            {showMore && (
-                <ul style={{}}>
-                    <li>Allarme smog in pianura padana</li>
-                    <li>Quando l impostore ci fa crescere</li>
-                    <li>Il richiamo della montagna</li>
-                    <li>Sviluppo immobiliare a Roma Nord</li>
-                    <li>Nuove regole Ue per le batterie</li>
-                </ul>
-            )}
-            <button onClick={handleShowMore}>{showMore ? 'Nascondi' : 'Vedi altro'}</button>
+            <h5 className='m-3 fw-semibold' >Linkedin Notizie</h5>
+
+            {showMore?
+                        <ul style={{}}>
+                        <li style={{fontSize:"0.9rem"}} >Come fare un bilancio di competenze</li>
+                        <li style={{fontSize:"0.9rem"}} >Il lato positivo dell invidia</li>
+                        <li style={{fontSize:"0.9rem"}} >Ritorno al negozio (del futuro)</li>
+                        <li style={{fontSize:"0.9rem"}} >Verso una pubblica amministrazione ...</li>
+                        <li style={{fontSize:"0.9rem"}} >Il conto del cambiamento climatico</li>
+                        </ul>
+:
+<ul style={{}}>
+<li style={{fontSize:"0.9rem"}} >Come fare un bilancio di competenze</li>
+<li style={{fontSize:"0.9rem"}} >Il lato positivo dell invidia</li>
+<li style={{fontSize:"0.9rem"}} >Ritorno al negozio (del futuro)</li>
+<li style={{fontSize:"0.9rem"}} >Verso una pubblica amministrazione ...</li>
+<li style={{fontSize:"0.9rem"}} >Il conto del cambiamento climatico</li>
+<li style={{fontSize:"0.9rem"}} >Allarme smog in pianura padana</li>
+                    <li style={{fontSize:"0.9rem"}} >Quando l impostore ci fa crescere</li>
+                    <li style={{fontSize:"0.9rem"}} >Il richiamo della montagna</li>
+                    <li style={{fontSize:"0.9rem"}} >Sviluppo immobiliare a Roma Nord</li>
+                    <li style={{fontSize:"0.9rem"}} >Nuove regole Ue per le batterie</li>
+</ul>
+            }
+            <div className='d-flex flex-align-center justify-content-center'>
+            <button style={{width:"95%"}} onClick={handleShowMore}>{showMore ? 'Nascondi' : 'Vedi altro'}</button>
+            </div>
         </div>
     );
 };

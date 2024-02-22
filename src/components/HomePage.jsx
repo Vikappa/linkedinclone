@@ -1,3 +1,5 @@
+// eslint-disable-next-line react-hooks/exhaustive-deps
+/* eslint-disable no-empty */
 /* eslint-disable no-unused-vars */
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
@@ -13,15 +15,38 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import ProfileBarOnHomepage from "./ProfileBarOnHomepage";
 import AllUserPosts from "./AllUserPosts";
+import JobSmall from './JobSmall'
+import { FINISH_LOADING_JOBS } from "../Redux/Reducers/JobsReducer";
 
 function HomePage() {
   const dispatch = useDispatch();
 
   const [currentUser, setCurrentUser] = useState(null);
-  let currentUserStore = useSelector((state) => state.currentUser.currentUser);
+  let currentUserStore = useSelector((state) => state.currentUser.currentUser)
+
+  const myUrl = `https://strive-benchmark.herokuapp.com/api/jobs?search=`;
+
+  const getJobs = async () => {
+    try {
+      const response = await fetch(myUrl);
+      if (response.ok) {
+        const fetchResults = await response.json();
+        console.log(fetchResults.data);
+        dispatch({
+          type: FINISH_LOADING_JOBS,
+          payload: fetchResults.data,
+        });
+      } else {
+        alert("Errore nella ricezione dei dati");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   useEffect(() => {
-    setCurrentUser(currentUserStore);
+    
+    setCurrentUser(currentUserStore)
   }, [currentUserStore]);
 
   useEffect(() => {
@@ -165,12 +190,12 @@ function HomePage() {
     }
 
     fetchAllPostComments()
-    fetchCurrentUser();
-    fetchAllUsers();
-    fetchAllPost();
+    fetchCurrentUser()
+    fetchAllUsers()
+    fetchAllPost()
+    getJobs()
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [])
 
   return (
     <Container fluid>
@@ -182,7 +207,9 @@ function HomePage() {
         <Col xs={12} lg={7} className="py-3">
           <AllUserPosts />
         </Col>
-        <Col xs={0} lg={3}></Col>
+        <Col xs={0} lg={2}>
+        <JobSmall/>
+        </Col>
       </Row>
     </Container>
   );

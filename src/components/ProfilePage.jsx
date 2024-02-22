@@ -37,11 +37,11 @@ function ProfilePage() {
             {!currentUserId?
             <Consigliato />:""
             }
+            <CardSideBar/>
             {/* <Analisi /> */}
           </Col>
           {/* sidebar */}
           <Col xs={0} lg={3}>
-            <CardSideBar/>
             <SideBar />
           </Col>
         </Row>

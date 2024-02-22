@@ -1,61 +1,48 @@
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import AddPost from "./AddPost.jsx";
-import { Button, Spinner } from "react-bootstrap";
-import { FaPen } from "react-icons/fa";
-import { FaTrashAlt } from "react-icons/fa";
-import DeletePost from "./DeletePost.jsx";
-import PutPost from "./PutPost.jsx";
-import { useDispatch } from "react-redux";
-import { FETCH_ALL_POSTS } from "../Redux/Actions/ADD_EXPERIENCE.js";
-import PostCommentArea from "./PostCommentArea.jsx";
-import { Link } from "react-router-dom";
+import { useState } from "react"
+import { useSelector } from "react-redux"
+import AddPost from "./AddPost.jsx"
+import { Button, Spinner } from "react-bootstrap"
+import { FaPen } from "react-icons/fa"
+import { FaTrashAlt } from "react-icons/fa"
+import DeletePost from "./DeletePost.jsx"
+import PutPost from "./PutPost.jsx"
+import { useDispatch } from "react-redux"
+import { FETCH_ALL_POSTS } from "../Redux/Actions/ADD_EXPERIENCE.js"
+import PostCommentArea from "./PostCommentArea.jsx"
+import { Link } from "react-router-dom"
 
 function formatDate(date) {
   const d = new Date(date),
     day = "" + d.getDate(),
     month = "" + (d.getMonth() + 1),
-    year = d.getFullYear();
+    year = d.getFullYear()
 
-  return [year, month.padStart(2, "0"), day.padStart(2, "0")].join(" ");
+  return [year, month.padStart(2, "0"), day.padStart(2, "0")].join(" ")
 }
 
 function AllUserPosts() {
-  const dispatch = useDispatch();
-  const [showDeleteModalPost, setShowDeleteModalPost] = useState(false);
-  const [deletePostId, setDeletePostId] = useState(null);
-  ///
+  const dispatch = useDispatch()
+  const [showDeleteModalPost, setShowDeleteModalPost] = useState(false)
+  const [deletePostId, setDeletePostId] = useState(null)
   const handleDeleteClick = (PostId) => {
-    setDeletePostId(PostId);
-    setShowDeleteModalPost(true);
-  };
+    setDeletePostId(PostId)
+    setShowDeleteModalPost(true)
+  }
   const handleDeleteModalClosePost = () => {
-    setShowDeleteModalPost(false);
-  };
+    setShowDeleteModalPost(false)
+  }
 
-  ///
-  const [postToEdit, setPostToEdit] = useState(null);
+  const [postToEdit, setPostToEdit] = useState(null)
   const [visibilitàModaleEditPost, setVisibilitàModaleEditPost] =
     useState(false);
   const handleEditClickPost = (post) => {
-    // setEditExperience(experience)
     setPostToEdit(post);
     console.log("PUT DI POST ID", post._id);
     setVisibilitàModaleEditPost(true);
   };
-  ///
-  const interoStore = useSelector((state) => state.arrayAllPosts.arrayPosts);
-  const currentUser = useSelector((state) => state.currentUser.currentUser);
-
-  const idPost = useSelector((state) => state.arrayAllPosts.arrayPosts._id);
-
-  // console.log("mio id USER", currentUser._id);
-  useEffect(() => {
-    console.log(interoStore.slice(-25));
-  }, []);
-
-  ///
-
+  const interoStore = useSelector((state) => state.arrayAllPosts.arrayPosts)
+  const currentUser = useSelector((state) => state.currentUser.currentUser)
+  
   const handleChiudiEditPost = () => {
     const fetchPostEdit = async () => {
       try {

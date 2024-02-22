@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
@@ -33,11 +34,16 @@ const SearchJobsPage = () => {
     setShow(true);
   }
 
-  const myUrl = `https://strive-benchmark.herokuapp.com/api/jobs?search=${textInput}`;
+  function HtmlInterpreter({ htmlContent }) {
+    return <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
+  }
+  
+
+  const myUrl = `https://strive-benchmark.herokuapp.com/api/jobs?search=${textInput}`
 
   useEffect(() => {
-    getJobs();
-  }, []);
+    getJobs()
+  }, [])
 
   const getJobs = async () => {
     try {
@@ -72,7 +78,7 @@ const SearchJobsPage = () => {
           ) : jobs ? (
             jobs.slice(0, 50).map((job) => {
               return (
-                <div className="list-group" key={job._id}>
+                <div className="list-group my-2" style={{border:"1px solid lightgrey"}} key={job._id}>
                   <div
                     className="list-group-item list-group-item-action "
                     aria-current="true"
@@ -120,7 +126,7 @@ const SearchJobsPage = () => {
                     {choosenJob.publication_date.slice(0, 10)}
                   </Card.Subtitle>
                   <Card.Text>
-                    <BsBriefcaseFill />{" "}
+                    <BsBriefcaseFill />
                     <span
                       className="ms-2"
                       style={{
@@ -131,26 +137,21 @@ const SearchJobsPage = () => {
                       {choosenJob.job_type}
                     </span>
                     <div>
-                      <BsPeopleFill />{" "}
+                      <BsPeopleFill />
                       <span className="ms-2" style={{ fontSize: "smaller" }}>
                         lorem ipsum lorem ipsum
                       </span>
                     </div>
                     <div>
-                      <BsFillLightbulbFill />{" "}
+                      <BsFillLightbulbFill />
                       <span className="ms-2" style={{ fontSize: "smaller" }}>
                         Informazioni sull&apos;offerta di lavoro
                       </span>
                     </div>
-                    <Button variant="primary" className="rounded-pill">
+                    <Button variant="primary" style={{width:"30%"}} className="rounded-pill d-flex justify-content-center align-items-center m-2">
                       Candidati
                     </Button>
-                    <Button
-                      variant="outline-primary"
-                      className="ms-2 rounded-pill"
-                    >
-                      Salva
-                    </Button>
+
                   </Card.Text>
                   <Card.Link href={choosenJob.url}>
                     Vai alla pagina dell&apos;offerta
@@ -158,15 +159,17 @@ const SearchJobsPage = () => {
                   <Card.Title className="mt-3">
                     Informazioni sull&apos;offerta di lavoro
                   </Card.Title>
-
-                  {choosenJob.description}
-                </Card.Body>
-              </Card>
-              <Modal.Footer>
+                  <div id="htmlAnnounce">
+                  <HtmlInterpreter  htmlContent={choosenJob.description} />
+                  </div>
+                  <Modal.Footer>
                 <Button variant="primary">
-                  <Anchor href={choosenJob.url}> Visualizza offerta</Anchor>
+                  <Anchor href={choosenJob.url}><p className="text-white d-flex align-items-center justify-content-center">Visualizza offerta</p></Anchor>
                 </Button>
               </Modal.Footer>
+                </Card.Body>
+              </Card>
+
             </Modal>
           </>
         ) : (

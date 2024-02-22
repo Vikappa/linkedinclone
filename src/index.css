@@ -156,6 +156,12 @@ p {
   margin: 0 0 0 2rem !important;
 }
 
+#htmlAnnounce li{
+  font-size: 0.8rem !important;
+}
+.fade.modal.show{
+  padding: 0 !important;
+}
 /* ------------------------------------------ FINE CSS VINCENZO -------------------------------- */
 
 #info,
