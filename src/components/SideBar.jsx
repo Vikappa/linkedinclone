@@ -180,13 +180,15 @@ const SideBar = () => {
         <Col xs={12} className="mt-3">
           <Card className="pb-2">
             <Card.Header className="fw-semibold">
-              <p className="pb-0 mb-0">Persone che potresti conoscere</p>
-              <p
+              <span className="pb-0 mb-0 d-block">
+                Persone che potresti conoscere
+              </span>
+              <span
                 className="fw-light 
-              text-secondary m-0 p-0"
+              text-secondary m-0 p-0 d-block"
               >
                 Dal tuo settore
-              </p>
+              </span>
             </Card.Header>
             <ListGroup variant="flush">
               {selectedProfiles.map((user) => (

@@ -18,16 +18,16 @@ const Network = () => {
 
   return (
     <Container fluid>
-      <Row className="justify-content-center mt-5">
+      <Row className="justify-content-center my-5 gy-2">
         {networking.map((user, i) => (
-          <Col xs={12} md={4} key={i}>
-            <Card className="my-2">
+          <Col xs={12} md={3} key={i}>
+            <Card className="my-2 h-100">
               <Card.Img
                 variant="top"
                 src="https://img.freepik.com/free-photo/vibrant-colors-blend-abstract-backdrop-pattern-generated-by-ai_188544-9565.jpg"
                 style={{ height: "150px" }}
               />
-              <Card.Body className="position-relative text-center">
+              <Card.Body className="position-relative text-center d-flex flex-column flex-grow-1 h-100 card-body">
                 <div className="position-absolute top-0 start-50 translate-middle">
                   <Image
                     src={user.image}
@@ -46,7 +46,7 @@ const Network = () => {
                   <span className="d-block">{user.title}</span>
                   <span className="d-block">{user.email}</span>
                 </Card.Text>
-                <div className="d-flex justify-content-end">
+                <div className="d-flex flex-column flex-grow-1 justify-content-end align-items-end">
                   <Button
                     style={{ maxWidth: "fit-content" }}
                     className="d-flex justify-content-center align-items-center p-2"
