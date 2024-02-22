@@ -14,6 +14,8 @@ const DeleteExperience = ({ onClose, experienceId }) => {
   let currentUserStore = useSelector((state) => state.currentUser.currentUser);
   const [currentUser, setCurrentUser] = useState(currentUserStore);
   const dispatch = useDispatch();
+  console.log("sperienza id", experienceId);
+
   const myUrlFetchProfile = ` https://striveschool-api.herokuapp.com/api/profile/${currentUser._id}/experiences/${experienceId}`;
 
   const handleDelete = async () => {

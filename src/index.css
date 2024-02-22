@@ -268,12 +268,12 @@ li {
   cursor: pointer;
 }
 
-.buttonPostCommentArea{
+.buttonPostCommentArea {
   font-size: 0.8rem;
   width: 50%;
 }
 
-.liComment{
+.liComment {
   background-color: rgb(243, 249, 255);
   border-radius: 20px;
   padding: 2px !important;
@@ -281,42 +281,44 @@ li {
   overflow: hidden;
 }
 
-.commentDate{
+.commentDate {
   display: none;
   font-size: 0.5rem;
   color: grey;
 }
 
-.commentAuthor{
+.commentAuthor {
   font-size: 0.7rem;
   color: grey;
-  
 }
 
-.commentText{
+.commentText {
   font-size: 0.7rem;
 }
 
 @media screen and (min-width: 576px) {
-  .commentDate{
+  .commentDate {
     display: inline;
   }
 
-  .commentAuthor{
+  .commentAuthor {
     font-size: 0.9rem;
     word-wrap: nowrap;
     display: inline;
-    white-space: nowrap; 
+    white-space: nowrap;
     margin: 0 5px 0 0;
   }
 
-  .commentText{
+  .commentText {
     font-size: 0.9rem;
   }
-  
 }
 
-.optionCommentIcon:hover{
+.optionCommentIcon:hover {
   cursor: pointer;
   color: black !important;
+}
+
+a {
+  text-decoration: none;
 }
