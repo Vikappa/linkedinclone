@@ -211,7 +211,7 @@ function ModaleAggiungiEsperienza(props) {
               onChange={handleAreaChange}
             />
           </Form.Group>
-          <Form.Group className="mb-3" controlId="idValueArea">
+          <Form.Group className="mb-3" controlId="idValueImage">
             <Form.Label>Select Image</Form.Label>
             <Form.Control
               type="file"
