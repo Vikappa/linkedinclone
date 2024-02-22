@@ -8,6 +8,7 @@ import { Button } from "react-bootstrap";
 import DeleteExperience from "./DeleteExperience";
 import { FaPen } from "react-icons/fa";
 import PutExperience from "./PutExperience";
+import { useLocation } from "react-router-dom";
 
 function formatISODate(isoString) {
   const date = new Date(isoString);
@@ -19,7 +20,13 @@ function formatISODate(isoString) {
 
 const Experience = () => {
   let currentUserStore = useSelector((state) => state.currentUser.currentUser);
-  const [currentUser, setCurrentUser] = useState(currentUserStore);
+  const [currentUser, setCurrentUser] = useState(currentUserStore)
+  const [path, setPath] = useState(window.location.pathname)
+  const location = useLocation()
+
+  useEffect(() => {
+    console.log(path)
+  }, [location.pathname])
 
   const dispatch = useDispatch();
 
@@ -86,10 +93,8 @@ const Experience = () => {
   };
 
   const [experienceToEdit, setExperienceToEdit] = useState(null);
-  const [editExperience, setEditExperience] = useState(null);
-  const [showEditModal, setShowEditModal] = useState(false);
   const [visibilitàModaleEditEsperienza, setVisibilitàModaleEditEsperienza] =
-    useState(false);
+    useState(false)
   const handleEditClick = (experience) => {
     // setEditExperience(experience)
     setExperienceToEdit(experience);
@@ -184,7 +189,8 @@ const Experience = () => {
               />
             )}
           </div>
-        ))}
+        ))
+        }
       </div>
       <ModaleAggiungiEsperienza
         visibilitàModaleAddEsperienza={visibilitàModaleAddEsperienza}

@@ -32,7 +32,7 @@ const JobSmall = function() {
             <h5 className="m-1" style={{textAlign:"center"}}>Jobs for you:</h5>
             <ul className="custom-ul">
                 {(showMore ? sortedJobs : sortedJobs.slice(0, 3)).map((jobAnnounce, index) => (
-                    <li key={index}><a href="#">{jobAnnounce.title}</a></li>
+                    <li key={index}><a href={jobAnnounce.url} target="_blank" >{jobAnnounce.title}</a></li>
                 ))}
             </ul>
             <button style={{width:"100%", borderRadius:"15px"}} className="text-dark" onClick={handleShowMore}>{showMore ? 'Nascondi' : 'Vedi altro'}</button>
