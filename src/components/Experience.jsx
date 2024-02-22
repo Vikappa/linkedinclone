@@ -28,6 +28,7 @@ const Experience = () => {
   }, [currentUserStore]);
 
   const storeEsperienze = useSelector((state) => state.experience.experiences);
+  console.log("store esperienza id", storeEsperienze._id);
   const [visibilitàModaleAddEsperienza, setVisibilitàModaleAddEsperienza] =
     useState(false);
 
@@ -92,7 +93,7 @@ const Experience = () => {
   const handleEditClick = (experience) => {
     // setEditExperience(experience)
     setExperienceToEdit(experience);
-    console.log(experience._id);
+    console.log("sperienza id", experience._id);
     setVisibilitàModaleEditEsperienza(true);
   };
 
@@ -164,7 +165,7 @@ const Experience = () => {
               style={{ width: "40px", height: "40px" }}
               variant="light"
               onClick={() => handleEditClick(esperienza)}
-              className="d-flex align-items-center"
+              className="d-flex align-items-center me-1"
             >
               <FaPen />
             </Button>

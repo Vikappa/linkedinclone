@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import AddPost from "./AddPost.jsx";
-
+import { Button } from "react-bootstrap";
+import { FaPen } from "react-icons/fa";
+import { FaTrashAlt } from "react-icons/fa";
+import DeletePost from "./DeletePost.jsx";
 function formatDate(date) {
   const d = new Date(date),
     day = "" + d.getDate(),
@@ -12,9 +15,22 @@ function formatDate(date) {
 }
 
 function AllUserPosts() {
+  const [showDeleteModalPost, setShowDeleteModalPost] = useState(false);
+  const [deletePostId, setDeletePostId] = useState(null);
+  const handleDeleteClick = (PostId) => {
+    setDeletePostId(PostId);
+    setShowDeleteModalPost(true);
+  };
+  const handleDeleteModalClosePost = () => {
+    setShowDeleteModalPost(false);
+  };
+
   const interoStore = useSelector((state) => state.arrayAllPosts.arrayPosts);
   const currentUser = useSelector((state) => state.currentUser.currentUser);
 
+  const idPost = useSelector((state) => state.arrayAllPosts.arrayPosts._id);
+  const idUser = useSelector((state) => state.currentUser.currentUser._id);
+  console.log("mio id USER", idUser);
   useEffect(() => {
     console.log(interoStore.slice(-25));
   }, []);
@@ -63,6 +79,32 @@ function AllUserPosts() {
                   </div>
                 </div>
                 <p className="p-2 px-4">{post.text}</p>
+                {idUser && post.user._id === idUser && (
+                  <div className="d-flex justify-content-end">
+                    <Button
+                      style={{ width: "40px", height: "40px" }}
+                      variant="light"
+                      // onClick={() => handleEditClick(esperienza)}
+                      className="d-flex align-items-center me-1"
+                    >
+                      <FaPen />
+                    </Button>
+                    <Button
+                      style={{ width: "40px", height: "40px" }}
+                      variant="danger"
+                      onClick={() => handleDeleteClick(post._id)}
+                      className="d-flex align-items-center"
+                    >
+                      <FaTrashAlt />
+                    </Button>
+                  </div>
+                )}
+                {showDeleteModalPost && deletePostId === post._id && (
+                  <DeletePost
+                    postId={deletePostId}
+                    onClose={handleDeleteModalClosePost}
+                  />
+                )}
               </div>
             ))}
         </>

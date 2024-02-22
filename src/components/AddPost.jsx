@@ -58,6 +58,7 @@ const AddPost = function () {
         throw new Error("Errore nel fetch dei post");
       }
       const posts = await res.json();
+      console.log("post", posts);
       dispatch({
         type: FETCH_ALL_POSTS,
         payload: posts,
