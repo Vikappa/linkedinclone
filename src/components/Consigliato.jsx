@@ -6,7 +6,7 @@ import { BsEyeFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-import { ProgressBar } from "react-bootstrap";
+import ProgressBarCompletamento from "./ProgressBarCompletamento";
 import { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
@@ -17,21 +17,28 @@ const Consigliato = () => {
   const [show, setShow] = useState(false); // setto lo stato del  primo modale
   const [show2, setShow2] = useState(false); // setto stato del secondo modale
   const [show3, setShow3] = useState(false); // 3° modale
+  const [show4, setShow4] = useState(false); // 4° modale
+  const [percentualeCompletamentoProfilo,setPercentualeCompletamentoProfilo] = useState(0)
   const currentUserStore = useSelector(
     (state) => state.currentUser.currentUser
-  );
-
-  const [userToRender, setUserToRender] = useState(null);
+  )
 
   useEffect(() => {
-    setUserToRender(currentUserStore);
-  }, [currentUserStore]);
+    if (currentUserStore) {
+      let incremento = 0;
+      if (currentUserStore.area && currentUserStore.area !== "") incremento += 25
+      if (currentUserStore.bio && currentUserStore.bio !== "") incremento += 25
+      if (currentUserStore.image && currentUserStore.image !== "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png") incremento += 25
+      if (currentUserStore.title && currentUserStore.title !== "") incremento += 25
+  
+      setPercentualeCompletamentoProfilo(incremento)
+    } else {
+      setPercentualeCompletamentoProfilo(0)
+    }
+  }, [currentUserStore])
+  
 
-  useEffect(() => {
-    console.log(userToRender);
-  }, [userToRender]);
-
-  const [isLoading, setIsLoading] = useState(true); // spinner
+  const [isLoading, setIsLoading] = useState(true) // spinner
 
   const handleShow = () => setShow(true); // funzione associata al 1°modale
   const handleClose = () => setShow(false); // funzione associata al 1° modale
@@ -41,6 +48,9 @@ const Consigliato = () => {
 
   const handleShow3 = () => setShow3(true); // funzione associata al 3° modale
   const handleClose3 = () => setShow3(false); // funzione associata al 3° modale
+
+  const handleShow4 = () => setShow4(true); // funzione associata al 4° modale
+  const handleClose4 = () => setShow4(false); // funzione associata al 4° modale
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -52,110 +62,173 @@ const Consigliato = () => {
     handleClose2();
   };
 
+  const handleSubmit3 = (e) => {
+    e.preventDefault();
+    handleClose3();
+  };
+
+  const handleSubmit4 = (e) => {
+    e.preventDefault();
+    handleClose4();
+  };
+
   return (
-    <>
-      {userToRender ? (
-        <div className="border border-tertiary p-3 mt-3 rounded-top rounded-bottom py-4 bg-white">
-          <Container fluid>
-            <Row>
-              <div>
-                <h5 className="mb-1 fw-bold">Consigliato per te </h5>
-                <div className="d-flex justify-content-start align-items-center">
-                  <span>
-                    <BsEyeFill className="text-secondary" />
-                  </span>
-                  <span className="ms-1 text-secondary">Solo per te</span>
-                </div>
-              </div>
-            </Row>
-            <Row>
-              <div className="my-3">
-                <h6 className="fw-bold">Intermedio</h6>
-                <Row>
-                  <ProgressBar
-                    now={70}
-                    className="progressbar"
-                    variant="secondary"
-                  />
-                </Row>
-                <span className="consigliato me-1 mb-0">
-                  Completa 2 passaggi per raggiungere il livello
-                </span>
-                <Link to="/profile" className="link" onClick={handleShow3}>
-                  Massimo
-                </Link>
-              </div>
-              <Modal show={show3} onHide={handleClose3}>
-                <Modal.Header closeButton>
-                  <Modal.Title>Stato del profilo</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                  <p className="text-black">
-                    Il livello del profilo indica quanto è completo il tuo
-                    profilo. Completa le sezioni consigliate per raggiungere i
-                    tuoi obiettivi professionali.
-                  </p>
+    <div style={{border:"1px solid lightgrey"}} className="m-1 bg-white rounded-2 p-3">
+      {currentUserStore ?
+      <>
+                  <Row>
                   <div>
-                    <ul>
-                      <li>
-                        <h6 className="fw-semibold mb-0">Principiante</h6>
-                        <p>
-                          Tutti gli utenti iniziano come principianti e
-                          raggiungono il livello Intermedio completando 4
-                          sezioni.
-                        </p>
-                      </li>
-                      <li>
-                        <h6 className="fw-semibold mb-0">Intermedio</h6>
-                        <p>
-                          Gli utenti con un profilo di livello Intermedio
-                          visualizzano segnalazioni di offerte di lavoro più
-                          pertinenti e suggerimenti di collegamento mirati.
-                          Completa 4 sezioni per raggiungere il livello
-                          Intermedio.{" "}
-                        </p>
-                      </li>
-                      <li>
-                        <h6 className="fw-semibold mb-0">Massimo</h6>
-                        <p>
-                          Gli utenti con un profilo di livello Intermedio
-                          visualizzano segnalazioni di offerte di lavoro più
-                          pertinenti e suggerimenti di collegamento mirati.
-                          Completa 4 sezioni per raggiungere il livello
-                          Intermedio.{" "}
-                        </p>
-                      </li>
-                    </ul>
+                    <h5 className="mb-1 fw-bold">Consigliato per te </h5>
+                    <div className="d-flex justify-content-start align-items-center">
+                      <span>
+                        <BsEyeFill className="text-secondary" />
+                      </span>
+                      <span className="ms-1 text-secondary">Solo per te</span>
+                    </div>
                   </div>
-                </Modal.Body>
-              </Modal>
-            </Row>
-            {/*      PRIMA CARD     */}
-            <Row>
-              <Col xs={12} md={6} lg={6}>
-                {/* PRIMO TERNARIO */}
-                {userToRender.area.length > 0 ? (
-                  ""
-                ) : (
-                  <Card className="cardconsigliato">
-                    <Card.Body className="d-flex flex-column">
-                      <Card.Title className="fw-semibold">
-                        Dove ti trovi?
-                      </Card.Title>
-                      <Card.Text className="card-text text-black ">
-                        Gli utenti che includono una località con codice postale
-                        ricevono fino al 70% in più di visualizzazioni del
-                        profilo.
-                      </Card.Text>
-                      <Button
-                        type="submit"
-                        className="btn rounded-pill border border-black text-secondary py-1  bg-body-tertiary button fw-semibold mt-auto d-flex align-items-center"
-                        onClick={handleShow}
-                      >
-                        Aggiungi una località
-                      </Button>
-                      {/*      PRIMO MODALE       */}
-                      <Modal show={show} onHide={handleClose}>
+                  <p>Percentuale completamento profilo: {percentualeCompletamentoProfilo}%</p>
+                  <ProgressBarCompletamento percentualeCompletamentoProfilo={percentualeCompletamentoProfilo}/>
+                </Row>
+
+                <Container>
+                <Row>
+                  {/* card località */}
+                  
+{currentUserStore.area===""?
+
+<Col xs={12} md={6} className="my-2">
+<Card className="cardconsigliato">
+  <Card.Body className="d-flex flex-column">
+    <Card.Title className="fw-semibold" style={{fontSize:"0.8rem"}}>
+      <div className="d-flex align-items-center gap-2">
+      <i className="bi bi-globe-europe-africa me-1" style={{fontSize:"3rem"}}></i>
+      Dove ti trovi?
+      </div>
+  </Card.Title>
+  <Card.Text className="card-text text-black tex" style={{fontSize:"0.7rem"}}>
+      Gli utenti che includono una località con codice postale
+      ricevono fino al 70% in più di visualizzazioni del
+      profilo.
+  </Card.Text>
+  <div className="d-flex align-items-center mt-auto mb-1 justify-content-center" >
+  <Button
+  type="submit"
+  className={`d-flex align-items-center rounded-pill border-black text-secondary px-1 bg-body-tertiary button fw-semibold mt-auto`}
+  onClick={handleShow}
+  >
+  <p className="btnInvitoConsiglio mt-2">Aggiungi una località</p>
+  </Button>
+  </div>
+  </Card.Body>
+</Card> 
+</Col>
+
+:""
+}
+
+{ currentUserStore.title === ""?
+
+<Col xs={12} md={6} className="my-2">
+<Card className="cardconsigliato">
+  <Card.Body className="d-flex flex-column">
+    <Card.Title className="fw-semibold" style={{fontSize:"0.8rem"}}>
+      <div className="d-flex align-items-center gap-2">
+      <i className="bi bi-newspaper me-1" style={{fontSize:"3rem"}}></i>
+      Qual&apos;è la tua qualifica?
+      </div>
+  </Card.Title>
+  <Card.Text className="card-text text-black tex" style={{fontSize:"0.7rem"}}>
+      Gli utenti che descrivono il proprio titolo ottengono fino a millemila milioni di views extra e i gatti gli fanno più fusa da subito
+  </Card.Text>
+  <div className="d-flex align-items-center mt-auto mb-1 justify-content-center" >
+  <Button
+  type="submit"
+  className={`d-flex align-items-center rounded-pill border-black text-secondary px-1 bg-body-tertiary button fw-semibold mx-md-auto`}
+  onClick={handleShow3}
+  >
+  <p className="btnInvitoConsiglio mt-2">Aggiungi un titolo</p>
+  </Button>
+  </div>
+  </Card.Body>
+</Card> 
+</Col>
+:""
+
+
+}
+
+{
+
+currentUserStore.bio === ""?
+
+<Col xs={12} md={6} className="my-2">
+<Card className="cardconsigliato">
+  <Card.Body className="d-flex flex-column">
+    <Card.Title className="fw-semibold" style={{fontSize:"0.8rem"}}>
+      <div className="d-flex align-items-center gap-2">
+      <i className="bi bi-person-lines-fill me-1" style={{fontSize:"3rem"}}></i>
+    Scrivi un riepilogo per mettere in evidenza la tua personalità o la tua esperienza lavorativa
+      </div>
+    </Card.Title>
+  <Card.Text className="card-text text-black tex" style={{fontSize:"0.7rem"}}>
+  Gli utenti che includono un riepilogo ricevono fino a 3,9 volte più visualizzazioni del profilo.
+  </Card.Text>
+  <div className="d-flex align-items-center mt-auto mb-1 justify-content-center" >
+  <Button
+  type="submit"
+  className={`d-flex align-items-center rounded-pill border-black text-secondary px-1 bg-body-tertiary button fw-semibold mx-md-auto`}
+  onClick={handleShow2}
+  >
+  <p className="btnInvitoConsiglio mt-2">Aggiungi un riepilogo</p>
+  </Button>
+  </div>
+  </Card.Body>
+</Card> 
+</Col>
+
+:""
+
+
+}
+
+{
+  currentUserStore.image === "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"? 
+
+  <Col xs={12} md={6} className="my-2">
+  {/* card */}
+<Card className="cardconsigliato">
+  <Card.Body className="d-flex flex-column">
+    <Card.Title className="fw-semibold" style={{fontSize:"0.8rem"}}>
+      <div className="d-flex align-items-center gap-2">
+      <i className="bi bi-camera me-1" style={{fontSize:"3rem"}}></i>
+
+    Aggiungi una foto al tuo profilo per aiutare gli altri a riconoscerti
+      </div>
+  </Card.Title>
+  <Card.Text className="card-text text-black tex" style={{fontSize:"0.7rem"}}>
+  Gli utenti con una foto del profilo ricevono fino a 2,3 volte più visualizzazioni del profilo.
+  </Card.Text>
+  <div className="d-flex align-items-center mt-auto mb-1 justify-content-center" >
+  <Button
+  type="submit"
+  className={`d-flex align-items-center rounded-pill border-black text-secondary px-1 bg-body-tertiary button fw-semibold mx-md-auto`}
+  onClick={handleShow4}
+  >
+  <p className="btnInvitoConsiglio mt-2">Aggiungi una foto</p>
+  </Button>
+  </div>
+  </Card.Body>
+</Card> 
+</Col>
+:""
+
+}
+
+
+                  </Row>
+
+                </Container>          
+                <Modal show={show} onHide={handleClose}>
                         <Modal.Header closeButton>
                           {isLoading ? (
                             <h4>Caricamento in corso</h4>
@@ -204,61 +277,6 @@ const Consigliato = () => {
                           </Button>
                         </Modal.Footer>
                       </Modal>
-                    </Card.Body>
-                  </Card>
-                )}
-              </Col>
-
-              {/*        SECONDA CARD       */}
-              <Col xs={12} md={6} lg={6}>
-                {userToRender.bio.length > 0 ? (
-                  ""
-                ) : (
-                  <Card>
-                    <Card.Body>
-                      <Card.Title className="fw-semibold">
-                        Scrivi un riepilogo per mettere in evidenza la tua
-                        personalità o la tua esperienza lavorativa
-                      </Card.Title>
-                      <Card.Text className="text-black">
-                        Gli utenti che includono un riepilogo ricevono fino a
-                        3,9 volte più visualizzazioni del profilo.
-                      </Card.Text>
-                      <Button
-                        type="submit"
-                        className="btn rounded-pill border border-black text-secondary py-1  bg-body-tertiary button fw-semibold d-flex align-items-center"
-                        onClick={handleShow2}
-                      >
-                        Aggiungi un riepilogo
-                      </Button>
-                      {userToRender.area.length > 0 ? (
-                        ""
-                      ) : (
-                        <Row>
-                          <Card>
-                            <Card.Body>
-                              <Card.Title className="fw-semibold">
-                                Scrivi un riepilogo per mettere in evidenza la
-                                tua personalità o la tua esperienza lavorativa
-                              </Card.Title>
-                              <Card.Text className="text-black">
-                                Gli utenti che includono un riepilogo ricevono
-                                fino a 3,9 volte più visualizzazioni del
-                                profilo.
-                              </Card.Text>
-                              <Button
-                                type="submit"
-                                className="btn rounded-pill border border-black text-secondary py-1  bg-body-tertiary button fw-semibold d-flex align-items-center"
-                                onClick={handleShow2}
-                              >
-                                Aggiungi un riepilogo
-                              </Button>
-                            </Card.Body>
-                          </Card>
-                        </Row>
-                      )}
-                      {/*      SECONDO MODALE       */}
-
                       <Modal show={show2} onHide={handleClose2}>
                         <Modal.Header closeButton>
                           {isLoading ? (
@@ -304,17 +322,93 @@ const Consigliato = () => {
                           </Button>
                         </Modal.Footer>
                       </Modal>
-                    </Card.Body>
-                  </Card>
-                )}
-              </Col>
-            </Row>
-          </Container>
-        </div>
-      ) : (
-        ""
-      )}
-    </>
+
+
+                      <Modal show={show3} onHide={handleClose3}>
+                        <Modal.Header closeButton>
+                          {isLoading ? (
+                            <h4>Caricamento in corso</h4>
+                          ) : (
+                            <Modal.Title>Aggiungi qualifica</Modal.Title>
+                          )}
+                        </Modal.Header>
+                        <Modal.Body>
+                          {isLoading ? (
+                            <SpinnerComponent
+                              isLoading={isLoading}
+                              setIsLoading={setIsLoading}
+                            />
+                          ) : (
+                            <>
+                              <h4>Aggiungi la tua qualifica</h4>
+                              <p className="mb-1">
+                                Puoi includere la tua professione o la qualifica professionale, o specificare di essere uno studente, apprendista, stagista o gatto
+                              </p>
+
+                              <Form onSubmit={handleSubmit3}>
+                                <Form.Group
+                                  className="mb-3"
+                                  controlId="exampleForm.ControlTextarea1"
+                                >
+                                  <Form.Control as="textarea" rows={8} />
+                                </Form.Group>
+                              </Form>
+                            </>
+                          )}
+                        </Modal.Body>
+                        <Modal.Footer>
+                          <Button
+                            variant="primary"
+                            onClick={handleClose3}
+                            className="salva rounded-pill text-white fw-semibold"
+                          >
+                            Salva
+                          </Button>
+                        </Modal.Footer>
+                      </Modal>
+
+                      <Modal show={show4} onHide={handleClose4}>
+                        <Modal.Header closeButton>
+                          {isLoading ? (
+                            <h4>Caricamento in corso</h4>
+                          ) : (
+                            <Modal.Title>Aggiungi foto</Modal.Title>
+                          )}
+                        </Modal.Header>
+                        <Modal.Body>
+                          {isLoading ? (
+                            <SpinnerComponent
+                              isLoading={isLoading}
+                              setIsLoading={setIsLoading}
+                            />
+                          ) : (
+                            <>
+                              <h4>Aggiungiamo la tua foto</h4>
+                              <p className="mb-1">
+                                Puoi scegliere una foto al mare o in piscina anzichè una noiosa foto vestito da pinguino in ufficio. 
+                                Sennò metti una foto del tuo gatto, ancora meglio. Se non hai gatto puoi anche risparmiarci la foto
+                              </p>
+
+                              <Form onSubmit={handleSubmit4}>
+
+                              </Form>
+                            </>
+                          )}
+                        </Modal.Body>
+                        <Modal.Footer>
+                          <Button
+                            variant="primary"
+                            onClick={handleClose4}
+                            className="salva rounded-pill text-white fw-semibold"
+                          >
+                            Salva
+                          </Button>
+                        </Modal.Footer>
+                      </Modal>
+
+      </>
+      :""}
+    </div>
   );
 };
-export default Consigliato;
+export default Consigliato
