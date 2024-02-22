@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 
-const Card = () => {
+const CardSideBar = () => {
     const [showMore, setShowMore] = useState(false);
 
     const handleShowMore = () => {
@@ -9,17 +9,17 @@ const Card = () => {
     };
 
     return (
-        <div className="card">
-            <h2>Titolo della Card</h2>
-            <ul>
+        <div className="card" style={{backgroundColor: 'white', borderRadius: '10px', textAlign: 'left' }}>
+            <h2 style={{textAlign:"center"}}>Linkedin Notizie</h2>
+            <ul style={{}}>
                 <li>Come fare un bilancio di competenze</li>
-                <li> Il lato positivo dell invidia</li>
+                <li>Il lato positivo dell invidia</li>
                 <li>Ritorno al negozio (del futuro)</li>
                 <li>Verso una pubblica amministrazione ...</li>
                 <li>Il conto del cambiamento climatico</li>
             </ul>
             {showMore && (
-                <ul>
+                <ul style={{}}>
                     <li>Allarme smog in pianura padana</li>
                     <li>Quando l impostore ci fa crescere</li>
                     <li>Il richiamo della montagna</li>
@@ -32,4 +32,4 @@ const Card = () => {
     );
 };
 
-export default Card;
+export default CardSideBar;

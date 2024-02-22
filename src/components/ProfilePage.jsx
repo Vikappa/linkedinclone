@@ -5,6 +5,7 @@ import "./style.css";
 import Experience from "./Experience";
 import SideBar from "./SideBar";
 import ProfileCards from './ProfileHero'
+import CardSideBar from "./StaticSideBar";
 
 
 function ProfilePage() {
@@ -22,6 +23,7 @@ function ProfilePage() {
           </Col>
           {/* sidebar */}
           <Col xs={0} lg={3}>
+            <CardSideBar/>
             <SideBar />
           </Col>
         </Row>
