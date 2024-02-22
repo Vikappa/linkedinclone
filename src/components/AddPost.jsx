@@ -8,6 +8,7 @@ const AddPost = function () {
   const currentUser = useSelector((state) => state.currentUser.currentUser);
   const [postText, setPostText] = useState("");
   const [imageFile, setImageFile] = useState(null);
+  const [fileInputKey, setFileInputKey] = useState(Date.now());
   function handleChangeTextInput(e) {
     setPostText(e.target.value);
   }
@@ -18,8 +19,6 @@ const AddPost = function () {
   }
   async function handleSubmit(e) {
     e.preventDefault();
-    setPostText("");
-    setImageFile(null);
 
     // const postData = {
     //   text: postText,
@@ -63,8 +62,10 @@ const AddPost = function () {
       if (!responseImage.ok) {
         throw new Error("Errore nella richiesta POST per l'immagine");
       }
-      setImageFile("");
       await fetchAllPosts();
+      setFileInputKey(Date.now());
+      setImageFile(null);
+      setPostText("");
     } catch (error) {
       console.error("Errore invio del commento:", error);
     }
@@ -104,9 +105,9 @@ const AddPost = function () {
           <img
             src={currentUser.image}
             alt="User"
-            height={"48px"}
-            width={"48px"}
-            className="border rounded-circle"
+            height={"60px"}
+            width={"60px"}
+            className="border rounded"
           />
           <Form style={{ width: "100%" }} onSubmit={handleSubmit}>
             <FormControl
@@ -117,8 +118,22 @@ const AddPost = function () {
               value={postText}
               onChange={handleChangeTextInput}
             />
-            <FormControl type="file" onChange={handleImageChange} />
-            <Button type="submit"> invia</Button>
+            <FormControl
+              key={fileInputKey}
+              className="mt-2"
+              type="file"
+              onChange={handleImageChange}
+              style={{ width: "50%" }}
+            />
+            <Button
+              type="submit"
+              className="mt-2 text-center"
+              variant="secondary"
+              style={{ width: "15%", height: "10%" }}
+            >
+              {" "}
+              invia
+            </Button>
           </Form>
         </div>
       ) : (

@@ -130,7 +130,12 @@ function AllUserPosts() {
                   </div>
                 </div>
                 <p className="p-2 px-4">{post.text}</p>
-                <img src={post.image} alt="" />{" "}
+                <img
+                  src={post.image}
+                  alt=""
+                  className="border rounded"
+                  style={{ width: "35%" }}
+                />{" "}
                 {currentUser._id && post.user._id === currentUser._id && (
                   <div className="d-flex justify-content-end">
                     <Button
