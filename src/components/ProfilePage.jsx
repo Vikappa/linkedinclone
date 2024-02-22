@@ -4,13 +4,27 @@ import { Container, Row } from "react-bootstrap";
 import "./style.css";
 import Experience from "./Experience";
 import SideBar from "./SideBar";
-
+import ProfileCardsInspectedUser from "./ProfileCardsInspectedUser";
 import ProfileCards from './ProfileHero'
 import CardSideBar from "./StaticSideBar";
 import Consigliato from "./Consigliato";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 
 function ProfilePage() {
+
+  const { userId } = useParams();
+
+  // Inizializzo lo state con il valore di userId ottenuto
+  const [currentUserId, setCurrentUserId] = useState(userId);
+
+  // Opzionalmente, puoi utilizzare useEffect per aggiornare lo state
+  // se il componente rimane montato e l'URL cambia
+  useEffect(() => {
+    setCurrentUserId(userId);
+  }, [userId]);
+
   return (
     <>
       <Container>
@@ -18,9 +32,14 @@ function ProfilePage() {
           {/* lato sinistro */}
           <Col xs={0} lg={2}></Col>
           <Col xs={12} lg={7} className="py-3">
-            <ProfileCards />
+          {!currentUserId?
+            <ProfileCards />:""
+            }
+            <ProfileCardsInspectedUser inspectedUserId={userId} />
             <Experience />
-            <Consigliato />
+            {!currentUserId?
+            <Consigliato />:""
+            }
             {/* <Analisi /> */}
           </Col>
           {/* sidebar */}

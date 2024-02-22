@@ -97,7 +97,7 @@ function LinkedInNavBar() {
                 />
               )}
               <div className="d-flex flex-column justify-content-start">
-                <Link to={`/profile/me`}>
+                <Link to={`/profile`}>
                   <h6 className="titoliDropDownTu text-start m-0">
                     {currentUser
                       ? currentUser.name + " " + currentUser.surname
@@ -105,7 +105,7 @@ function LinkedInNavBar() {
                   </h6>
                 </Link>
                 {currentUser ? (
-                  <Link to={`/profile/me`}>
+                  <Link to={`/profile`}>
                     <p className="testiDropDownTu">
                       Formazione dell&apos;utente
                     </p>
@@ -271,7 +271,7 @@ function LinkedInNavBar() {
 
           <div className="d-flex flex-column text-center goliardiaPortamiVia">
             <a
-              className="text-nowrap text-black fw-bold fs-6"
+              className="text-nowrap text-dark"
               href="https://epicode.com"
               target="_blank"
             >
@@ -285,19 +285,19 @@ function LinkedInNavBar() {
         fixed="bottom"
         className="bg-body-tertiary justify-content-between container-fluid w-100 d-sm-none p-0"
       >
-        <Link className="navbar2Buttons">
+        <Link to={"/home"} className="navbar2Buttons">
           <i className="bi bi-house-door-fill"></i>
         </Link>
-        <Link className="navbar2Buttons">
+        <Link to={'/profile'} className="navbar2Buttons">
           <i className="bi bi-person-fill"></i>
         </Link>
-        <Link className="navbar2Buttons">
+        <Link to={'/extra'} className="navbar2Buttons">
           <i className="bi bi-plus-square-fill"></i>
         </Link>
         <Link className="navbar2Buttons">
           <i className="bi bi-bell-fill"></i>
         </Link>
-        <Link className="navbar2Buttons">
+        <Link to={'/jobs'} className="navbar2Buttons">
           <i className="bi bi-briefcase-fill"></i>
         </Link>
       </Navbar>

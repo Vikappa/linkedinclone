@@ -9,6 +9,7 @@ import PutPost from "./PutPost.jsx";
 import { useDispatch } from "react-redux";
 import { FETCH_ALL_POSTS } from "../Redux/Actions/ADD_EXPERIENCE.js";
 import PostCommentArea from "./PostCommentArea.jsx";
+import { Link } from "react-router-dom";
 
 function formatDate(date) {
   const d = new Date(date),
@@ -112,7 +113,9 @@ function AllUserPosts() {
                   />
                   <div className="d-flex flex-column justify-content-start">
                     <div className="d-flex align-items-baseline gap-1">
+                      <Link to={`/profile/${post.user._id}`} style={{textDecoration:"none", color:"black"}}>
                       <h6 className="m-0">{post.user.name}</h6>
+                      </Link>
                       <p
                         style={{ fontSize: "0.65rem", color: "grey" }}
                         className=" m-0 p-0"
@@ -135,7 +138,7 @@ function AllUserPosts() {
                 <img
                   src={post.image}
                   alt=""
-                  className="border rounded"
+                  className="border rounded postImg"
                   style={{ width: "35%" }}
                 />{" "}
                 <PostCommentArea post={post} />

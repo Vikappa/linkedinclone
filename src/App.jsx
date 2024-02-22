@@ -18,7 +18,8 @@ function App() {
         <Route path="/home" element={<HomePage />} />
         {/* <Route path="/profile" element={<ProfilePage />} /> */}
         <Route path="/jobs" element={<SearchJobsPage />} />
-        <Route path="/profile/me" element={<ProfilePage />} />
+        <Route path="/profile/" element={<ProfilePage />} />
+        <Route path="/profile/:userId" element={<ProfilePage />} />
         <Route path="/network" element={<Network />} />
       </Routes>
       <Footer />

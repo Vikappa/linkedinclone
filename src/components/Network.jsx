@@ -1,25 +1,26 @@
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Card from "react-bootstrap/Card";
-import Image from "react-bootstrap/Image";
-import Button from "react-bootstrap/Button";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { trashThis } from "../Redux/Actions/ADD_TO_NETWORK";
-
+import Container from "react-bootstrap/Container"
+import Row from "react-bootstrap/Row"
+import Col from "react-bootstrap/Col"
+import Card from "react-bootstrap/Card"
+import Image from "react-bootstrap/Image"
+import Button from "react-bootstrap/Button"
+import { useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
+import { trashThis } from "../Redux/Actions/ADD_TO_NETWORK"
+import sadCat from '../assets/5ee772d099588c0004aa684b.png'
+import { Link } from "react-router-dom"
+//CIAO SONO VINCENZO TOCCO IL TUO CODICE SENZA PERMESSO
 const Network = () => {
-  const networking = useSelector((state) => state.networking.users);
-  // console.log(networking);
-  const dispatch = useDispatch();
+  const networking = useSelector((state) => state.networking.users)
+  const dispatch = useDispatch()
   const handleTrash = (i) => {
-    dispatch(trashThis(i));
-  };
+    dispatch(trashThis(i))
+  }
 
   return (
     <Container fluid>
       <Row className="justify-content-center my-5 gy-2">
-        {networking.map((user, i) => (
+        {networking.length>0?networking.map((user, i) => (
           <Col xs={12} md={3} key={i}>
             <Card className="my-2 h-100">
               <Card.Img
@@ -38,9 +39,11 @@ const Network = () => {
                   />
                 </div>
                 <Card.Title className="mt-5">
+                  <Link to={`/profile/${user._id}`}>
                   <h4>
                     {user.name} {user.surname}
                   </h4>
+                  </Link>
                 </Card.Title>
                 <Card.Text className="fw-light text-secondary">
                   <span className="d-block">{user.title}</span>
@@ -53,7 +56,7 @@ const Network = () => {
                     size="md"
                     variant="warning"
                     onClick={() => {
-                      handleTrash(i);
+                      handleTrash(i)
                     }}
                   >
                     <i className="bi bi-trash"></i>
@@ -62,9 +65,13 @@ const Network = () => {
               </Card.Body>
             </Card>
           </Col>
-        ))}
+        )):
+        <div className="d-flex flex-column align-items-center justify-content-center">
+          <p>Non hai amici</p>
+          <img src={sadCat} alt="Non hai amici :C"/>
+        </div>}
       </Row>
     </Container>
-  );
-};
-export default Network;
+  )
+}
+export default Network
