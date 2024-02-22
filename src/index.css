@@ -91,6 +91,12 @@
   font-size: 0.6rem !important;
   margin: 0;
 }
+.testiDropDownTu:hover {
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 0.6rem !important;
+  margin: 0;
+}
 
 #login-page {
   min-height: 75vh;

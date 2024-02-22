@@ -86,7 +86,7 @@ function LinkedInNavBar() {
                 />
               )}
               <div className="d-flex flex-column justify-content-start">
-                <Link to={`/profile/`}>
+                <Link to={`/profile/me`}>
                   <h6 className="titoliDropDownTu text-start m-0">
                     {currentUser
                       ? currentUser.name + " " + currentUser.surname
@@ -94,7 +94,11 @@ function LinkedInNavBar() {
                   </h6>
                 </Link>
                 {currentUser ? (
-                  <p className="testiDropDownTu">Formazione dell&apos;utente</p>
+                  <Link to={`/profile/me`}>
+                    <p className="testiDropDownTu">
+                      Formazione dell&apos;utente
+                    </p>
+                  </Link>
                 ) : (
                   <p className="testiDropDownTu">Errore 404</p>
                 )}
@@ -110,9 +114,11 @@ function LinkedInNavBar() {
               <h6 className="titoliDropDownTu text-start m-0">Gestisci</h6>
               <p className="testiDropDownTu">Post e attività</p>
             </div>
-            <div className="d-flex flex-column justify-content-start p-1">
-              <p className="testiDropDownTu">Esci</p>
-            </div>
+            <Link to={`/`}>
+              <div className="d-flex flex-column justify-content-start p-1">
+                <p className="testiDropDownTu">Esci</p>
+              </div>
+            </Link>
           </div>
         </div>
       );
@@ -190,29 +196,28 @@ function LinkedInNavBar() {
                 />
               </Form>
             </div>
-            <div className="d-flex flex-column text-center topBarButton">
-              <i className="bi bi-house-door-fill navBarDedicatedButton "> </i>
-              <p className="d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP">
-                Home
-              </p>
-            </div>
+            <Link to={`/home/`}>
+              <div className="d-flex flex-column text-center topBarButton">
+                <i className="bi bi-house-door-fill navBarDedicatedButton ">
+                  {" "}
+                </i>
+                <p className="d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP">
+                  Home
+                </p>
+              </div>
+            </Link>
             <div className="d-flex flex-column text-center topBarButton">
               <i className="bi bi-person-fill navBarDedicatedButton "> </i>
               <p className="d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP">
                 Rete
               </p>
             </div>
-
-            <Link
-              to="/jobs"
-              className="d-flex flex-column text-center topBarButton"
-            >
-              {" "}
+            <div className="d-flex flex-column text-center topBarButton">
               <i className="bi bi-briefcase-fill navBarDedicatedButton "> </i>
               <p className="d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP">
                 Lavoro
-              </p>{" "}
-            </Link>
+              </p>
+            </div>
             <div className="d-flex flex-column text-center topBarButton">
               <i className="bi bi-chat-dots-fill navBarDedicatedButton "> </i>
               <p className="d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP">
