@@ -162,6 +162,38 @@ p {
 .fade.modal.show{
   padding: 0 !important;
 }
+
+
+.custom-ul {
+  list-style-type: none; 
+  padding-left: 0; 
+}
+
+.custom-ul li {
+  position: relative;
+  padding-left: 20px;
+}
+
+.custom-ul li::before {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translate(0, -50%);
+}
+
+.custom-ul li a {
+  font-size: 0.8rem;
+  color: black; 
+  text-decoration: none; 
+  transition: color 0.3s ease; 
+}
+
+.custom-ul li a:hover {
+  text-decoration: underline;
+  color: var(--bs-primary);
+}
+
+
 /* ------------------------------------------ FINE CSS VINCENZO -------------------------------- */
 
 #info,

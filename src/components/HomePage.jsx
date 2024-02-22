@@ -24,30 +24,29 @@ function HomePage() {
   const [currentUser, setCurrentUser] = useState(null);
   let currentUserStore = useSelector((state) => state.currentUser.currentUser)
 
-  const myUrl = `https://strive-benchmark.herokuapp.com/api/jobs?search=`;
+  const myUrl = `https://strive-benchmark.herokuapp.com/api/jobs?search=`
 
   const getJobs = async () => {
     try {
-      const response = await fetch(myUrl);
+      const response = await fetch(myUrl)
       if (response.ok) {
-        const fetchResults = await response.json();
-        console.log(fetchResults.data);
+        const fetchResults = await response.json()
         dispatch({
           type: FINISH_LOADING_JOBS,
           payload: fetchResults.data,
-        });
+        })
       } else {
-        alert("Errore nella ricezione dei dati");
+        alert("Errore nella ricezione dei dati")
       }
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
   }
 
   useEffect(() => {
     
     setCurrentUser(currentUserStore)
-  }, [currentUserStore]);
+  }, [currentUserStore])
 
   useEffect(() => {
     const fetchExperiencesCurrentUser = async () => {
@@ -200,8 +199,7 @@ function HomePage() {
   return (
     <Container fluid>
       <Row>
-        <Col xs={0} lg={1}></Col>
-        <Col xs={12} lg={2}>
+        <Col xs={12} lg={3}>
           <ProfileBarOnHomepage />
         </Col>
         <Col xs={12} lg={7} className="py-3">

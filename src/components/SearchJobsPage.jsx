@@ -18,13 +18,13 @@ import { BsPeopleFill } from "react-icons/bs";
 import { BsFillLightbulbFill } from "react-icons/bs";
 import { FINISH_LOADING_JOBS } from "../Redux/Reducers/JobsReducer";
 import Anchor from "react-bootstrap/Anchor";
+import { Form } from "react-bootstrap";
 
 const SearchJobsPage = () => {
   const [choosenJob, setChoosenJob] = useState(null);
   const [textInput, setTextInput] = useState("");
   const jobs = useSelector((state) => state.jobs.allTheJobs);
   const jobsLoading = useSelector((state) => state.jobs.isLoading);
-  const wholeStore = useSelector((state) => state);
   const dispatch = useDispatch();
   const values = [true, "lg-down"];
   const [fullscreen, setFullscreen] = useState(true);
@@ -37,40 +37,59 @@ const SearchJobsPage = () => {
   function HtmlInterpreter({ htmlContent }) {
     return <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
   }
+
+  const handleRicerca = function(e){
+    e.preventDefault()
+    getJobs()
+  }
+
+  const handleChangeCampoRicerca = function(e){
+    setTextInput(e.target.value)
+  }
   
 
   const myUrl = `https://strive-benchmark.herokuapp.com/api/jobs?search=${textInput}`
 
-  useEffect(() => {
-    getJobs()
-  }, [])
 
   const getJobs = async () => {
     try {
       const response = await fetch(myUrl);
       if (response.ok) {
         const fetchResults = await response.json();
-        console.log(fetchResults.data);
         dispatch({
           type: FINISH_LOADING_JOBS,
           payload: fetchResults.data,
-        });
+        })
       } else {
-        alert("Errore nella ricezione dei dati");
+        alert("Errore nella ricezione dei dati")
       }
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
 
   return (
-    // <>
     <Container fluid>
       <Row>
         <Col xs={12} md={3}>
           <SidebarJobs />
         </Col>
         <Col md={6}>
+        <Row>
+
+          <Form         
+          onSubmit={handleRicerca}
+          className="bg-white m-3">
+          <Form.Group className="mb-3" controlId="campoRicerca d-flex align-items-center justify-content-center">
+        <Form.Label className="fw-semibold fs-5">Cerca</Form.Label>
+        <Form.Control type="text" placeholder="Ricerca" value={textInput}
+        onChange={handleChangeCampoRicerca}/>
+        <Button type="submit" style={{width:"30%"}}
+        className="d-flex align-items-center justify-content-center p-0 m-1">Cerca</Button>
+      </Form.Group>
+          </Form>
+        </Row>
+
           {jobsLoading ? (
             <div className="text-center mt-4 pt-4 d-flex align-items-center justify-content-center">
               <Spinner animation="border" variant="black" />
