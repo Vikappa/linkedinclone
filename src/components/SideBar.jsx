@@ -37,10 +37,10 @@ const SideBar = () => {
         const elisa = "65d3153b24f605001937d46a";
         const wendy = "65d4bb2e9c437000193c3636";
         const vincenzo = "65d3228a24f605001937d477";
-        // const alex
+        const fidan = "65d5c220a33fc900196582f8";
         const hamed = "65d311e424f605001937d456";
         const alex = "65d322a824f605001937d478";
-        const includedUsersIds = [elisa, wendy, vincenzo, hamed, alex];
+        const includedUsersIds = [elisa, wendy, vincenzo, hamed, alex, fidan];
         // Filter out currentUser_id
         const otherUserIds = currentUserIds.filter(
           (id) => id !== currentUser._id

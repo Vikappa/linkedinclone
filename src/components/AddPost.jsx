@@ -33,11 +33,11 @@ const AddPost = function () {
             }
 
             const data = await response.json()
-            console.log('Commento inviato con successo:', data)
+            console.log('Post inviato con successo:', data)
 
             await fetchAllPosts()
         } catch (error) {
-            console.error('Errore invio del commento:', error)
+            console.error('Errore invio del post:', error)
         }
     }
     
