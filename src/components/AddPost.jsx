@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-duplicate-props */
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button, Form, FormControl } from 'react-bootstrap';
@@ -98,12 +99,12 @@ const AddPost = () => {
         />
         <FormControl
           key={fileInputKey}
-          className="mt-2"
+          className="mt-2 p-0 px-1"
           type="file"
+          style={{fontSize:"1rem", width:"100%"}}
           onChange={handleFileChange}
-          style={{ width: '50%' }}
         />
-        <Button type="submit" className="mt-2 text-center" variant="secondary" disabled={!postText} style={{ width: '15%', height: '10%' }}>
+        <Button type="submit" className="mt-2 text-center d-flex align-items-center justify-content-center p-0" variant="secondary" disabled={!postText} style={{ width: '50%', height: '10%' }}>
           Invia
         </Button>
       </Form>
