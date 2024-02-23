@@ -106,3 +106,8 @@ a{
          
      }
      }
+
+
+.sizePostDiv{
+    min-height: 25vh;
+}

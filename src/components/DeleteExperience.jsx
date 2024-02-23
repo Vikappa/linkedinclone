@@ -1,34 +1,73 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { useDispatch } from "react-redux";
 
-import { removeExperience } from "../Redux/Actions/ADD_EXPERIENCE";
+import {
+  FETCH_CURRENT_USER_EXPERIENCES,
+  REMOVE_EXPERIENCE,
+} from "../Redux/Actions/ADD_EXPERIENCE";
 import { Button, Modal } from "react-bootstrap";
+import { useSelector } from "react-redux";
 
 // eslint-disable-next-line react/prop-types
-const DeleteExperience = ({ experienceId, onClose, fetchExperience }) => {
+const DeleteExperience = ({ onClose, experienceId }) => {
+  let currentUserStore = useSelector((state) => state.currentUser.currentUser);
+  const [currentUser, setCurrentUser] = useState(currentUserStore);
   const dispatch = useDispatch();
-  const myUrlFetchProfile = ` https://striveschool-api.herokuapp.com/api/profile/65d322a824f605001937d478/experiences/${experienceId}`;
+  console.log("sperienza id", experienceId);
 
-  const bearerToken =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQzMjJhODI0ZjYwNTAwMTkzN2Q0NzgiLCJpYXQiOjE3MDgzMzU3ODQsImV4cCI6MTcwOTU0NTM4NH0.pioeDwZO2GA-_tAisq4KElbrIk9InfeCBaG2-L3oQJA";
+  const myUrlFetchProfile = ` https://striveschool-api.herokuapp.com/api/profile/${currentUser._id}/experiences/${experienceId}`;
+
   const handleDelete = async () => {
     try {
       await fetch(myUrlFetchProfile, {
         method: "DELETE",
         headers: {
-          Authorization: "Bearer " + bearerToken,
+          Authorization: `Bearer ${sessionStorage.getItem("accessToken")}`,
           "Content-Type": "application/json",
         },
       });
 
-      dispatch(removeExperience(experienceId));
-      fetchExperience();
+      const fetchExperiencesCurrentUser = async () => {
+        try {
+          const fetchedExperiences = await fetch(
+            `https://striveschool-api.herokuapp.com/api/profile/${currentUser._id}/experiences`,
+            {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${sessionStorage.getItem(
+                  "accessToken"
+                )}`,
+              },
+            }
+          );
+
+          if (!fetchedExperiences.ok) {
+            throw new Error("Errore nella fetch delle esperienze");
+          }
+
+          const experiencesData = await fetchedExperiences.json();
+
+          // Dispatch dell'azione Redux
+          dispatch({
+            type: FETCH_CURRENT_USER_EXPERIENCES,
+            payload: experiencesData,
+          });
+        } catch (error) {
+          console.log("Errore", error);
+        }
+      };
+      fetchExperiencesCurrentUser();
+
       onClose();
     } catch (error) {
       console.error("Errore durante l'eliminazione:", error);
     }
   };
+  // useEffect(() => {
+
+  // }, [currentUser, dispatch]);
 
   return (
     <Modal show={true} onHide={onClose}>
