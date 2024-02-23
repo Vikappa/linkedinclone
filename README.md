@@ -2,8 +2,12 @@
 <p align="center">
   <img src="./public/iconSmall.png" alt="Logo del Progetto" width="80px" height="auto"/>
   <br>
-  <img src="https://img.shields.io/badge/status-WORK%20IN%20PROGRESS-yellow" alt="Status: Work in Progress"/>
+  <img src="https://img.shields.io/badge/status-WORK%20IN%20PROGRESS-green" alt="Status: Completed!"/>
   <img src="https://img.shields.io/badge/version-1.0.0-blue.svg" alt="Version 1.0.0"/>
+</p>
+
+<p align="center">
+<a href="https://linkedinclone-pi.vercel.app/">Visita il sito!</a>
 </p>
 
 <h1 align="center" style="font-size: 60px; line-height: 60px; vertical-align: middle;">  
