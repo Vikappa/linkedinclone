@@ -11,11 +11,8 @@ const networkReducer = (state = initialState, action) => {
     case REMOVE_FROM_NETWORK:
       return {
         ...state,
-        users: [
-          ...state.users.slice(0, action.payload),
-          ...state.users.slice(action.payload + 1),
-        ],
-      }
+        users: state.users.filter(user => user._id !== action.payload._id),
+      };
     case KILL_YOUR_FRIENDS:
       return {
         users: []

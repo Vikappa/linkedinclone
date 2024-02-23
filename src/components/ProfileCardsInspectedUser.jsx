@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
-import { Card } from "react-bootstrap"
+import {  Card } from "react-bootstrap"
+import TastoCollegati from "./TastoCollegati";
 
 function ProfileCardsInspectedUser({ inspectedUserId }) {
   const [inspectedUser, setInspectedUser] = useState(null)
@@ -82,7 +83,7 @@ function ProfileCardsInspectedUser({ inspectedUserId }) {
                     zIndex: 4,
                   }}
                 >
-                  Email: {inspectedUser.email ? inspectedUser.email : "Not Available"}
+                {inspectedUser.email ? inspectedUser.email : ""}
                 </Card.Text>
                 <Card.Text
                   style={{
@@ -93,7 +94,7 @@ function ProfileCardsInspectedUser({ inspectedUserId }) {
                     zIndex: 4,
                   }}
                 >
-                  Username: {inspectedUser.username ? inspectedUser.username : "Not Available"}
+                {inspectedUser.username ? inspectedUser.username : ""}
                 </Card.Text>
                 <Card.Text
                   style={{
@@ -104,7 +105,7 @@ function ProfileCardsInspectedUser({ inspectedUserId }) {
                     zIndex: 4,
                   }}
                 >
-                  Title: {inspectedUser.title ? inspectedUser.title : "Not Available"}
+                  {inspectedUser.title ? inspectedUser.title : ""}
                 </Card.Text>
                 <Card.Text
                   style={{
@@ -114,15 +115,16 @@ function ProfileCardsInspectedUser({ inspectedUserId }) {
                     zIndex: 4,
                   }}
                 >
-                  Bio: {inspectedUser.bio ? inspectedUser.bio : "Not Available"}
+                  {inspectedUser.bio ? "Bio: " + inspectedUser.bio : ""}
                 </Card.Text>
+                <TastoCollegati user={inspectedUser}/>
               </>
             }
           </Card.Body>
         </Card>
       )}
     </>
-  );
+  )
 }
 
-export default ProfileCardsInspectedUser;
+export default ProfileCardsInspectedUser

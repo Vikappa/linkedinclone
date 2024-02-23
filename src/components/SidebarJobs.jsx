@@ -1,6 +1,7 @@
 import { Container } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
+import Button from "react-bootstrap/Button";
 import { RiBookmarkFill } from "react-icons/ri";
 import { FaListUl } from "react-icons/fa";
 import { LiaClipboardCheckSolid } from "react-icons/lia";
@@ -88,6 +89,21 @@ const SidebarJobs = () => {
               </div>
             </Card.Body>
           </Card>
+          <div className="d-none d-md-block mt-2">
+            <Button
+              id=" Pubblica-offerta-gratuita"
+              variant="primary"
+              style={{
+                color: "#0c6dfd",
+                maxWidth: "fit-content",
+                height: "80px",
+              }}
+              className="rounded-pill d-flex bg-white fw-semibold justify-content-center align-items-center bg-transparent my-2"
+            >
+              <i className="bi bi-pencil-square text-primary fs-4 me-1"></i>
+              Pubblica offerta gratuita
+            </Button>
+          </div>
         </Row>
       </Container>
     </>
