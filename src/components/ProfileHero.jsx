@@ -215,7 +215,7 @@ function ProfileCard() {
 </Button>
 
 <Button
-  className="Verify"
+  className="Verify d-flex align-items-center justify-content-center"
   style={{
     color: "black",
     border: "none",
@@ -250,7 +250,7 @@ function ProfileCard() {
                 >
                   {profile.email ? profile.email : ""}
                   <Button
-  className="Verify"
+  className="Verify d-flex align-items-center justify-content-center"
   style={{
     color: "black",
     border: "none",
@@ -283,7 +283,7 @@ function ProfileCard() {
                 >
                   {profile.username ? "UserName: " + profile.username : ""}
                   <Button
-  className="Verify"
+  className="Verify d-flex align-items-center justify-content-center"
   style={{
     color: "black",
     border: "none",
@@ -316,7 +316,7 @@ function ProfileCard() {
                 >
                   {profile.title ? "Titolo: " + profile.title : ""}
                   <Button
-  className="Verify"
+  className="Verify d-flex align-items-center justify-content-center"
   style={{
     color: "black",
     border: "none",
@@ -348,7 +348,7 @@ function ProfileCard() {
                 >
                   {profile.bio ? "Bio: " + profile.bio : ""}
                   <Button
-  className="Verify"
+  className="Verify d-flex align-items-center justify-content-center"
   style={{
     color: "black",
     border: "none",
@@ -401,7 +401,7 @@ function ProfileCard() {
                     />
                   </Form.Group>
                   <Button
-                     className="mt-2 btn-sm" 
+                     className="mt-2 btn-sm d-flex align-items-center justify-content-center" 
                      variant="success"
                      type="submit"
                      style={{ width: "20%" }} 
@@ -409,7 +409,7 @@ function ProfileCard() {
                       Salva Modifiche
                     </Button>
                       <Button
-                      className="mt-2 ms-2 btn-sm" 
+                      className="mt-2 ms-2 btn-sm d-flex align-items-center justify-content-center" 
                       variant="danger"
                      style={{ width: "20%" }} 
                       onClick={handleCancelEdit}
