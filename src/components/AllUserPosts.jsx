@@ -121,7 +121,7 @@ function AllUserPosts() {
                     </div>
                   </div>
                 </div>
-                <p className="p-2 px-4">{post.text}</p>
+                <p style={{color:"black"}} className="p-2 px-4">{post.text}</p>
                 <img
                   src={post.image}
                   alt=""
