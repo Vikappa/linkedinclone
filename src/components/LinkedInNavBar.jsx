@@ -333,7 +333,7 @@ function LinkedInNavBar() {
 
       <Navbar
         fixed="bottom"
-        className="bg-body-tertiary justify-content-between container-fluid w-100 d-sm-none p-0"
+        className="bg-body-tertiary justify-content-between w-100 container-fluid d-sm-none p-0"
       >
         <Link to={"/home"} className="navbar2Buttons">
           <i className="bi bi-house-door-fill"></i>

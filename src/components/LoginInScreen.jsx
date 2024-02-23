@@ -46,7 +46,9 @@ const LoginInScreen = () => {
       className="container-fluid d-flex flex-column align-items-center justify-content-center"
     >
       <div id="login-form">
-        <h1 className="text-center">Login</h1>
+        <h1 className="text-center">
+          Ti diamo il benvenuto nella tua community
+        </h1>
         <p
           className="text-center"
           style={{ fontSize: "0.8rem", color: "grey" }}
