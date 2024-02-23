@@ -1,6 +1,3 @@
-// eslint-disable-next-line react-hooks/exhaustive-deps
-/* eslint-disable no-empty */
-/* eslint-disable no-unused-vars */
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import {
@@ -15,41 +12,38 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import ProfileBarOnHomepage from "./ProfileBarOnHomepage";
 import AllUserPosts from "./AllUserPosts";
-import JobSmall from './JobSmall'
+import JobSmall from "./JobSmall";
 import { FINISH_LOADING_JOBS } from "../Redux/Reducers/JobsReducer";
 
 function HomePage() {
   const dispatch = useDispatch();
 
   const [currentUser, setCurrentUser] = useState(null);
-  let currentUserStore = useSelector((state) => state.currentUser.currentUser)
-  const jobsArray = useSelector( state => state.jobs.allTheJobs )
+  let currentUserStore = useSelector((state) => state.currentUser.currentUser);
+  const jobsArray = useSelector((state) => state.jobs.allTheJobs);
 
-  const myUrl = `https://strive-benchmark.herokuapp.com/api/jobs?search=`
+  const myUrl = `https://strive-benchmark.herokuapp.com/api/jobs?search=`;
 
   const getJobs = async () => {
     try {
-      const response = await fetch(myUrl)
+      const response = await fetch(myUrl);
       if (response.ok) {
-        const fetchResults = await response.json()
+        const fetchResults = await response.json();
         dispatch({
           type: FINISH_LOADING_JOBS,
           payload: fetchResults.data,
-        })
+        });
       } else {
-        alert("Errore nella ricezione dei dati")
+        alert("Errore nella ricezione dei dati");
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
-
-  
+  };
 
   useEffect(() => {
-    
-    setCurrentUser(currentUserStore)
-  }, [currentUserStore])
+    setCurrentUser(currentUserStore);
+  }, [currentUserStore]);
 
   useEffect(() => {
     const fetchExperiencesCurrentUser = async () => {
@@ -76,6 +70,7 @@ function HomePage() {
           payload: experiencesData,
         });
       } catch (error) {
+        console.log(error);
       }
     };
     fetchExperiencesCurrentUser();
@@ -164,8 +159,8 @@ function HomePage() {
       }
     };
 
-    const fetchAllPostComments = async function(){
-      try{
+    const fetchAllPostComments = async function () {
+      try {
         const result = await fetch(
           `https://striveschool-api.herokuapp.com/api/comments/`,
           {
@@ -177,29 +172,28 @@ function HomePage() {
               }`,
             },
           }
-        )
-        if(!result.ok){
-          throw new Error("Errore GET COMMENTI")
+        );
+        if (!result.ok) {
+          throw new Error("Errore GET COMMENTI");
         }
-        const resultFetchCommentiPost = await result.json()
+        const resultFetchCommentiPost = await result.json();
         dispatch({
           type: FETCH_ALL_POST_COMMENTS,
           payload: resultFetchCommentiPost,
-        })
+        });
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
+    };
+
+    fetchAllPostComments();
+    fetchCurrentUser();
+    fetchAllUsers();
+    fetchAllPost();
+    if (jobsArray.length === 0) {
+      getJobs();
     }
-
-    fetchAllPostComments()
-    fetchCurrentUser()
-    fetchAllUsers()
-    fetchAllPost()
-if(jobsArray.length===0){
-  getJobs()
-}
-  }, [])
-
+  }, []);
 
   return (
     <Container fluid>
@@ -211,7 +205,7 @@ if(jobsArray.length===0){
           <AllUserPosts />
         </Col>
         <Col xs={0} lg={2}>
-        <JobSmall/>
+          <JobSmall />
         </Col>
       </Row>
     </Container>
