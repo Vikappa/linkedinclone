@@ -29,27 +29,26 @@ const SearchJobsPage = () => {
   const values = [true, "lg-down"];
   const [fullscreen, setFullscreen] = useState(true);
   const [show, setShow] = useState(false);
+  const [buttonText, setButtonText] = useState(false);
 
   function handleShow() {
     setShow(true);
   }
 
   function HtmlInterpreter({ htmlContent }) {
-    return <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
+    return <div dangerouslySetInnerHTML={{ __html: htmlContent }} />;
   }
 
-  const handleRicerca = function(e){
-    e.preventDefault()
-    getJobs()
-  }
+  const handleRicerca = function (e) {
+    e.preventDefault();
+    getJobs();
+  };
 
-  const handleChangeCampoRicerca = function(e){
-    setTextInput(e.target.value)
-  }
-  
+  const handleChangeCampoRicerca = function (e) {
+    setTextInput(e.target.value);
+  };
 
-  const myUrl = `https://strive-benchmark.herokuapp.com/api/jobs?search=${textInput}`
-
+  const myUrl = `https://strive-benchmark.herokuapp.com/api/jobs?search=${textInput}`;
 
   const getJobs = async () => {
     try {
@@ -59,14 +58,14 @@ const SearchJobsPage = () => {
         dispatch({
           type: FINISH_LOADING_JOBS,
           payload: fetchResults.data,
-        })
+        });
       } else {
-        alert("Errore nella ricezione dei dati")
+        alert("Errore nella ricezione dei dati");
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   return (
     <Container fluid>
@@ -75,20 +74,29 @@ const SearchJobsPage = () => {
           <SidebarJobs />
         </Col>
         <Col md={6}>
-        <Row>
-
-          <Form         
-          onSubmit={handleRicerca}
-          className="bg-white m-3">
-          <Form.Group className="mb-3" controlId="campoRicerca d-flex align-items-center justify-content-center">
-        <Form.Label className="fw-semibold fs-5">Cerca</Form.Label>
-        <Form.Control type="text" placeholder="Ricerca" value={textInput}
-        onChange={handleChangeCampoRicerca}/>
-        <Button type="submit" style={{width:"30%"}}
-        className="d-flex align-items-center justify-content-center p-0 m-1">Cerca</Button>
-      </Form.Group>
-          </Form>
-        </Row>
+          <Row>
+            <Form onSubmit={handleRicerca} className="bg-white m-3">
+              <Form.Group
+                className="mb-3"
+                controlId="campoRicerca d-flex align-items-center justify-content-center"
+              >
+                <Form.Label className="fw-semibold fs-5">Cerca</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Ricerca"
+                  value={textInput}
+                  onChange={handleChangeCampoRicerca}
+                />
+                <Button
+                  type="submit"
+                  style={{ width: "30%" }}
+                  className="d-flex align-items-center justify-content-center p-0 m-1"
+                >
+                  Cerca
+                </Button>
+              </Form.Group>
+            </Form>
+          </Row>
 
           {jobsLoading ? (
             <div className="text-center mt-4 pt-4 d-flex align-items-center justify-content-center">
@@ -97,7 +105,11 @@ const SearchJobsPage = () => {
           ) : jobs ? (
             jobs.slice(0, 50).map((job) => {
               return (
-                <div className="list-group my-2" style={{border:"1px solid lightgrey"}} key={job._id}>
+                <div
+                  className="list-group my-2"
+                  style={{ border: "1px solid lightgrey" }}
+                  key={job._id}
+                >
                   <div
                     className="list-group-item list-group-item-action "
                     aria-current="true"
@@ -158,37 +170,73 @@ const SearchJobsPage = () => {
                     <div>
                       <BsPeopleFill />
                       <span className="ms-2" style={{ fontSize: "smaller" }}>
-                        lorem ipsum lorem ipsum
+                        2 persone che conosci lavorano qui
                       </span>
                     </div>
                     <div>
                       <BsFillLightbulbFill />
                       <span className="ms-2" style={{ fontSize: "smaller" }}>
-                        Informazioni sull&apos;offerta di lavoro
+                        Vedi come ti posizioni rispetto a 38 candidati.
                       </span>
                     </div>
-                    <Button variant="primary" style={{width:"30%"}} className="rounded-pill d-flex justify-content-center align-items-center m-2">
-                      Candidati
-                    </Button>
-
+                    {/* <Row> */}
+                    {/* <div className=" mt-2 "> */}
+                    <Row>
+                      <Col xs={6}>
+                        <Row>
+                          <Col xs={12} sm={2}>
+                            <Button
+                              variant="primary"
+                              style={{ maxWidth: "fit-content" }}
+                              className="rounded-pill d-flex justify-content-center align-items-center my-2 "
+                            >
+                              Candidati
+                            </Button>
+                          </Col>
+                          <Col xs={12} sm={2}>
+                            <Button
+                              variant="primary"
+                              style={{
+                                color: "#0c6dfd",
+                                maxWidth: "fit-content",
+                              }}
+                              className="rounded-pill d-flex bg-white fw-semibold justify-content-center align-items-center my-2"
+                              onClick={() => {
+                                alert("Hai salvato l'offerta di lavoro."),
+                                  setButtonText(!buttonText);
+                              }}
+                            >
+                              {buttonText ? "Salva" : "Salvato"}
+                            </Button>
+                          </Col>
+                        </Row>
+                      </Col>
+                    </Row>
+                    {/* </div> */}
+                    {/* </Row> */}
                   </Card.Text>
-                  <Card.Link href={choosenJob.url}>
-                    Vai alla pagina dell&apos;offerta
-                  </Card.Link>
+                  <Card.Link href={choosenJob.url}>Scopri di più!</Card.Link>
                   <Card.Title className="mt-3">
                     Informazioni sull&apos;offerta di lavoro
                   </Card.Title>
                   <div id="htmlAnnounce">
-                  <HtmlInterpreter  htmlContent={choosenJob.description} />
+                    <HtmlInterpreter htmlContent={choosenJob.description} />
                   </div>
-                  <Modal.Footer>
-                <Button variant="primary">
-                  <Anchor href={choosenJob.url}><p className="text-white d-flex align-items-center justify-content-center">Visualizza offerta</p></Anchor>
-                </Button>
-              </Modal.Footer>
+                  <Modal.Footer className="d-flex align-items-center justify-content-center">
+                    <Button
+                      variant="primary"
+                      style={{ width: "15rem" }}
+                      className="rounded-pill mt-3"
+                    >
+                      <Anchor href={choosenJob.url}>
+                        <p className="text-white text-center ">
+                          Vai alla pagina dell&apos;offerta
+                        </p>
+                      </Anchor>
+                    </Button>
+                  </Modal.Footer>
                 </Card.Body>
               </Card>
-
             </Modal>
           </>
         ) : (
