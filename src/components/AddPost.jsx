@@ -24,10 +24,8 @@ const AddPost = () => {
     const bearerToken = `Bearer ${sessionStorage.getItem('accessToken')}`;
   
     try {
-      // Invio del testo del post e recupero dell'ID del post creato
       const postId = await postTextContent(apiUrl, postText, bearerToken);
       if (imageFile) {
-        // Se c'è un file immagine, lo inviamo usando l'ID del post appena creato
         await postImage(`${apiUrl}${postId}`, imageFile, bearerToken);
       }
       resetForm();
@@ -40,7 +38,6 @@ const AddPost = () => {
   const postImage = async (url, file, token) => {
     const formData = new FormData();
     formData.append('post', file);
-    // Assicurarsi che l'header 'Content-Type' non sia impostato quando si invia FormData
     const response = await fetch(url, {
       method: 'POST',
       headers: {
