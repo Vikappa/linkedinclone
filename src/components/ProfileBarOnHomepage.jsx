@@ -21,7 +21,7 @@ const ProfileBarOnHomepage = () => {
       <Row>
         <Col>
           {currentProfile && (
-            <Card className="my-2">
+            <Card className="my-2 position-sticky">
               <Card.Img
                 variant="top"
                 src="https://img.freepik.com/free-photo/vibrant-colors-blend-abstract-backdrop-pattern-generated-by-ai_188544-9565.jpg"
