@@ -131,23 +131,46 @@ function AllUserPosts() {
                 <PostCommentArea post={post} />
                 {currentUser._id && post.user._id === currentUser._id && (
                   <div className="d-flex justify-content-end">
-                    <Button
-                      style={{ width: "40px", height: "40px" }}
-                      variant="light"
-                      onClick={() => handleEditClickPost(post)}
-                      className="d-flex align-items-center me-1"
-                    >
-                      <FaPen />
-                    </Button>
-                    <Button
-                      style={{ width: "40px", height: "40px" }}
-                      variant="danger"
-                      onClick={() => handleDeleteClick(post._id)}
-                      className="d-flex align-items-center"
-                    >
-                      <FaTrashAlt />
-                    </Button>
-                  </div>
+  <Button
+    style={{
+      padding:"0",
+      width: "30px", 
+      height: "30px",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      transition: "transform 0.2s ease-in-out",
+      borderRadius: "50%",
+    }}
+    variant="light"
+    onMouseEnter={(e) => e.currentTarget.style.transform = "scale(1.1)"} 
+    onMouseLeave={(e) => e.currentTarget.style.transform = "scale(1)"} 
+    onClick={() => handleEditClickPost(post)}
+    className="d-flex align-items-center justify-content-center me-1 shadow-sm"
+  >
+    <FaPen />
+  </Button>
+  <Button
+    style={{
+      padding:"0",
+      width: "30px",
+      height: "30px",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      transition: "transform 0.2s ease-in-out",
+      borderRadius: "50%",
+    }}
+    variant="danger"
+    onMouseEnter={(e) => e.currentTarget.style.transform = "scale(1.1)"} 
+    onMouseLeave={(e) => e.currentTarget.style.transform = "scale(1)"} 
+    onClick={() => handleDeleteClick(post._id)}
+    className="d-flex align-items-center justify-content-center shadow-sm" 
+  >
+    <FaTrashAlt />
+  </Button>
+</div>
+
                 )}
                 {showDeleteModalPost && deletePostId === post._id && (
                   <DeletePost
