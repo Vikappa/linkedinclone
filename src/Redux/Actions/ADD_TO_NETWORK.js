@@ -1,6 +1,6 @@
-export const ADD_TO_NETWORK = "ADD_TO_NETWORK";
-export const REMOVE_FROM_NETWORK = "REMOVE_FROM_NETWORK";
-export const KILL_YOUR_FRIENDS = "KILL_YOUR_FRIENDS"
+export const ADD_TO_NETWORK = "BEFRIENDED";
+export const REMOVE_FROM_NETWORK = "KILL_THIS_FRIEND";
+export const KILL_YOUR_FRIENDS = "KILL_ALL_YOUR_FRIENDS"
 
 export const AddToNetworkAction = (selectedProfile) => {
   return {

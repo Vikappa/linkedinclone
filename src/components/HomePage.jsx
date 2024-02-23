@@ -1,7 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-// eslint-disable-next-line react-hooks/exhaustive-deps
-/* eslint-disable no-empty */
-/* eslint-disable no-unused-vars */
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import {
@@ -73,7 +69,9 @@ function HomePage() {
           type: FETCH_CURRENT_USER_EXPERIENCES,
           payload: experiencesData,
         });
-      } catch (error) {}
+      } catch (error) {
+        console.log(error);
+      }
     };
     fetchExperiencesCurrentUser();
   }, [currentUser, dispatch]);

@@ -8,9 +8,10 @@ import Button from "react-bootstrap/Button";
 import { useEffect, useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { AddToNetworkAction } from "../Redux/Actions/ADD_TO_NETWORK";
+import TastoCollegati from "./TastoCollegati";
 
 const SideBar = () => {
   const AllTheProfilesURL =
@@ -135,29 +136,17 @@ const SideBar = () => {
 
                       <div className="d-flex flex-column justify-content-end">
                         <div className="d-flex flex-row">
-                          <p className="text-dark fw-semibold">
+                        <Link to={`/profile/${profile._id}`} className="text-dark fw-semibold">
                             {profile.name} {profile.surname}
-                          </p>
+                          </Link>
                         </div>
 
                         <p className="text-muted m-0">{profile.title}</p>
                         <p className="fw-light"> {profile.area}</p>
                       </div>
                     </div>
-                    <div className=" mt-2 text-center">
-                      {/* bottone che aziona al click il modale */}
-                      <Button
-                        style={{ maxWidth: "fit-content" }}
-                        size="sm"
-                        variant="outline-secondary"
-                        className="rounded-5 border-2  fw-semibold"
-                        onClick={() => {
-                          setSelectedProfile(profile);
-                        }}
-                      >
-                        <i className="bi bi-person-plus-fill me-1"></i>
-                        Collegati
-                      </Button>
+                    <div className="d-flex align-items-center justify-content-center mt-2 text-center">
+                      <TastoCollegati user={profile}/>
                     </div>
                   </ListGroup.Item>
                 ))}
@@ -208,9 +197,9 @@ const SideBar = () => {
 
                     <div className="d-flex flex-column justify-content-end">
                       <div className="d-flex flex-row">
-                        <p className="text-dark fw-semibold">
+                      <Link to={`/profile/${user._id}`} className="text-dark fw-semibold">
                           {user.name} {user.surname}
-                        </p>
+                        </Link>
                       </div>
 
                       <p className="text muted m-0">{user.title}</p>
@@ -218,19 +207,8 @@ const SideBar = () => {
                       <div className=" mt-2"></div>
                     </div>
                   </div>
-                  <div className="text-center">
-                    <Button
-                      size="sm"
-                      variant="outline-secondary"
-                      className="rounded-5 border-2 fw-semibold "
-                      style={{ maxWidth: "fit-content" }}
-                      onClick={() => {
-                        setSelectedProfile(user);
-                      }}
-                    >
-                      <i className="bi bi-person-plus-fill me-1"></i>
-                      Collegati
-                    </Button>
+                  <div className="d-flex align-items-center justify-content-center mt-2 text-center">
+                    <TastoCollegati user={user}/>
                   </div>
                 </ListGroup.Item>
               ))}

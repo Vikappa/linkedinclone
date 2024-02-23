@@ -153,7 +153,18 @@ p {
 }
 
 .postImg{
-  margin: 0 0 0 2rem !important;
+  margin: 0 2rem;
+
+}
+
+@media screen and (max-width: 550px) {
+  .postImg{
+    min-width: 100%;
+    margin: 0 auto;
+  }
+  .postCommentInput{
+    margin: 0 !important;
+  }
 }
 
 #htmlAnnounce li{
@@ -192,6 +203,20 @@ p {
   text-decoration: underline;
   color: var(--bs-primary);
 }
+
+.button.outline-dark:hover .connetti-icon {
+  color: white !important ; 
+}
+
+.connetti-icon:hover{
+  color: white !important ; 
+
+}
+
+.tastoCollegatiDinamico{
+  max-width: fit-content;
+}
+
 
 
 /* ------------------------------------------ FINE CSS VINCENZO -------------------------------- */

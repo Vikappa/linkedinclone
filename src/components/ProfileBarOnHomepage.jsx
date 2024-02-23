@@ -6,6 +6,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 import Image from "react-bootstrap/Image";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const ProfileBarOnHomepage = () => {
   const [currentProfile, setcurrentProfile] = useState(null);
@@ -37,10 +38,13 @@ const ProfileBarOnHomepage = () => {
                   />
                 </div>
                 <Card.Title className="mt-5">
-                  <h4>
+                  <Link to={`/profile`}>
                     {" "}
-                    {currentProfile.name} {currentProfile.surname}
-                  </h4>
+                    <h4 className="text-black">
+                      {" "}
+                      {currentProfile.name} {currentProfile.surname}
+                    </h4>
+                  </Link>
                 </Card.Title>
                 <Card.Text className="fw-light text-secondary">
                   {currentProfile.title}

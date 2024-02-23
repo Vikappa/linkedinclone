@@ -81,7 +81,7 @@ const PostCommentArea = function (props) {
                 <form style={{ width: "100%" }} onSubmit={handleSubmit}>
                     <input
                         style={{ width: "50%", fontSize: "0.7rem", border: "1px solid lightgrey" }}
-                        className="rounded-pill p-0 px-2 m-1 mx-4"
+                        className="rounded-pill p-0 px-2 m-1 mx-4 postCommentInput"
                         type="text"
                         placeholder="Commenta.."
                         value={commentText}

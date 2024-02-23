@@ -109,9 +109,11 @@ function LinkedInNavBar() {
               <div className="d-flex flex-column justify-content-start">
                 <Link to={`/profile`}>
                   <h6 className="titoliDropDownTu text-start m-0">
-                    {currentUser
-                      ? currentUser.name + " " + currentUser.surname
-                      : "Error 404"}
+                    {currentUser ? (
+                      currentUser.name + " " + currentUser.surname
+                    ) : (
+                      <Link to={`*`}></Link>
+                    )}
                   </h6>
                 </Link>
                 {currentUser ? (
