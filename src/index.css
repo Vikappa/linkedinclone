@@ -193,6 +193,18 @@ p {
   color: var(--bs-primary);
 }
 
+.button.outline-dark:hover .connetti-icon {
+  color: white !important ; 
+}
+
+.connetti-icon:hover{
+  color: white !important ; 
+
+}
+
+.tastoCollegatiDinamico{
+  max-width: fit-content;
+}
 
 /* ------------------------------------------ FINE CSS VINCENZO -------------------------------- */
 

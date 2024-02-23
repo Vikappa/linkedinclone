@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { AddToNetworkAction } from "../Redux/Actions/ADD_TO_NETWORK";
+import TastoCollegati from "./TastoCollegati";
 
 const SideBar = () => {
   const AllTheProfilesURL =
@@ -144,20 +145,8 @@ const SideBar = () => {
                         <p className="fw-light"> {profile.area}</p>
                       </div>
                     </div>
-                    <div className=" mt-2 text-center">
-                      {/* bottone che aziona al click il modale */}
-                      <Button
-                        style={{ maxWidth: "fit-content" }}
-                        size="sm"
-                        variant="outline-secondary"
-                        className="rounded-5 border-2  fw-semibold"
-                        onClick={() => {
-                          setSelectedProfile(profile);
-                        }}
-                      >
-                        <i className="bi bi-person-plus-fill me-1"></i>
-                        Collegati
-                      </Button>
+                    <div className="d-flex align-items-center justify-content-center mt-2 text-center">
+                      <TastoCollegati user={profile}/>
                     </div>
                   </ListGroup.Item>
                 ))}
@@ -218,19 +207,8 @@ const SideBar = () => {
                       <div className=" mt-2"></div>
                     </div>
                   </div>
-                  <div className="text-center">
-                    <Button
-                      size="sm"
-                      variant="outline-secondary"
-                      className="rounded-5 border-2 fw-semibold "
-                      style={{ maxWidth: "fit-content" }}
-                      onClick={() => {
-                        setSelectedProfile(user);
-                      }}
-                    >
-                      <i className="bi bi-person-plus-fill me-1"></i>
-                      Collegati
-                    </Button>
+                  <div className="d-flex align-items-center justify-content-center mt-2 text-center">
+                    <TastoCollegati user={user}/>
                   </div>
                 </ListGroup.Item>
               ))}
