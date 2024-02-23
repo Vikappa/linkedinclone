@@ -22,11 +22,11 @@ const JobSmall = function() {
         }
 
         setSortedJobs(selectedJobs);
-    }, [storedJobs]);
+    }, [storedJobs])
 
     const handleShowMore = () => {
-        setShowMore(!showMore);
-    };
+        setShowMore(!showMore)
+    }
     return (
         <div className="card" style={{backgroundColor: 'white', borderRadius: '10px', textAlign: 'left', margin:"20px 0 0 0" }}>
             <h5 className="m-1" style={{textAlign:"center"}}>Jobs for you:</h5>

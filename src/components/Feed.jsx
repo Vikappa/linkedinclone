@@ -41,7 +41,7 @@ const Feed = function(){
             <h3 className="p-2">Feed:</h3>
           {arrayFocusedUser && userId ? (
             <>
-              {arrayFocusedUser
+              {arrayFocusedUser.reverse()
                 .map((post, index) => (
                   <div
                     key={index}
@@ -90,7 +90,7 @@ const Feed = function(){
             </>
           ) : (
 
-            arrayCurrentUser
+            arrayCurrentUser.reverse()
                 .map((post, index) => (
                   <div
                     key={index}

@@ -23,6 +23,7 @@ function HomePage() {
 
   const [currentUser, setCurrentUser] = useState(null);
   let currentUserStore = useSelector((state) => state.currentUser.currentUser)
+  const jobsArray = useSelector( state => state.jobs.allTheJobs )
 
   const myUrl = `https://strive-benchmark.herokuapp.com/api/jobs?search=`
 
@@ -42,6 +43,8 @@ function HomePage() {
       console.log(error)
     }
   }
+
+  
 
   useEffect(() => {
     
@@ -192,9 +195,11 @@ function HomePage() {
     fetchCurrentUser()
     fetchAllUsers()
     fetchAllPost()
-    getJobs()
-
+if(jobsArray.length===0){
+  getJobs()
+}
   }, [])
+
 
   return (
     <Container fluid>
