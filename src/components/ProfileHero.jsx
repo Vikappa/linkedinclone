@@ -134,6 +134,7 @@ function ProfileCard() {
             }}
           />
           <Card.Body
+          className="d-flex flex-column"
             style={{
               zIndex: 3,
               position: "relative",
@@ -171,15 +172,6 @@ function ProfileCard() {
               ) : (
                 <span style={{ color: "red" }}>Surname not available</span>
               )}
-              {!isEditing && (
-                <button
-                  className="Verify"
-                  style={{ marginLeft: "10px", width: "20%" }}
-                  onClick={() => setIsEditing(true)}
-                >
-                  Modifica
-                </button>
-              )}
             </Card.Title>
             {!isEditing && (
               <>
@@ -192,7 +184,7 @@ function ProfileCard() {
                     zIndex: 4,
                   }}
                 >
-                  Email: {profile.email ? profile.email : "Not Available"}
+                {profile.email ? profile.email : ""}
                 </Card.Text>
                 <Card.Text
                   style={{
@@ -203,8 +195,7 @@ function ProfileCard() {
                     zIndex: 4,
                   }}
                 >
-                  Username:{" "}
-                  {profile.username ? profile.username : "Not Available"}
+                  {profile.username ? "UserName: " + profile.username : ""}
                 </Card.Text>
                 <Card.Text
                   style={{
@@ -215,7 +206,7 @@ function ProfileCard() {
                     zIndex: 4,
                   }}
                 >
-                  Title: {profile.title ? profile.title : "Not Available"}
+                  {profile.title ? "Titolo: " + profile.title : ""}
                 </Card.Text>
                 <Card.Text
                   style={{
@@ -225,8 +216,17 @@ function ProfileCard() {
                     zIndex: 4,
                   }}
                 >
-                  Bio: {profile.bio ? profile.bio : "Not Available"}
+                  {profile.bio ? "Bio: " + profile.bio : ""}
                 </Card.Text>
+                {!isEditing && (
+                <button
+                  className="Verify"
+                  style={{ marginLeft: "10px", width: "20%" }}
+                  onClick={() => setIsEditing(true)}
+                >
+                  Modifica
+                </button>
+              )}
               </>
             )}
             {isEditing && (
@@ -241,7 +241,7 @@ function ProfileCard() {
                 <Form onSubmit={handleSubmit}>
                   <Form.Group controlId="Image">
                     <Form.Label style={{ color: "black" }}>
-                      Select a Image:
+                      Seleziona l&apos;immagine:
                     </Form.Label>
                     <Form.Control
                       style={{ color: "black", backgroundColor: "white" }}
@@ -252,26 +252,26 @@ function ProfileCard() {
                       placeholder="file"
                     />
                   </Form.Group>
-                  <Form.Group controlId="name">
+                  <Form.Group controlId="nome">
                     <Form.Label style={{ color: "black" }}>Name:</Form.Label>
                     <Form.Control
                       style={{ color: "black", backgroundColor: "white" }}
                       type="text"
-                      name="name"
+                      name="nome"
                       value={formData.name}
                       onChange={handleInputChange}
-                      placeholder="Enter your name"
+                      placeholder="Inserisci il tuo nome"
                     />
                   </Form.Group>
-                  <Form.Group controlId="surname">
-                    <Form.Label style={{ color: "black" }}>Surname:</Form.Label>
+                  <Form.Group controlId="cognome">
+                    <Form.Label style={{ color: "black" }}>Cognome:</Form.Label>
                     <Form.Control
                       style={{ color: "black", backgroundColor: "white" }}
                       type="text"
-                      name="surname"
+                      name="cognome"
                       value={formData.surname}
                       onChange={handleInputChange}
-                      placeholder="Enter your surname"
+                      placeholder="Inserisci il tuo cognome"
                     />
                   </Form.Group>
                   <Form.Group controlId="email">

@@ -60,7 +60,7 @@ const LoginInScreen = () => {
           value={selectedUser}
           onChange={handleSelect}
         >
-          <option value="">Select a user</option>
+          <option value="">Seleziona un utente</option>
           <option value="Alex">Alex</option>
           <option value="Vincenzo">Vincenzo</option>
           <option value="Elisa">Elisa</option>

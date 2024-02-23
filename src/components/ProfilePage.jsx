@@ -10,6 +10,8 @@ import CardSideBar from "./StaticSideBar";
 import Consigliato from "./Consigliato";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import Feed from "./Feed";
+import Analisi from './Analisi'
 
 
 function ProfilePage() {
@@ -26,7 +28,6 @@ function ProfilePage() {
     <>
       <Container>
         <Row>
-          {/* lato sinistro */}
           <Col xs={0} lg={2}></Col>
           <Col xs={12} lg={7} className="py-3">
           {!currentUserId?
@@ -39,8 +40,8 @@ function ProfilePage() {
             }
             <CardSideBar/>
             {/* <Analisi /> */}
+            <Feed/>
           </Col>
-          {/* sidebar */}
           <Col xs={0} lg={3}>
             <SideBar />
           </Col>

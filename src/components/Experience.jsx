@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import ModaleAggiungiEsperienza from "./ModaleAggiungiEsperienza";
@@ -8,7 +9,7 @@ import { Button } from "react-bootstrap";
 import DeleteExperience from "./DeleteExperience";
 import { FaPen } from "react-icons/fa";
 import PutExperience from "./PutExperience";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 function formatISODate(isoString) {
   const date = new Date(isoString);
@@ -49,9 +50,9 @@ const Experience = () => {
   };
 
   useEffect(() => {
-
-    fetchExperiencesFocusedUser()
-
+    if(userId){
+      fetchExperiencesFocusedUser()
+    }
   }, [userId])
   
 
@@ -136,18 +137,40 @@ const Experience = () => {
         <div className="d-flex align-items-center justify-content-between">
           <h5 className="p-1">Esperienza</h5>
           {
-            userId ? "" : <i
-            className="bi bi-plus-circle"
-            style={{ fontSize: "2rem" }}
+            userId ? "" : <button
+            style={{
+              width: "40px",
+              height: "40px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              borderRadius: "20px",
+              boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+              transition: "all 0.3s ease",
+              border: "none", 
+              backgroundColor: "transparent", 
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.backgroundColor = "#f0f0f0"; 
+              e.currentTarget.style.transform = "scale(1.05)"; 
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.backgroundColor = "transparent"; 
+              e.currentTarget.style.transform = ""
+            }}
             onClick={handleAddEsperienza}
-          ></i>
+            aria-label="Aggiungi Esperienza" 
+          >
+            <i className="bi bi-plus-circle" style={{ fontSize: "2rem", color: "#4B5563" }}></i> 
+          </button>
+          
           }
         </div>
         {
           userId ? 
           
           focusedUserExperiences.map((esperienza, index) => (
-            <div key={index} className="d-flex align-items-center border-bottom ">
+            <div key={index} className="d-flex align-items-center ">
               <div className="d-flex justify-content-start align-items-center jobLine p-2">
                 {esperienza.image ? (
                   <img
@@ -208,7 +231,7 @@ const Experience = () => {
           : 
           
           storeEsperienze.map((esperienza, index) => (
-            <div key={index} className="d-flex align-items-center border-bottom ">
+            <div key={index} className="d-flex align-items-center ">
               <div className="d-flex justify-content-start align-items-center jobLine p-2">
                 {esperienza.image ? (
                   <img
@@ -258,19 +281,53 @@ const Experience = () => {
                 </div>
               </div>
               <Button
-                style={{ width: "40px", height: "40px" }}
-                variant="light"
-                onClick={() => handleEditClick(esperienza)}
-                className="d-flex align-items-center me-1"
-              >
+  style={{
+    width: "40px",
+    height: "40px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: "20px", 
+    boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)", 
+    transition: "all 0.3s ease", 
+  }}
+  variant="light"
+  onMouseEnter={e => {
+    e.currentTarget.style.backgroundColor = "#f0f0f0"; 
+    e.currentTarget.style.transform = "scale(1.05)"; 
+  }}
+  onMouseLeave={e => {
+    e.currentTarget.style.backgroundColor = ""; 
+    e.currentTarget.style.transform = ""; 
+  }}
+  onClick={() => handleEditClick(esperienza)}
+  className="d-flex align-items-center me-1"
+>
                 <FaPen />
               </Button>
               <Button
-                style={{ width: "40px", height: "40px" }}
-                variant="danger"
-                onClick={() => handleDeleteClick(esperienza._id)}
-                className="d-flex align-items-center"
-              >
+  style={{
+    width: "40px",
+    height: "40px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: "20px",
+    boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+    transition: "all 0.3s ease",
+  }}
+  variant="danger"
+  onMouseEnter={e => {
+    e.currentTarget.style.backgroundColor = "#dc3545"; 
+    e.currentTarget.style.transform = "scale(1.05)";
+  }}
+  onMouseLeave={e => {
+    e.currentTarget.style.backgroundColor = ""
+    e.currentTarget.style.transform = ""
+  }}
+  onClick={() => handleDeleteClick(esperienza._id)}
+  className="d-flex align-items-center"
+>
                 <FaTrashAlt />
               </Button>
               {showDeleteModal && deleteExperienceId === esperienza._id && (
