@@ -21,8 +21,6 @@ function formatISODate(isoString) {
 const Experience = () => {
   let currentUserStore = useSelector((state) => state.currentUser.currentUser);
   const [currentUser, setCurrentUser] = useState(currentUserStore)
-  const [path, setPath] = useState(window.location.pathname)
-  const location = useLocation()
   const { userId } = useParams()
   const [focusedUserExperiences, setFocusedUserExperiences] = useState([])
 
@@ -146,7 +144,7 @@ const Experience = () => {
           }
         </div>
         {
-          focusedUserExperiences.length>0 ? 
+          userId ? 
           
           focusedUserExperiences.map((esperienza, index) => (
             <div key={index} className="d-flex align-items-center border-bottom ">
