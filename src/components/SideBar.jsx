@@ -8,7 +8,7 @@ import Button from "react-bootstrap/Button";
 import { useEffect, useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { AddToNetworkAction } from "../Redux/Actions/ADD_TO_NETWORK";
 import TastoCollegati from "./TastoCollegati";
@@ -136,9 +136,9 @@ const SideBar = () => {
 
                       <div className="d-flex flex-column justify-content-end">
                         <div className="d-flex flex-row">
-                          <p className="text-dark fw-semibold">
+                        <Link to={`/profile/${profile._id}`} className="text-dark fw-semibold">
                             {profile.name} {profile.surname}
-                          </p>
+                          </Link>
                         </div>
 
                         <p className="text-muted m-0">{profile.title}</p>
@@ -197,9 +197,9 @@ const SideBar = () => {
 
                     <div className="d-flex flex-column justify-content-end">
                       <div className="d-flex flex-row">
-                        <p className="text-dark fw-semibold">
+                      <Link to={`/profile/${user._id}`} className="text-dark fw-semibold">
                           {user.name} {user.surname}
-                        </p>
+                        </Link>
                       </div>
 
                       <p className="text muted m-0">{user.title}</p>
