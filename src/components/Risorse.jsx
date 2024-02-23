@@ -2,11 +2,14 @@ import "../components/style.css"
 function Risorse(){
     return(
    <>
+   <br />
+   <br />
+   <div id="container2"  className="bg-white p-2">
         <h3>Risorse</h3>
         <i className="fas fa-eye"></i>
         <p id="eye-text">Solo per te</p>
         <br /><br />
-        <div id="container2">
+        
           <div id="container2-div1">
             <i className="fas fa-satellite-dish"></i>
     
@@ -34,6 +37,8 @@ function Risorse(){
           </div>
         </div>
         <button>Mostra tutte le risorse <i className="fas fa-arrow-right"></i></button>
+        <br />
+        <br />
     </>
     )
 } 

@@ -3,12 +3,20 @@ import "../components/style.css"
 function analisi(){
 return(
     <>
+    <br />
+    <div id="container" className="bg-white p-2 d-flex flex-column">
+      <br /><br />
     <h3>Analisi</h3>
+    <br /><br />
+    <div className="d-flex">
     <i className="fas fa-eye"></i>
+    
     <p id="eye-text">Solo per te</p>
 
-    <div id="container">
-      <div id="first-div">
+    </div>
+
+     <div className="d-flex " >
+ <div id="first-div">
         <br />
         <i className="fas fa-user-friends" id="friends"></i>
         <div id="user-friends">
@@ -19,8 +27,8 @@ return(
             attrarre visitatori.
           </p>
         </div>
+        
       </div>
-
       <div id="second-div">
         <div id="ricerca">
           <i className="fas fa-search"></i>
@@ -30,6 +38,8 @@ return(
           </p>
         </div>
       </div>
+     </div>
+     
     </div>
 
     <button>Mostra tutte le analisi <i className="fas fa-arrow-right"></i></button>

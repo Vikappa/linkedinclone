@@ -1,4 +1,4 @@
- *{background-color: white;}
+ /* *{background-color: white;} */
 #eye-text{
     display: inline;
     color: grey;
@@ -14,7 +14,9 @@ i{
 #user-friends-para{
  
 margin: 0px 30px;
+background-color: white;
 }
+
 #friends{
     position: absolute;
     margin: 10px 0px;
@@ -22,6 +24,8 @@ margin: 0px 30px;
 #user-friends-title{
 padding-left: 30px;
 font-weight:bold;
+color:#808080
+ 
 }
 #second-div{
     margin: 20px 100px; 
@@ -30,6 +34,13 @@ font-weight:bold;
 }
 #container{
     display: flex;
+    border: 1px solid #D2D2D2;
+    border-radius: 10px;
+   
+}
+#container2{
+    border: 1px solid #D2D2D2;
+    border-radius: 10px;
 }
 #ricerca-title{
     margin-left: 30px;
@@ -42,12 +53,14 @@ font-weight:bold;
 
 button{
     height: 30px; 
-    width:100%
+    width:100%;
     color: grey;
     font-weight:150;  
     font-size:20px;
     background-color: white;
     border: 0px;
+    
+    
     
 }
 button:hover {
@@ -59,6 +72,7 @@ button:hover {
     margin-left: 10px;
     font-weight:bold;
     display: inline-block;
+    color: #808080;
   }
   #no{
     background-color: #E8E8E8;

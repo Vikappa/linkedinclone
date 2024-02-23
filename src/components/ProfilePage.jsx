@@ -40,7 +40,8 @@ function ProfilePage() {
             <Consigliato />:""
             }
             <CardSideBar/>
-            {/* <Analisi /> */}
+            <Analisi />
+            <Risorse/>
             <Feed/>
           </Col>
           <Col xs={0} lg={3}>
