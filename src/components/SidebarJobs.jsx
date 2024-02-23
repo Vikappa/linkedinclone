@@ -15,7 +15,7 @@ const SidebarJobs = () => {
     <>
       <Container fluid>
         <Row>
-          <Card className="mt-2">
+          <Card className="mt-2 ">
             <Card.Body>
               <div className="lista d-flex justify-content-between align-items-center">
                 <ul className="p-1 list-unstyled">

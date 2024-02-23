@@ -136,7 +136,10 @@ const SideBar = () => {
 
                       <div className="d-flex flex-column justify-content-end">
                         <div className="d-flex flex-row">
-                        <Link to={`/profile/${profile._id}`} className="text-dark fw-semibold">
+                          <Link
+                            to={`/profile/${profile._id}`}
+                            className="text-dark fw-semibold"
+                          >
                             {profile.name} {profile.surname}
                           </Link>
                         </div>
@@ -146,7 +149,7 @@ const SideBar = () => {
                       </div>
                     </div>
                     <div className="d-flex align-items-center justify-content-center mt-2 text-center">
-                      <TastoCollegati user={profile}/>
+                      <TastoCollegati user={profile} />
                     </div>
                   </ListGroup.Item>
                 ))}
@@ -197,7 +200,10 @@ const SideBar = () => {
 
                     <div className="d-flex flex-column justify-content-end">
                       <div className="d-flex flex-row">
-                      <Link to={`/profile/${user._id}`} className="text-dark fw-semibold">
+                        <Link
+                          to={`/profile/${user._id}`}
+                          className="text-dark fw-semibold"
+                        >
                           {user.name} {user.surname}
                         </Link>
                       </div>
@@ -208,7 +214,7 @@ const SideBar = () => {
                     </div>
                   </div>
                   <div className="d-flex align-items-center justify-content-center mt-2 text-center">
-                    <TastoCollegati user={user}/>
+                    <TastoCollegati user={user} />
                   </div>
                 </ListGroup.Item>
               ))}
