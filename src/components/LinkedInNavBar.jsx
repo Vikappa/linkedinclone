@@ -16,15 +16,15 @@ import { KILL_YOUR_FRIENDS } from "../Redux/Actions/ADD_TO_NETWORK";
 
 function LinkedInNavBar() {
   const [currentUser, setCurrentUser] = useState(null);
-  const [currentUserExperience, setCurrentUserExperience] = useState([])
-  const [path, setPath] = useState(window.location.pathname)
-  let currentUserStore = useSelector((state) => state.currentUser.currentUser)
-  const dispatch = useDispatch()
-  const location = useLocation()
+  const [currentUserExperience, setCurrentUserExperience] = useState([]);
+  const [path, setPath] = useState(window.location.pathname);
+  let currentUserStore = useSelector((state) => state.currentUser.currentUser);
+  const dispatch = useDispatch();
+  const location = useLocation();
 
   useEffect(() => {
-    setPath(location.pathname)
-  }, [location.pathname])
+    setPath(location.pathname);
+  }, [location.pathname]);
 
   const deleteUserFetch = () => {
     dispatch({
@@ -32,9 +32,9 @@ function LinkedInNavBar() {
       payload: null,
     });
     dispatch({
-      type: KILL_YOUR_FRIENDS, 
-      payload: null
-    })
+      type: KILL_YOUR_FRIENDS,
+      payload: null,
+    });
   };
 
   useEffect(() => {
@@ -109,9 +109,11 @@ function LinkedInNavBar() {
               <div className="d-flex flex-column justify-content-start">
                 <Link to={`/profile`}>
                   <h6 className="titoliDropDownTu text-start m-0">
-                    {currentUser
-                      ? currentUser.name + " " + currentUser.surname
-                      : "Error 404"}
+                    {currentUser ? (
+                      currentUser.name + " " + currentUser.surname
+                    ) : (
+                      <Link to={`*`}></Link>
+                    )}
                   </h6>
                 </Link>
                 {currentUser ? (
@@ -168,11 +170,7 @@ function LinkedInNavBar() {
           </Link>
         ) : (
           <>
-            <img
-              src={linkedInIcon}
-              className="d-sm-none"
-              id="profilePic"
-            />
+            <img src={linkedInIcon} className="d-sm-none" id="profilePic" />
           </>
         )}
         <Container className="p-0 d-sm-none">
@@ -220,57 +218,70 @@ function LinkedInNavBar() {
               </Form>
             </div>
             <Link to={`/home`}>
-              {path==="/home"?              
-              <div className="d-flex flex-column text-center topBarButton">
-                <i style={{color:"#0077B5"}}  className="bi bi-house-door-fill navBarDedicatedButton ">
-                </i>
-                <p className="d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP">
-                  Home
-                </p>
-              </div>
-              :              
-              <div className="d-flex flex-column text-center topBarButton">
-                <i  className="bi bi-house-door-fill navBarDedicatedButton ">
-                </i>
-                <p className="d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP">
-                  Home
-                </p>
-              </div>}
+              {path === "/home" ? (
+                <div className="d-flex flex-column text-center topBarButton">
+                  <i
+                    style={{ color: "#0077B5" }}
+                    className="bi bi-house-door-fill navBarDedicatedButton "
+                  ></i>
+                  <p className="d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP">
+                    Home
+                  </p>
+                </div>
+              ) : (
+                <div className="d-flex flex-column text-center topBarButton">
+                  <i className="bi bi-house-door-fill navBarDedicatedButton "></i>
+                  <p className="d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP">
+                    Home
+                  </p>
+                </div>
+              )}
             </Link>
             <Link to={`/network`}>
-            {path==='/network'?
-                          <div className="d-flex flex-column text-center topBarButton">
-                          <i style={{color:"#0077B5"}} className="bi bi-person-fill navBarDedicatedButton "> </i>
-                          <p className="d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP">
-                            Rete
-                          </p>
-                        </div>
-                        :
-                        <div className="d-flex flex-column text-center topBarButton">
-                        <i className="bi bi-person-fill navBarDedicatedButton "> </i>
-                        <p className="d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP">
-                          Rete
-                        </p>
-                      </div>  
-            }
+              {path === "/network" ? (
+                <div className="d-flex flex-column text-center topBarButton">
+                  <i
+                    style={{ color: "#0077B5" }}
+                    className="bi bi-person-fill navBarDedicatedButton "
+                  >
+                    {" "}
+                  </i>
+                  <p className="d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP">
+                    Rete
+                  </p>
+                </div>
+              ) : (
+                <div className="d-flex flex-column text-center topBarButton">
+                  <i className="bi bi-person-fill navBarDedicatedButton "> </i>
+                  <p className="d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP">
+                    Rete
+                  </p>
+                </div>
+              )}
             </Link>
-            <Link to={'/jobs'}>
-              {path ==="/jobs"?
-                          <div className="d-flex flex-column text-center topBarButton">
-                          <i style={{color:"#0077B5"}} className="bi bi-briefcase-fill navBarDedicatedButton "> </i>
-                          <p className="d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP">
-                            Lavoro
-                          </p>
-                        </div>
-                        :
-                        <div className="d-flex flex-column text-center topBarButton">
-                        <i className="bi bi-briefcase-fill navBarDedicatedButton "> </i>
-                        <p className="d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP">
-                          Lavoro
-                        </p>
-                      </div>
-                      }
-            
+            <Link to={"/jobs"}>
+              {path === "/jobs" ? (
+                <div className="d-flex flex-column text-center topBarButton">
+                  <i
+                    style={{ color: "#0077B5" }}
+                    className="bi bi-briefcase-fill navBarDedicatedButton "
+                  >
+                    {" "}
+                  </i>
+                  <p className="d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP">
+                    Lavoro
+                  </p>
+                </div>
+              ) : (
+                <div className="d-flex flex-column text-center topBarButton">
+                  <i className="bi bi-briefcase-fill navBarDedicatedButton ">
+                    {" "}
+                  </i>
+                  <p className="d-none d-lg-inline p-0 m-0 navBarDedicatedButtonP">
+                    Lavoro
+                  </p>
+                </div>
+              )}
             </Link>
             <div className="d-flex flex-column text-center topBarButton">
               <i className="bi bi-chat-dots-fill navBarDedicatedButton "> </i>
@@ -327,16 +338,16 @@ function LinkedInNavBar() {
         <Link to={"/home"} className="navbar2Buttons">
           <i className="bi bi-house-door-fill"></i>
         </Link>
-        <Link to={'/profile'} className="navbar2Buttons">
+        <Link to={"/profile"} className="navbar2Buttons">
           <i className="bi bi-person-fill"></i>
         </Link>
-        <Link to={'/extra'} className="navbar2Buttons">
+        <Link to={"/extra"} className="navbar2Buttons">
           <i className="bi bi-plus-square-fill"></i>
         </Link>
         <Link className="navbar2Buttons">
           <i className="bi bi-bell-fill"></i>
         </Link>
-        <Link to={'/jobs'} className="navbar2Buttons">
+        <Link to={"/jobs"} className="navbar2Buttons">
           <i className="bi bi-briefcase-fill"></i>
         </Link>
       </Navbar>
