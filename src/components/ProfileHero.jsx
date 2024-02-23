@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 function ProfileCard() {
   const [profile, setProfile] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
+  const [fieldToEdit, setFieldToEdit] = useState("");
   const [newImage, setNewImage] = useState(null);
   const [formData, setFormData] = useState({
     name: "",
@@ -18,17 +19,26 @@ function ProfileCard() {
     username: "",
   });
 
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-  const storedProfile = useSelector((state) => state.currentUser.currentUser); //Prende l'user dallo store
+  const storedProfile = useSelector((state) => state.currentUser.currentUser);
 
   useEffect(() => {
     setProfile(storedProfile);
-  }, [storedProfile]); //Setta il profilo preso dallo store come stato del componente
+  }, [storedProfile]);
 
-  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  useEffect(() => {
+    if (profile) {
+      setFormData({
+        name: profile.name || "",
+        surname: profile.surname || "",
+        bio: profile.bio || "",
+        email: profile.email || "",
+        title: profile.title || "",
+        username: profile.username || "",
+      });
+    }
+  }, [profile]);
 
-  const accessToken = sessionStorage.getItem("accessToken"); // modificato per prendere l'accestoken dell'utente corrente
+  const accessToken = sessionStorage.getItem("accessToken");
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -37,11 +47,12 @@ function ProfileCard() {
       [name]: value,
     });
   };
+
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     setNewImage(file);
   };
-  //!
+
   const handleImageSubmit = async () => {
     try {
       if (newImage) {
@@ -75,7 +86,11 @@ function ProfileCard() {
     }
   };
 
-  //!
+  const handleFieldEdit = (fieldName) => {
+    setIsEditing(true);
+    setFieldToEdit(fieldName);
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -88,7 +103,7 @@ function ProfileCard() {
             "Content-Type": "application/json",
             Authorization: `Bearer ${accessToken}`,
           },
-          body: JSON.stringify(formData),
+          body: JSON.stringify({ [fieldToEdit]: formData[fieldToEdit] }),
         }
       );
       if (response.ok) {
@@ -105,6 +120,10 @@ function ProfileCard() {
     } catch (error) {
       console.error("Si è verificato un errore:", error);
     }
+  };
+
+  const handleCancelEdit = () => {
+    setIsEditing(false);
   };
 
   return (
@@ -134,7 +153,7 @@ function ProfileCard() {
             }}
           />
           <Card.Body
-          className="d-flex flex-column"
+            className="d-flex flex-column"
             style={{
               zIndex: 3,
               position: "relative",
@@ -172,6 +191,51 @@ function ProfileCard() {
               ) : (
                 <span style={{ color: "red" }}>Surname not available</span>
               )}
+              <Button
+  className="Verify"
+  style={{
+    color: "black",
+    border: "none",
+    backgroundColor: "lightgrey",
+    marginLeft: "10px",
+    width: "auto",
+    transition: "background-color 0.3s, color 0.3s", 
+  }}
+  onClick={() => handleFieldEdit("name")}
+  onMouseEnter={(event) => {
+    event.target.style.backgroundColor = 'red';
+    event.target.style.color = 'white'; 
+  }}
+  onMouseLeave={(event) => {
+    event.target.style.backgroundColor = 'lightgrey';
+    event.target.style.color = 'black'; 
+  }}
+>
+  Modifica nome
+</Button>
+
+<Button
+  className="Verify"
+  style={{
+    color: "black",
+    border: "none",
+    backgroundColor: "lightgrey",
+    marginLeft: "10px",
+    width: "auto",
+    transition: "background-color 0.3s, color 0.3s", 
+  }}
+  onClick={() => handleFieldEdit("surname")}
+  onMouseEnter={(event) => {
+    event.target.style.backgroundColor = 'red';
+    event.target.style.color = 'white'; 
+  }}
+  onMouseLeave={(event) => {
+    event.target.style.backgroundColor = 'lightgrey';
+    event.target.style.color = 'black'; 
+  }}
+>
+  Modifica cognome
+</Button>
             </Card.Title>
             {!isEditing && (
               <>
@@ -184,7 +248,29 @@ function ProfileCard() {
                     zIndex: 4,
                   }}
                 >
-                {profile.email ? profile.email : ""}
+                  {profile.email ? profile.email : ""}
+                  <Button
+  className="Verify"
+  style={{
+    color: "black",
+    border: "none",
+    backgroundColor: "lightgrey",
+    marginLeft: "10px",
+    width: "auto",
+    transition: "background-color 0.3s, color 0.3s", 
+  }}
+  onClick={() => handleFieldEdit("email")}
+  onMouseEnter={(event) => {
+    event.target.style.backgroundColor = 'red';
+    event.target.style.color = 'white'; 
+  }}
+  onMouseLeave={(event) => {
+    event.target.style.backgroundColor = 'lightgrey';
+    event.target.style.color = 'black'; 
+  }}
+>
+  Modifica email
+</Button>
                 </Card.Text>
                 <Card.Text
                   style={{
@@ -196,6 +282,28 @@ function ProfileCard() {
                   }}
                 >
                   {profile.username ? "UserName: " + profile.username : ""}
+                  <Button
+  className="Verify"
+  style={{
+    color: "black",
+    border: "none",
+    backgroundColor: "lightgrey",
+    marginLeft: "10px",
+    width: "auto",
+    transition: "background-color 0.3s, color 0.3s", 
+  }}
+  onClick={() => handleFieldEdit("username")}
+  onMouseEnter={(event) => {
+    event.target.style.backgroundColor = 'red';
+    event.target.style.color = 'white';
+  }}
+  onMouseLeave={(event) => {
+    event.target.style.backgroundColor = 'lightgrey';
+    event.target.style.color = 'black'; 
+  }}
+>
+  Modifica username
+</Button>
                 </Card.Text>
                 <Card.Text
                   style={{
@@ -207,6 +315,28 @@ function ProfileCard() {
                   }}
                 >
                   {profile.title ? "Titolo: " + profile.title : ""}
+                  <Button
+  className="Verify"
+  style={{
+    color: "black",
+    border: "none",
+    backgroundColor: "lightgrey",
+    marginLeft: "10px",
+    width: "auto",
+    transition: "background-color 0.3s, color 0.3s", 
+  }}
+  onClick={() => handleFieldEdit("title")}
+  onMouseEnter={(event) => {
+    event.target.style.backgroundColor = 'red';
+    event.target.style.color = 'white'; 
+  }}
+  onMouseLeave={(event) => {
+    event.target.style.backgroundColor = 'lightgrey';
+    event.target.style.color = 'black'; 
+  }}
+>
+  Modifica titolo
+</Button>
                 </Card.Text>
                 <Card.Text
                   style={{
@@ -217,16 +347,29 @@ function ProfileCard() {
                   }}
                 >
                   {profile.bio ? "Bio: " + profile.bio : ""}
+                  <Button
+  className="Verify"
+  style={{
+    color: "black",
+    border: "none",
+    backgroundColor: "lightgrey",
+    marginLeft: "10px",
+    width: "auto",
+    transition: "background-color 0.3s, color 0.3s", 
+  }}
+  onClick={() => handleFieldEdit("bio")}
+  onMouseEnter={(event) => {
+    event.target.style.backgroundColor = 'red';
+    event.target.style.color = 'white'; 
+  }}
+  onMouseLeave={(event) => {
+    event.target.style.backgroundColor = 'lightgrey';
+    event.target.style.color = 'black'; 
+  }}
+>
+  Modifica bio
+</Button>
                 </Card.Text>
-                {!isEditing && (
-                <button
-                  className="Verify"
-                  style={{ marginLeft: "10px", width: "20%" }}
-                  onClick={() => setIsEditing(true)}
-                >
-                  Modifica
-                </button>
-              )}
               </>
             )}
             {isEditing && (
@@ -239,124 +382,40 @@ function ProfileCard() {
                 }}
               >
                 <Form onSubmit={handleSubmit}>
-                  <Form.Group controlId="Image">
+                  <Form.Group controlId={fieldToEdit}>
                     <Form.Label style={{ color: "black" }}>
-                      Seleziona l&apos;immagine:
-                    </Form.Label>
-                    <Form.Control
-                      style={{ color: "black", backgroundColor: "white" }}
-                      type="file"
-                      name="image"
-                      value={formData.image}
-                      onChange={handleImageChange}
-                      placeholder="file"
-                    />
-                  </Form.Group>
-                  <Form.Group controlId="nome">
-                    <Form.Label style={{ color: "black" }}>Name:</Form.Label>
-                    <Form.Control
-                      style={{ color: "black", backgroundColor: "white" }}
-                      type="text"
-                      name="nome"
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      placeholder="Inserisci il tuo nome"
-                    />
-                  </Form.Group>
-                  <Form.Group controlId="cognome">
-                    <Form.Label style={{ color: "black" }}>Cognome:</Form.Label>
-                    <Form.Control
-                      style={{ color: "black", backgroundColor: "white" }}
-                      type="text"
-                      name="cognome"
-                      value={formData.surname}
-                      onChange={handleInputChange}
-                      placeholder="Inserisci il tuo cognome"
-                    />
-                  </Form.Group>
-                  <Form.Group controlId="email">
-                    <Form.Label style={{ color: "black" }}>Email:</Form.Label>
-
-                    <Form.Control
-                      style={{ color: "black", backgroundColor: "white" }}
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      placeholder="Enter your email"
-                    />
-                  </Form.Group>
-                  <Form.Group controlId="username">
-                    <Form.Label style={{ color: "black" }}>
-                      Username:
+                      {fieldToEdit === "name" && "Name:"}
+                      {fieldToEdit === "surname" && "Surname:"}
+                      {fieldToEdit === "email" && "Email:"}
+                      {fieldToEdit === "username" && "Username:"}
+                      {fieldToEdit === "title" && "Title:"}
+                      {fieldToEdit === "bio" && "Bio:"}
                     </Form.Label>
                     <Form.Control
                       style={{ color: "black", backgroundColor: "white" }}
                       type="text"
-                      name="username"
-                      value={formData.username}
+                      name={fieldToEdit}
+                      value={formData[fieldToEdit]}
                       onChange={handleInputChange}
-                      placeholder="Enter your username"
+                      placeholder={`Enter your ${fieldToEdit}`}
                     />
                   </Form.Group>
-                  <Form.Group controlId="title">
-                    <Form.Label style={{ color: "black" }}>Title:</Form.Label>
-                    <Form.Control
-                      style={{ color: "black", backgroundColor: "white" }}
-                      type="text"
-                      name="title"
-                      value={formData.title}
-                      onChange={handleInputChange}
-                      placeholder="Enter your title"
-                    />
-                  </Form.Group>
-                  <Form.Group controlId="bio">
-                    <Form.Label style={{ color: "black" }}>Bio:</Form.Label>
-                    <Form.Control
-                      style={{ color: "black", backgroundColor: "white" }}
-                      as="textarea"
-                      rows={3}
-                      name="bio"
-                      value={formData.bio}
-                      onChange={handleInputChange}
-                      placeholder="Enter your bio"
-                    />
-                  </Form.Group>
-                  <div className="d-flex justify-content-between align-items-center">
-                    <Button
-                      style={{
-                        backgroundColor: "#DC3545",
-                        border: "none",
-                        marginTop: "10px",
-                        paddingTop: "4px",
-                        paddingBottom: "4px",
-                        paddingLeft: "15px",
-                        paddingRight: "15px",
-                        marginLeft: "5px",
-                        fontSize: "12px",
-                      }}
-                      onClick={() => setIsEditing(false)}
-                    >
-                      Cancel
+                  <Button
+                     className="mt-2 btn-sm" 
+                     variant="success"
+                     type="submit"
+                     style={{ width: "20%" }} 
+                                      >
+                      Salva Modifiche
                     </Button>
-                    <Button
-                      className="Savebtn"
-                      style={{
-                        border: "none",
-                        backgroundColor: "green",
-                        marginTop: "10px",
-                        paddingTop: "4px",
-                        paddingBottom: "4px",
-                        paddingLeft: "15px",
-                        paddingRight: "15px",
-                        marginLeft: "5px",
-                        fontSize: "12px",
-                      }}
-                      type="submit"
-                    >
-                      Save Changes
-                    </Button>
-                  </div>
+                      <Button
+                      className="mt-2 ms-2 btn-sm" 
+                      variant="danger"
+                     style={{ width: "20%" }} 
+                      onClick={handleCancelEdit}
+                      >
+                       Annulla
+                      </Button>
                 </Form>
               </Card>
             )}
