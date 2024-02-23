@@ -3,19 +3,19 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Image from "react-bootstrap/Image";
-import Button from "react-bootstrap/Button";
+// import Button from "react-bootstrap/Button";
 import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { trashThis } from "../Redux/Actions/ADD_TO_NETWORK";
+// import { useDispatch } from "react-redux";
+// import { trashThis } from "../Redux/Actions/ADD_TO_NETWORK";
 import sadCat from "../assets/5ee772d099588c0004aa684b.png";
 import { Link } from "react-router-dom";
 //CIAO SONO VINCENZO TOCCO IL TUO CODICE SENZA PERMESSO
 const Network = () => {
   const networking = useSelector((state) => state.networking.users);
-  const dispatch = useDispatch();
-  const handleTrash = (i) => {
-    dispatch(trashThis(i));
-  };
+  // const dispatch = useDispatch();
+  // const handleTrash = (i) => {
+  //   dispatch(trashThis(i));
+  // };
 
   return (
     <Container fluid>
