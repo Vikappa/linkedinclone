@@ -1,38 +1,38 @@
-import { useState } from "react"
-import { useSelector } from "react-redux"
-import AddPost from "./AddPost.jsx"
-import { Button, Spinner } from "react-bootstrap"
-import { FaPen } from "react-icons/fa"
-import { FaTrashAlt } from "react-icons/fa"
-import DeletePost from "./DeletePost.jsx"
-import PutPost from "./PutPost.jsx"
-import { useDispatch } from "react-redux"
-import { FETCH_ALL_POSTS } from "../Redux/Actions/ADD_EXPERIENCE.js"
-import PostCommentArea from "./PostCommentArea.jsx"
-import { Link } from "react-router-dom"
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import AddPost from "./AddPost.jsx";
+import { Button, Spinner, Row, Col } from "react-bootstrap";
+import { FaPen } from "react-icons/fa";
+import { FaTrashAlt } from "react-icons/fa";
+import DeletePost from "./DeletePost.jsx";
+import PutPost from "./PutPost.jsx";
+import { useDispatch } from "react-redux";
+import { FETCH_ALL_POSTS } from "../Redux/Actions/ADD_EXPERIENCE.js";
+import PostCommentArea from "./PostCommentArea.jsx";
+import { Link } from "react-router-dom";
 
 function formatDate(date) {
   const d = new Date(date),
     day = "" + d.getDate(),
     month = "" + (d.getMonth() + 1),
-    year = d.getFullYear()
+    year = d.getFullYear();
 
-  return [year, month.padStart(2, "0"), day.padStart(2, "0")].join(" ")
+  return [year, month.padStart(2, "0"), day.padStart(2, "0")].join(" ");
 }
 
 function AllUserPosts() {
-  const dispatch = useDispatch()
-  const [showDeleteModalPost, setShowDeleteModalPost] = useState(false)
-  const [deletePostId, setDeletePostId] = useState(null)
+  const dispatch = useDispatch();
+  const [showDeleteModalPost, setShowDeleteModalPost] = useState(false);
+  const [deletePostId, setDeletePostId] = useState(null);
   const handleDeleteClick = (PostId) => {
-    setDeletePostId(PostId)
-    setShowDeleteModalPost(true)
-  }
+    setDeletePostId(PostId);
+    setShowDeleteModalPost(true);
+  };
   const handleDeleteModalClosePost = () => {
-    setShowDeleteModalPost(false)
-  }
+    setShowDeleteModalPost(false);
+  };
 
-  const [postToEdit, setPostToEdit] = useState(null)
+  const [postToEdit, setPostToEdit] = useState(null);
   const [visibilitàModaleEditPost, setVisibilitàModaleEditPost] =
     useState(false);
   const handleEditClickPost = (post) => {
@@ -40,9 +40,9 @@ function AllUserPosts() {
     console.log("PUT DI POST ID", post._id);
     setVisibilitàModaleEditPost(true);
   };
-  const interoStore = useSelector((state) => state.arrayAllPosts.arrayPosts)
-  const currentUser = useSelector((state) => state.currentUser.currentUser)
-  
+  const interoStore = useSelector((state) => state.arrayAllPosts.arrayPosts);
+  const currentUser = useSelector((state) => state.currentUser.currentUser);
+
   const handleChiudiEditPost = () => {
     const fetchPostEdit = async () => {
       try {
@@ -100,8 +100,11 @@ function AllUserPosts() {
                   />
                   <div className="d-flex flex-column justify-content-start">
                     <div className="d-flex align-items-baseline gap-1">
-                      <Link to={`/profile/${post.user._id}`} style={{textDecoration:"none", color:"black"}}>
-                      <h6 className="m-0">{post.user.name}</h6>
+                      <Link
+                        to={`/profile/${post.user._id}`}
+                        style={{ textDecoration: "none", color: "black" }}
+                      >
+                        <h6 className="m-0">{post.user.name}</h6>
                       </Link>
                       <p
                         style={{ fontSize: "0.65rem", color: "grey" }}
@@ -121,7 +124,9 @@ function AllUserPosts() {
                     </div>
                   </div>
                 </div>
-                <p style={{color:"black"}} className="p-2 px-4">{post.text}</p>
+                <p style={{ color: "black" }} className="p-2 px-4">
+                  {post.text}
+                </p>
                 <img
                   src={post.image}
                   alt=""
@@ -159,7 +164,13 @@ function AllUserPosts() {
             ))}
         </>
       ) : (
-        <Spinner variant="warning" animation="border" />
+        <div className="container d-flex justify-content-center align-items-center mt-5">
+          <Row className="justify-content-center align-items-center">
+            <Col>
+              <Spinner variant="primary" animation="border" />
+            </Col>
+          </Row>
+        </div>
       )}
       {postToEdit ? (
         <PutPost

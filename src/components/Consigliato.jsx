@@ -79,6 +79,40 @@ const Consigliato = () => {
     handleClose4();
   };
 
+  // // ------------FETCH MODALI--------------//
+  // const myPostUrl = `https://striveschool-api.herokuapp.com/api/profile/${currentUserStore._id}`;
+  // const bearerToken = sessionStorage.getItem("accessToken");
+  // const [newBio,setNewbio]=useState("")
+
+  // const handlePost = async (e) => {
+  //   e.preventDefault();
+  //   console.log("Submit form");
+  //   try {
+  //     const formData = {
+  //       bio:newBio
+  //     };
+
+  //     const response = await fetch(myPostUrl, {
+  //       method: "POST",
+  //       headers: {
+  //         Authorization: "Bearer " + bearerToken,
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(formData),
+  //     });
+  //     // console.log("API response:", response);
+
+  //     if (!response.ok) {
+  //       throw new Error("Errore nella richiesta POST");
+  //     }
+
+  //     // handleClose();
+  //   } catch (error) {
+  //     console.error("Errore durante la richiesta POST:", error);
+  //   }
+  // };
+
+  // //------------- FINE FETCH MODALI---------//
   return (
     <div
       style={{ border: "1px solid lightgrey" }}
