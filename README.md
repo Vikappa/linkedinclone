@@ -2,8 +2,7 @@
 <p align="center">
   <img src="./public/iconSmall.png" alt="Logo del Progetto" width="80px" height="auto"/>
   <br>
-  <img src="https://img.shields.io/badge/Status-COMPLETO-green
-  " alt="Status: Completed!"/>
+  <img src="https://img.shields.io/badge/Status-COMPLETO-green.svg" alt="Status: Completed!"/>
   <img src="https://img.shields.io/badge/version-1.0.0-blue.svg" alt="Version 1.0.0"/>
 </p>
 
